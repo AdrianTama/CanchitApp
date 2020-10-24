@@ -1,17 +1,22 @@
+import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text , TextInput, View, TouchableHighlight} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import Canchitapp from '../components/canchitapp'
 
-export default function(){
+export default function SignIn(){
     const [usuario, onChangeUser] = React.useState('');
     const [clave, onChangeClave] = React.useState(''); 
+    const navigation = useNavigation(); 
 
     function ingresar(){
-
+        navigation.navigate("Home");
     };
 
     return (
-        <View  >
-            <Text style={styles.titulo}>CanchitApp</Text>
+        <View style={styles.container} >
+            <Canchitapp/>
+            <StatusBar style="auto" />
             <Text style= {styles.texto}>Ingrese su usuario</Text>
             <TextInput
                 style={styles.box}
@@ -30,25 +35,27 @@ export default function(){
                     <Text style= {styles.textoBoton}>Ingresar</Text>
                 </View>
             </TouchableHighlight>
-           
         </View>
     );
   }
 
   const styles = StyleSheet.create({
-    titulo:{
-        textAlign: 'center',
-        fontSize:40,
-        marginBottom: 90,
-        fontStyle: 'italic',
-        fontWeight: 'bold',
-    },
+    container: {
+        flex: 1,
+        paddingTop: 80,
+    }, 
 
-    image:{
-        flex:10,
-        alignItems:'center',
-        resizeMode: 'contain',
-        justifyContent: 'center',
+    texto:{
+        marginLeft: 20,
+    },
+    
+    box: {
+        height:40,
+        width: 350,
+        borderBottomWidth: 1,
+        marginVertical: 30,
+        alignContent: 'center',
+        marginLeft: 20,
     },
 
     containerBoton:{
@@ -70,18 +77,6 @@ export default function(){
     textoBoton:{
         color: 'white',
         fontSize:15
-    },
-
-    texto:{
-        
-    },
-    
-    box: {
-      height:40,
-      width: 350,
-      borderBottomWidth: 1,
-      marginVertical: 30,
-      alignContent: 'center'
     },
   
   })
