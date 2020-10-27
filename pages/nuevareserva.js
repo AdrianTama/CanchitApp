@@ -45,7 +45,7 @@ export default function NuevaReserva(){
                 <Picker.Item label="03/11/2020" value="03/11/2020" />
             </Picker>
 
-            <Text style= {styles.texto}>Paso 2: Elegí el horario</Text>
+            <Text style= {styles.texto}>Paso 3: Elegí el horario</Text>
             <Picker
                 selectedValue={horarioElegido}
                 style={styles.picker}

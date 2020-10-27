@@ -15,6 +15,9 @@ import Nuevareserva from './pages/nuevareserva';
 import PaginaPrincipal from './pages/home';
 import Mireserva from './pages/mireserva';
 
+import AgregarCancha from "./components/AgregarCancha";
+import { useState } from 'react';
+
 
 const Stack = createStackNavigator();
 
@@ -72,3 +75,65 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
+
+//canchas
+
+export default function App() {
+
+  const [canchas, setCanchas] = useState(canchas)
+
+const [mostrarCanchas, setFlag] = useState(true);
+
+const guardarCancha = ({descripcion, numero}) => {
+  console.log(descripcion, numero)
+  setCanchas([...contacts, {
+    descripcion, numero, key: canchas.length
+  }])
+
+  setFlag(false)
+
+}
+
+
+return (
+
+
+  <View style={styles.container}>
+
+    {
+      (mostrarCanchas) ?
+        
+        <AgregarCancha guardarCancha={guardarCancha} />
+
+        :
+        <View>
+          <View>
+            <Text styles>Listado de canchas</Text>
+          </View>
+
+          {/* <ScrollViewContact canchas={canchas} /> */}
+
+          <FlatListContact contactos={contacts} />
+
+          {/* <SectionListCancha canchas={canchas} /> */}
+        </View>
+
+    }
+  </View>
+);
+}
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    paddingTop: Constants.statusBarHeight
+    // alignItems: 'center',
+    // justifyContent: 'center',
+   },
+  row: {
+    padding: 15
+  }
+});
