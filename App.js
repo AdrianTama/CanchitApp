@@ -15,8 +15,8 @@ import Nuevareserva from './pages/nuevareserva';
 import PaginaPrincipal from './pages/home';
 import Mireserva from './pages/mireserva';
 
-import AgregarCancha from "./components/AgregarCancha";
-import { useState } from 'react';
+//import AgregarCancha from "./components/AgregarCancha";
+//import { useState } from 'react';
 
 
 const Stack = createStackNavigator();
@@ -78,7 +78,7 @@ export default function App() {
 
 
 //canchas
-
+/*
 export default function App() {
 
   const [canchas, setCanchas] = useState(canchas)
@@ -112,11 +112,11 @@ return (
             <Text styles>Listado de canchas</Text>
           </View>
 
-          {/* <ScrollViewContact canchas={canchas} /> */}
+         
 
           <FlatListContact contactos={contacts} />
 
-          {/* <SectionListCancha canchas={canchas} /> */}
+         
         </View>
 
     }
@@ -137,3 +137,9 @@ const styles = StyleSheet.create({
     padding: 15
   }
 });
+*/
+// línea 115
+// {/* <ScrollViewContact canchas={canchas} /> */}
+
+//línea 119
+// {/* <SectionListCancha canchas={canchas} /> */}
