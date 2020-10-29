@@ -13,11 +13,12 @@ export default function MiReserva(){
         <View style={styles.container} >
             <Canchitapp/>
             <Text style={styles.subtitulo}>Mi reserva</Text>
-            <View style={styles.reserva}>
+            {cancha.length > 0 ? <View style={styles.reserva}>
                 <Text style={styles.texto}>Tipo de cancha: {cancha}</Text>
                 <Text style={styles.texto}>Dia: {dia}</Text>
                 <Text style={styles.texto}>Hora: {hora}</Text>
-            </View>
+            </View> : <Text>No hay ninguna reserva.</Text>}
+            
            
             
             <TouchableHighlight style={styles.containerBoton} onPress={() => navigation.navigate('Home')}>
@@ -54,7 +55,7 @@ export default function MiReserva(){
     },
 
     subtitulo:{
-        fontSize:30,
+        fontSize:25,
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',

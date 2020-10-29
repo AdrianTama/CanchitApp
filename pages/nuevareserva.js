@@ -21,7 +21,7 @@ export default function NuevaReserva(){
     return (
         <View style={styles.container} >
             <Canchitapp/>
-            <StatusBar style = "auto" />
+            <Text style={styles.subtitulo}>Nueva Reserva</Text>
             
             <Text style= {styles.texto}>Paso 1: Elegí el tipo de cancha</Text>
             <Picker
@@ -55,8 +55,6 @@ export default function NuevaReserva(){
                 <Picker.Item label="12:00" value="12:00" />
                 <Picker.Item label="13:00" value="13:00" />
             </Picker>
-            
-            
 
            <TouchableHighlight style={styles.containerBoton} onPress={reservar}>
                 <View style={styles.boton}>
@@ -76,43 +74,6 @@ export default function NuevaReserva(){
   }
 
   const styles = StyleSheet.create({
-    centeredView: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: 22
-      },
-      modalView: {
-        margin: 20,
-        backgroundColor: "white",
-        borderRadius: 20,
-        padding: 35,
-        alignItems: "center",
-        shadowColor: "#000",
-        shadowOffset: {
-          width: 0,
-          height: 2
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5
-      },
-      openButton: {
-        backgroundColor: "#F194FF",
-        borderRadius: 20,
-        padding: 10,
-        elevation: 2
-      },
-      textStyle: {
-        color: "white",
-        fontWeight: "bold",
-        textAlign: "center"
-      },
-      modalText: {
-        marginBottom: 15,
-        textAlign: "center"
-      }
-    ,
     container: {
         flex: 1,
         paddingTop: 80,
@@ -125,6 +86,7 @@ export default function NuevaReserva(){
         fontSize: 15,
         marginBottom: 20,
         marginLeft: 20,
+        
     },
 
     titulo:{
@@ -136,11 +98,24 @@ export default function NuevaReserva(){
         fontWeight: 'bold',
     },
 
+    subtitulo:{
+        fontSize:25,
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        
+    },
+
     texto:{
         fontSize:20,
         textAlign: 'left',
         alignContent: 'center',
-        marginLeft: 20,
+        marginTop:20,
+        borderBottomWidth:1,
+        marginTop: 20,
+        marginHorizontal: 10,
+        paddingHorizontal: 10,
+        paddingVertical: 5,
     },
 
     containerBoton:{

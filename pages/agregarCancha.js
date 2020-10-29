@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, TouchableHighlight } from 'react-native';
+import CanchitApp from '../components/canchitapp';
+import { useNavigation } from '@react-navigation/native';
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        paddingTop: 80,
+        
+    },
+
     input: {
         borderWidth: 1,
         borderColor: 'black',
@@ -11,7 +19,16 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         paddingVertical: 5,
         borderRadius: 3
-    }
+    },
+
+    subtitulo:{
+        fontSize:25,
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        
+    },
+
 })
 
 const AgregarCancha = ({guardarCancha}) => {
@@ -20,6 +37,8 @@ const AgregarCancha = ({guardarCancha}) => {
     const [numero, setNumero] = useState("")
 
     const [puedeEnviar, setPuedeEnviar] = useState(false)
+
+    const navigation = useNavigation(); 
 
     // Validacion de boton enviar
     useEffect( () => {
@@ -33,7 +52,9 @@ const AgregarCancha = ({guardarCancha}) => {
     // }
 
     return (
-        <View>
+        <View style={styles.container}>
+            <CanchitApp/>
+            <Text style={styles.subtitulo}>Agregar Cancha</Text>
             <TextInput
                 style={styles.input}
                 value={descripcion}
@@ -51,7 +72,10 @@ const AgregarCancha = ({guardarCancha}) => {
                 title={"Guardar Cancha"}
                 onPress={() => guardarCancha({descripcion, numero})}
                 disabled={!puedeEnviar}
-
+            />
+            <Button
+                title={"Volver"}
+                onPress={() => navigation.goBack()}
             />
 
         </View>
