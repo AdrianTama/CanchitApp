@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, TouchableHighlight } from 'react-native';
-import CanchitApp from '../components/canchitapp';
+import BotoneraSuperior from '../components/botoneraSuperior';
 import { useNavigation } from '@react-navigation/native';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 80,
+        paddingTop: 20,
         
     },
 
@@ -53,7 +53,7 @@ const AgregarCancha = ({guardarCancha}) => {
 
     return (
         <View style={styles.container}>
-            <CanchitApp/>
+            <BotoneraSuperior/>
             <Text style={styles.subtitulo}>Agregar Cancha</Text>
             <TextInput
                 style={styles.input}

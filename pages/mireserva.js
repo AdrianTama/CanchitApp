@@ -1,7 +1,7 @@
 import React from 'react';
 import { Picker, StyleSheet, Text , View, TouchableHighlight} from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import Canchitapp from '../components/canchitapp'
+import BotoneraSuperior from '../components/botoneraSuperior'
 
 export default function MiReserva(){
 
@@ -11,15 +11,13 @@ export default function MiReserva(){
 
     return (
         <View style={styles.container} >
-            <Canchitapp/>
+            <BotoneraSuperior/>
             <Text style={styles.subtitulo}>Mi reserva</Text>
             {cancha.length > 0 ? <View style={styles.reserva}>
                 <Text style={styles.texto}>Tipo de cancha: {cancha}</Text>
                 <Text style={styles.texto}>Dia: {dia}</Text>
                 <Text style={styles.texto}>Hora: {hora}</Text>
             </View> : <Text>No hay ninguna reserva.</Text>}
-            
-           
             
             <TouchableHighlight style={styles.containerBoton} onPress={() => navigation.navigate('Home')}>
                 <View style={styles.boton}>
@@ -33,16 +31,9 @@ export default function MiReserva(){
   }
 
   const styles = StyleSheet.create({
-    centeredView: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: 22
-    },
-
     container: {
         flex: 1,
-        paddingTop: 80,
+        paddingTop: 20,
     }, 
    
     titulo:{

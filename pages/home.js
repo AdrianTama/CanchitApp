@@ -1,7 +1,7 @@
 import React from 'react';
 import { Picker, StyleSheet, Text , View, TouchableHighlight, Button} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import Canchitapp from '../components/canchitapp';
+import BotoneraSuperior from '../components/botoneraSuperior';
 
 export default function Home(){
 
@@ -9,7 +9,7 @@ export default function Home(){
 
     return (
         <View style={styles.container} >
-            <Canchitapp/>
+            <BotoneraSuperior/>
 
             <View style={styles.botonera}>
                 <TouchableHighlight style={styles.containerBoton} onPress={() => navigation.navigate("Nueva Reserva")}>
@@ -21,6 +21,12 @@ export default function Home(){
                 <TouchableHighlight style={styles.containerBoton} onPress={() => navigation.navigate("Mi Reserva")}>
                     <View style={styles.boton}>
                         <Text style= {styles.textoBoton}>Mi Reserva</Text>
+                    </View>
+                </TouchableHighlight>
+
+                <TouchableHighlight style={styles.containerBoton} onPress={() => navigation.navigate("Agregar Cancha")}>
+                    <View style={styles.boton}>
+                        <Text style= {styles.textoBoton}>Agregar Cancha</Text>
                     </View>
                 </TouchableHighlight>
             </View>
@@ -35,7 +41,7 @@ export default function Home(){
     },
     container: {
         flex: 1,
-        paddingTop: 80,
+        paddingTop: 20,
     }, 
 
     containerBoton:{

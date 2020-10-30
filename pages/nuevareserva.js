@@ -2,7 +2,7 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Picker, StyleSheet, Text , View, TouchableHighlight} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import Canchitapp from '../components/canchitapp';
+import BotoneraSuperior from '../components/botoneraSuperior';
 
 export default function NuevaReserva(){
 
@@ -20,7 +20,7 @@ export default function NuevaReserva(){
 
     return (
         <View style={styles.container} >
-            <Canchitapp/>
+            <BotoneraSuperior/>
             <Text style={styles.subtitulo}>Nueva Reserva</Text>
             
             <Text style= {styles.texto}>Paso 1: Elegí el tipo de cancha</Text>
@@ -76,7 +76,7 @@ export default function NuevaReserva(){
   const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 80,
+        paddingTop: 20,
         
     },
 
@@ -111,7 +111,6 @@ export default function NuevaReserva(){
         textAlign: 'left',
         alignContent: 'center',
         marginTop:20,
-        borderBottomWidth:1,
         marginTop: 20,
         marginHorizontal: 10,
         paddingHorizontal: 10,

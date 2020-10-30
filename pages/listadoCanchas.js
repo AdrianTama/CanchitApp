@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, TouchableHighlight } from 'react-native';
-import CanchitApp from '../components/canchitapp';
+import BotoneraSuperior from '../components/canchitapp';
 import { useNavigation } from '@react-navigation/native';
 
 
@@ -24,7 +24,7 @@ export default function App() {
     return (
 
         <View style={styles.container}>
-        <CanchitApp/>
+        <BotoneraSuperior/>
         <Text style={styles.subtitulo}>Lista de canchas</Text>
 
         {(mostrarCanchas) ?
