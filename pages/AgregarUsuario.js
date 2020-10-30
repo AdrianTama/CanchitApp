@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, TouchableHighlight } from 'react-native';
-import BotoneraSuperior from '../components/botoneraSuperior';
+import BotoneraSuperior from '../components/nombreApp';
 import { useNavigation } from '@react-navigation/native';
 
 const styles = StyleSheet.create({
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     },
 
     subtitulo:{
-        fontSize:25,
+        fontSize:20,
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',

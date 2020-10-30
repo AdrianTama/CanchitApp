@@ -30,11 +30,6 @@ export default function Home(){
                     </View>
                 </TouchableHighlight>
 
-                <TouchableHighlight style={styles.containerBoton} onPress={() => navigation.navigate("Agregar tipo de cancha")}>
-                    <View style={styles.boton}>
-                        <Text style= {styles.textoBoton}>Agregar tipo de cancha</Text>
-                    </View>
-                </TouchableHighlight>
             </View>
             
         </View>

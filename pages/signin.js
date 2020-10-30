@@ -15,6 +15,10 @@ export default function SignIn(){
         navigation.navigate("Home");
     };
 
+    function registrarme(){
+        navigation.navigate("Registrar Usuario");
+    };
+
     return (
         <View style={styles.container} >
             <BotoneraSuperior/>
@@ -53,6 +57,12 @@ export default function SignIn(){
                 <TouchableHighlight style={styles.containerBoton} onPress={ingresar}>
                     <View style={styles.boton}>
                         <Text style= {styles.textoBoton}>Ingresar</Text>
+                    </View>
+                </TouchableHighlight>
+
+                <TouchableHighlight style={styles.containerBoton} onPress={registrarme}>
+                    <View style={styles.botonGris}>
+                        <Text style= {styles.textoBoton}>Registrarme</Text>
                     </View>
                 </TouchableHighlight>
             </View>
@@ -103,6 +113,18 @@ export default function SignIn(){
         width:300,
         height: 40,
         backgroundColor: '#720876',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop:10,
+        marginBottom: 10,
+        borderWidth:1,
+        borderRadius:10,
+    },
+
+    botonGris:{
+        width:300,
+        height: 40,
+        backgroundColor: '#34495E',
         alignItems: 'center',
         justifyContent: 'center',
         marginTop:10,

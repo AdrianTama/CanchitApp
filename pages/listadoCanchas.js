@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     padding: 15
   },
   subtitulo:{
-    fontSize:25,
+    fontSize:20,
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'center',

@@ -6,9 +6,9 @@ import BotoneraSuperior from '../components/botoneraSuperior';
 
 export default function NuevaReserva(){
 
-    const [tipoElegido, setTipoElegido] = React.useState(" ");
-    const [diaElegido, setDiaElegido] = React.useState(" ");
-    const [horarioElegido, setHorarioElegido] = React.useState(" ");
+    const [tipoElegido, setTipoElegido] = React.useState("0");
+    const [diaElegido, setDiaElegido] = React.useState("0");
+    const [horarioElegido, setHorarioElegido] = React.useState("0");
     const navigation = useNavigation(); 
 
     function reservar(){
@@ -17,6 +17,12 @@ export default function NuevaReserva(){
             hora: horarioElegido,
             cancha: tipoElegido} );
     };
+
+    function useEffect(){() => {
+
+        setPuedeEnviar(tipoElegido !=0 && diaElegido!=0 && horarioElegido!=0 )
+        
+    }, [tipoElegido, diaElegido, horarioElegido]}
 
     return (
         <View style={styles.container} >
@@ -29,6 +35,7 @@ export default function NuevaReserva(){
                 style={styles.picker}
                 onValueChange={(itemValue, itemIndex) => setTipoElegido(itemValue)}
             >
+                <Picker.Item label="Seleccionar tipo de cancha" value="0" />
                 <Picker.Item label="Cancha Fútbol 5" value="Fútbol 5" />
                 <Picker.Item label="Cancha Fútbol 7" value="Fútbol 7" />
                 <Picker.Item label="Cancha Fútbol 11" value="Fútbol 11" />
@@ -40,6 +47,7 @@ export default function NuevaReserva(){
                 style={styles.picker}
                 onValueChange={(itemValue, itemIndex) => setDiaElegido(itemValue)}
             >
+                <Picker.Item label="Seleccionar día" value="0" />
                 <Picker.Item label="01/11/2020" value="01/11/2020" />
                 <Picker.Item label="02/11/2020" value="02/11/2020" />
                 <Picker.Item label="03/11/2020" value="03/11/2020" />
@@ -51,18 +59,25 @@ export default function NuevaReserva(){
                 style={styles.picker}
                 onValueChange={(itemValue, itemIndex) => setHorarioElegido(itemValue)}
             >
+                <Picker.Item label="Seleccionar horario" value="0" />
                 <Picker.Item label="11:00" value="11:00" />
                 <Picker.Item label="12:00" value="12:00" />
                 <Picker.Item label="13:00" value="13:00" />
             </Picker>
 
-           <TouchableHighlight style={styles.containerBoton} onPress={reservar}>
+           <TouchableHighlight 
+                style={styles.containerBoton} 
+                onPress={reservar}
+            >
                 <View style={styles.boton}>
                     <Text style= {styles.textoBoton}>Reservar</Text>
                 </View>
             </TouchableHighlight>
 
-            <TouchableHighlight style={styles.containerBoton} onPress={() => navigation.goBack()}>
+            <TouchableHighlight 
+                style={styles.containerBoton} 
+                onPress={() => navigation.goBack()}
+            >
                 <View style={styles.boton}>
                     <Text style= {styles.textoBoton}>Volver</Text>
                 </View>
@@ -81,11 +96,13 @@ export default function NuevaReserva(){
     },
 
     picker: {
-        height: 50, 
-        width: 300,
-        fontSize: 15,
+        minWidth: 100,
+        marginTop: 20,
         marginBottom: 20,
-        marginLeft: 20,
+        marginHorizontal: 10,
+        paddingHorizontal: 10,
+        paddingVertical: 5,
+        borderRadius: 3
         
     },
 
@@ -99,7 +116,7 @@ export default function NuevaReserva(){
     },
 
     subtitulo:{
-        fontSize:25,
+        fontSize:20,
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',

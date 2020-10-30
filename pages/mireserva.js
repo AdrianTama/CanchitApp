@@ -46,7 +46,7 @@ export default function MiReserva(){
     },
 
     subtitulo:{
-        fontSize:25,
+        fontSize:20,
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
