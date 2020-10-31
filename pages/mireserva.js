@@ -1,5 +1,5 @@
 import React from 'react';
-import { Picker, StyleSheet, Text , View, TouchableHighlight} from 'react-native';
+import { Picker, StyleSheet, Text , View, TouchableHighlight,TouchableOpacity} from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import BotoneraSuperior from '../components/botoneraSuperior'
 
@@ -24,6 +24,11 @@ export default function MiReserva(){
                     <Text style= {styles.textoBoton}>Volver</Text>
                 </View>
             </TouchableHighlight>
+            <TouchableOpacity style={styles.containerBoton} onPress={() => navigation.navigate('Home')}>
+                <View style={styles.boton}>
+                    <Text style= {styles.textoBoton}>Cancelar Reserva</Text>
+                </View>
+            </TouchableOpacity>
         </View>
 
         
