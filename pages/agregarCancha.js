@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, TouchableHighlight, Picker } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/Octicons';
 
 import BotoneraSuperior from '../components/botoneraSuperior';
 
@@ -41,25 +42,19 @@ const styles = StyleSheet.create({
         borderRadius: 3
         
     },
-    containerBoton:{
-        alignItems: 'center',
+
+    botoneraInferior: {
+        marginTop: 20,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     },
 
-    boton:{
-        width:300,
-        height: 40,
-        backgroundColor: '#720876',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginTop:10,
-        marginBottom: 10,
-        borderWidth:1,
-        borderRadius:10,
+    iconoDerecho:{
+        paddingLeft : 20, 
     },
 
-    textoBoton:{
-        color: 'white',
-        fontSize:15
+    iconoIzquierdo:{
+        paddingRight : 20, 
     },
 
 })
@@ -116,24 +111,22 @@ const AgregarCancha = () => {
                 <Picker.Item label="Cancha Futbol 11" value="11" />
             </Picker>
             
-            <TouchableHighlight 
-                style={styles.containerBoton} 
-                onPress={() => guardarCancha({descripcion, numero, tipo})} 
-                disabled={!puedeEnviar}
-            >
-                <View style={styles.boton}>
-                    <Text style= {styles.textoBoton}>Guardar</Text>
-                </View>
-            </TouchableHighlight>
-
-            <TouchableHighlight 
-                style={styles.containerBoton} 
+            <View style={styles.botoneraInferior}>
+                <Icon 
+                name='x' 
+                size={40} 
+                color='#000' 
+                style= {styles.iconoDerecho}
                 onPress={() => navigation.goBack()}
-            >
-                <View style={styles.boton}>
-                    <Text style= {styles.textoBoton}>Volver</Text>
-                </View>
-            </TouchableHighlight>
+                />
+                <Icon 
+                name='check' 
+                size={40} 
+                color='#000' 
+                style= {styles.iconoIzquierdo}
+                onPress={() => guardarCancha({descripcion, numero, tipo})} 
+                />
+            </View>
 
         </View>
     )

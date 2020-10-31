@@ -15,7 +15,7 @@ export default function IconoUser(){
                 size={30} 
                 color='#000' 
                 style= {styles.icono}
-                onPress={() => navigation.openDrawer()}
+                onPress={() => navigation.navigate('Mi perfil')}
             />
         </View>
     );

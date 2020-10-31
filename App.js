@@ -16,6 +16,7 @@ import PaginaPrincipal from './pages/home';
 import Mireserva from './pages/mireserva';
 import Agregarcancha from "./pages/agregarCancha";
 import Agregarusuario from './pages/AgregarUsuario';
+import Perfil from './pages/perfil';
 
 //import { useState } from 'react';
 
@@ -60,6 +61,12 @@ function AgregarUsuario() {
   );
 }
 
+function MiPerfil(){
+  return(
+    <Perfil/>
+  );
+}
+
 function CustomDrawerContent(props) {
   return (
     <DrawerContentScrollView {...props}>
@@ -79,6 +86,7 @@ function MyDrawer() {
       <Drawer.Screen name="Mi Reserva" component={ MiReserva } />
       <Drawer.Screen name="Agregar Cancha" component={ AgregarCancha } />
       <Drawer.Screen name="Registrar Usuario" component={ AgregarUsuario } />
+      <Drawer.Screen name="Mi perfil" component={ MiPerfil } />
     </Drawer.Navigator>
   );
 }

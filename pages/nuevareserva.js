@@ -2,7 +2,10 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Picker, StyleSheet, Text , View, TouchableHighlight} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/Octicons';
+
 import BotoneraSuperior from '../components/botoneraSuperior';
+
 
 export default function NuevaReserva(){
 
@@ -65,24 +68,23 @@ export default function NuevaReserva(){
                 <Picker.Item label="13:00" value="13:00" />
             </Picker>
 
-           <TouchableHighlight 
-                style={styles.containerBoton} 
-                onPress={reservar}
-            >
-                <View style={styles.boton}>
-                    <Text style= {styles.textoBoton}>Reservar</Text>
-                </View>
-            </TouchableHighlight>
-
-            <TouchableHighlight 
-                style={styles.containerBoton} 
+            <View style={styles.botoneraInferior}>
+                <Icon 
+                name='x' 
+                size={40} 
+                color='#000' 
+                style= {styles.iconoDerecho}
                 onPress={() => navigation.goBack()}
-            >
-                <View style={styles.boton}>
-                    <Text style= {styles.textoBoton}>Volver</Text>
-                </View>
-            </TouchableHighlight>
-           
+                />
+                <Icon 
+                name='check' 
+                size={40} 
+                color='#000' 
+                style= {styles.iconoIzquierdo}
+                onPress={reservar}
+                />
+            </View>
+            
            
         </View>
     );
@@ -95,6 +97,20 @@ export default function NuevaReserva(){
         
     },
 
+    botoneraInferior: {
+        marginTop: 20,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+
+    iconoDerecho:{
+        paddingLeft : 20, 
+    },
+
+    iconoIzquierdo:{
+        paddingRight : 20, 
+    },
+
     picker: {
         minWidth: 100,
         marginTop: 20,
@@ -102,8 +118,9 @@ export default function NuevaReserva(){
         marginHorizontal: 10,
         paddingHorizontal: 10,
         paddingVertical: 5,
-        borderRadius: 3
-        
+        borderRadius: 3,
+        borderWidth:1,
+        borderColor: 'black'
     },
 
     titulo:{
@@ -124,7 +141,7 @@ export default function NuevaReserva(){
     },
 
     texto:{
-        fontSize:20,
+        fontSize:15,
         textAlign: 'left',
         alignContent: 'center',
         marginTop:20,
@@ -132,26 +149,5 @@ export default function NuevaReserva(){
         marginHorizontal: 10,
         paddingHorizontal: 10,
         paddingVertical: 5,
-    },
-
-    containerBoton:{
-        alignItems: 'center',
-    },
-
-    boton:{
-        width:300,
-        height: 40,
-        backgroundColor: '#720876',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginTop:10,
-        marginBottom: 10,
-        borderWidth:1,
-        borderRadius:10,
-    },
-
-    textoBoton:{
-        color: 'white',
-        fontSize:15
     },
   })

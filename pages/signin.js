@@ -76,19 +76,24 @@ export default function SignIn(){
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+        marginTop:20,
+        marginBottom:60
     },
 
     icono:{
         paddingLeft : 20, 
+        marginTop:20
     },
 
     container: {
         flex: 1,
-        paddingTop: 50,
+        paddingTop: 150,
+        marginTop:20
     }, 
 
     containerIngreso:{
         paddingTop: 50,
+        marginTop:20
     },
 
     texto:{
@@ -103,9 +108,11 @@ export default function SignIn(){
         alignContent: 'center',
         marginLeft: 20,
         marginRight:20,
+        marginTop:50
     },
 
     containerBoton:{
+        marginTop:10,
         alignItems: 'center',
     },
 
@@ -116,7 +123,6 @@ export default function SignIn(){
         alignItems: 'center',
         justifyContent: 'center',
         marginTop:10,
-        marginBottom: 10,
         borderWidth:1,
         borderRadius:10,
     },
@@ -128,7 +134,6 @@ export default function SignIn(){
         alignItems: 'center',
         justifyContent: 'center',
         marginTop:10,
-        marginBottom: 10,
         borderWidth:1,
         borderRadius:10,
     },
