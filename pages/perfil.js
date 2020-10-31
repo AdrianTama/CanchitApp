@@ -91,7 +91,7 @@ const Perfil = ({guardarUsuario}) => {
                 placeholder="Nombre"
                 onChangeText={(texto) => setNombre(texto)}                
             />
-            <Text style={styles.dato}>Vargas</Text>
+            <Text style={styles.dato}>Apellido</Text>
             <TextInput
                 style={styles.input}
                 value={apellido}
