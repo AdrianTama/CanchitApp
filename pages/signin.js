@@ -61,8 +61,8 @@ export default function SignIn(){
                 </TouchableHighlight>
 
                 <TouchableHighlight style={styles.containerBoton} onPress={registrarme}>
-                    <View style={styles.botonGris}>
-                        <Text style= {styles.textoBoton}>Registrarme</Text>
+                    <View>
+                        <Text style= {styles.link}>Registrarme</Text>
                     </View>
                 </TouchableHighlight>
             </View>
@@ -78,6 +78,13 @@ export default function SignIn(){
         alignItems: 'center',
         marginTop:20,
         marginBottom:60
+    },
+    link: {
+        textAlign: 'center',
+        fontSize:18,
+        color: '#33A8FF',
+        paddingVertical: 5,
+        marginTop:20,
     },
 
     icono:{

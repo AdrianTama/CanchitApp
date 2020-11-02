@@ -5,53 +5,7 @@ import Icon from 'react-native-vector-icons/Octicons';
 
 import BotoneraSuperior from '../components/botoneraSuperior';
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        paddingTop: 20,
-        
-    },
 
-    input: {
-        borderBottomWidth:1,
-        borderColor: 'gray',
-        minWidth: 100,
-        marginBottom: 20,
-        marginHorizontal: 20,
-        paddingHorizontal: 10,
-        paddingVertical: 5,
-       
-    },
-
-    subtitulo:{
-        fontSize:20,
-        justifyContent: 'center',
-        alignItems: 'center',
-        textAlign: 'center',
-        marginBottom:20
-    },
-
-    botoneraInferior: {
-        marginTop: 20,
-        flexDirection: 'row',
-        justifyContent: 'space-between'
-    },
-
-    iconoDerecho:{
-        paddingLeft : 20, 
-    },
-
-
-    iconoIzquierdo:{
-        paddingRight : 20, 
-    },
-
-    dato:{
-        fontSize:10,
-        paddingLeft : 20, 
-    }
-
-})
 
 const Perfil = ({guardarUsuario}) => {
 
@@ -122,13 +76,71 @@ const Perfil = ({guardarUsuario}) => {
                 onPress={() => guardarUsuario({email, nombre, apellido, telefono})}
                 />
             </View>
-            <Button
-                title={"Cambiar Clave"}
-                onPress={() => navigation.navigate("Cambiar Clave")}
-            />
+            
+            <TouchableHighlight style={styles.containerBoton} onPress={() => navigation.navigate("Cambiar Clave")}>
+                <View>
+                    <Text style={styles.link}>Cambiar contraseña</Text>
+                </View>
+            </TouchableHighlight>
 
         </View>
     )
 }
 
 export default Perfil;
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        paddingTop: 20,
+        
+    },
+
+    input: {
+        borderBottomWidth:1,
+        borderColor: 'gray',
+        minWidth: 100,
+        marginBottom: 20,
+        marginHorizontal: 20,
+        paddingHorizontal: 10,
+        paddingVertical: 5,
+       
+    },
+
+    subtitulo:{
+        fontSize:20,
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        marginBottom:20
+    },
+
+    link: {
+        marginLeft:20,
+        marginTop: 30,
+        fontSize:18,
+        color: '#33A8FF',
+        paddingVertical: 5,
+    },
+
+    botoneraInferior: {
+        marginTop: 20,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+
+    iconoDerecho:{
+        paddingLeft : 20, 
+    },
+
+
+    iconoIzquierdo:{
+        paddingRight : 20, 
+    },
+
+    dato:{
+        fontSize:10,
+        paddingLeft : 20, 
+    }
+
+})

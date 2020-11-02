@@ -7,70 +7,17 @@ import {
   DrawerItemList,
   DrawerItem,
 } from '@react-navigation/drawer';
-import { createStackNavigator } from "@react-navigation/stack";
 
 
-import Signin from './pages/signin';
-import Nuevareserva from './pages/nuevareserva';
+import SignIn from './pages/signin';
+import NuevaReserva from './pages/nuevareserva';
 import PaginaPrincipal from './pages/home';
-import Mireserva from './pages/mireserva';
-import Agregarcancha from "./pages/agregarCancha";
-import Agregarusuario from './pages/agregarUsuario';
+import MiReserva from './pages/mireserva';
+import AgregarCancha from "./pages/agregarCancha";
+import AgregarUsuario from './pages/agregarUsuario';
 import Perfil from './pages/perfil';
-import Cambiarclave from './pages/cambiarClave';
+import CambiarClave from './pages/cambiarClave';
 
-
-const Stack = createStackNavigator();
-
-
-function SignIn() {
-  return (
-    <Signin/>
-  );
-}
-
-function NuevaReserva() {
-  return (
-    <Nuevareserva/>
-  );
-}
-
-function Home() {
-  return (
-    <PaginaPrincipal/>
-  );
-}
-
-
-function MiReserva() {
-  return (
-    <Mireserva/>
-  );
-}
-
-function AgregarCancha() {
-  return (
-    <Agregarcancha/>
-  );
-}
-
-function AgregarUsuario() {
-  return (
-    <Agregarusuario/>
-  );
-}
-
-function MiPerfil(){
-  return(
-    <Perfil/>
-  );
-}
-
-function CambiarClave(){
-  return(
-    <Cambiarclave/>
-  );
-}
 
 function CustomDrawerContent(props) {
   return (
@@ -86,12 +33,12 @@ function MyDrawer() {
   return (
     <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />}>
       <Drawer.Screen name="Sign In" component={ SignIn } />
-      <Drawer.Screen name="Home" component={ Home } />
-      <Drawer.Screen name="Nueva Reserva" component={ NuevaReserva } />
+      <Drawer.Screen name="Home" component={ PaginaPrincipal } />
+      <Drawer.Screen name="Nueva Reserva" component={NuevaReserva } />
       <Drawer.Screen name="Mi Reserva" component={ MiReserva } />
       <Drawer.Screen name="Agregar Cancha" component={ AgregarCancha } />
       <Drawer.Screen name="Registrar Usuario" component={ AgregarUsuario } />
-      <Drawer.Screen name="Mi perfil" component={ MiPerfil } />
+      <Drawer.Screen name="Mi perfil" component={ Perfil } />
       <Drawer.Screen name="Cambiar Clave" component={ CambiarClave } />
     </Drawer.Navigator>
   );
