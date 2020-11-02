@@ -44,7 +44,7 @@ const cambiarClave = ({cambiarClave}) => {
     // Validacion de boton enviar
     useEffect( () => {
 
-        setPuedeEnviar(contraseña.length > 8 && nuevaContraseña.length > 8 && confirmarContraseña == nuevaContraseña)
+        setPuedeEnviar(contraseña.length >= 8 && nuevaContraseña.length >= 8 && confirmarContraseña == nuevaContraseña)
         
     }, [contraseña, nuevaContraseña, confirmarContraseña])
 
@@ -74,7 +74,7 @@ const cambiarClave = ({cambiarClave}) => {
             />
             <Button
                 title={"Cambiar Clave"}
-                onPress={() => modificarUsuario({contraseña, nuevaContraseña, confirmarContraseña})}
+                onPress={() => navigation.navigate("Home")}
                 disabled={!puedeEnviar}
             />
             <Button

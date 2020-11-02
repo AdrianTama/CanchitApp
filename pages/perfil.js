@@ -56,11 +56,9 @@ const styles = StyleSheet.create({
 const Perfil = ({guardarUsuario}) => {
 
     const [email] = useState("prueba@prueba.com")
-    const [nombre, setNombre] = useState("Rocio")
-    const [apellido, setApellido] = useState("Vargas")
-    const [telefono, setTelefono] = useState("44444444")
-    const [contraseña, setContraseña] = useState("prueba")
-    const [confirmarContraseña, setConfirmarContraseña] = useState("")
+    const [nombre, setNombre] = useState("")
+    const [apellido, setApellido] = useState("")
+    const [telefono, setTelefono] = useState("")
 
     const [puedeEnviar, setPuedeEnviar] = useState(false)
 
@@ -69,9 +67,9 @@ const Perfil = ({guardarUsuario}) => {
     // Validacion de boton enviar
     useEffect( () => {
 
-        setPuedeEnviar(email.length > 3 && nombre > 1 && apellido > 1 && telefono != 0 && contraseña > 8 && confirmarContraseña == contraseña)
+        setPuedeEnviar(email.length > 3 && nombre.length > 1 && apellido.length > 1 && telefono != 0  && telefono.length > 8 )
         
-    }, [email, nombre, apellido, telefono, contraseña, confirmarContraseña])
+    }, [email, nombre, apellido, telefono])
 
 
     return (
@@ -121,9 +119,13 @@ const Perfil = ({guardarUsuario}) => {
                 size={40} 
                 color='#000' 
                 style= {styles.iconoIzquierdo}
-                onPress={() => guardarUsuario({email, nombre, apellido, telefono, contraseña, confirmarContraseña})}
+                onPress={() => guardarUsuario({email, nombre, apellido, telefono})}
                 />
             </View>
+            <Button
+                title={"Cambiar Clave"}
+                onPress={() => navigation.navigate("Cambiar Clave")}
+            />
 
         </View>
     )

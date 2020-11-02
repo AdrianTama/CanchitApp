@@ -17,7 +17,6 @@ import Mireserva from './pages/mireserva';
 import Agregarcancha from "./pages/agregarCancha";
 import Agregarusuario from './pages/agregarUsuario';
 import Perfil from './pages/perfil';
-import Modificarusuario from './pages/modificarUsuario';
 import Cambiarclave from './pages/cambiarClave';
 
 
@@ -67,12 +66,6 @@ function MiPerfil(){
   );
 }
 
-function ModificarUsuario(){
-  return(
-    <Modificarusuario/>
-  );
-}
-
 function CambiarClave(){
   return(
     <Cambiarclave/>
@@ -99,7 +92,6 @@ function MyDrawer() {
       <Drawer.Screen name="Agregar Cancha" component={ AgregarCancha } />
       <Drawer.Screen name="Registrar Usuario" component={ AgregarUsuario } />
       <Drawer.Screen name="Mi perfil" component={ MiPerfil } />
-      <Drawer.Screen name="Modificar Usuario" component={ ModificarUsuario } />
       <Drawer.Screen name="Cambiar Clave" component={ CambiarClave } />
     </Drawer.Navigator>
   );

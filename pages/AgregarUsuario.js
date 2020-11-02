@@ -47,7 +47,7 @@ const AgregarUsuario = ({guardarUsuario}) => {
     // Validacion de boton enviar
     useEffect( () => {
         
-        setPuedeEnviar(email.length > 3 && nombre.length > 1 && apellido.length > 1 && (telefono != 0 && telefono > 7) && contraseña.length > 8 && confirmarContraseña == contraseña)
+        setPuedeEnviar(email.length > 3 && nombre.length > 1 && apellido.length > 1 && (telefono != 0 && telefono > 7) && contraseña.length >= 8 && confirmarContraseña == contraseña)
         
     }, [email, nombre, apellido, telefono, contraseña, confirmarContraseña])
     
