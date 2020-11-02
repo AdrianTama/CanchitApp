@@ -22,13 +22,7 @@ export default function Home(){
                     <View style={styles.boton}>
                         <Text style= {styles.textoBoton}>Mi Reserva</Text>
                     </View>
-                </TouchableHighlight>
-
-                <TouchableHighlight style={styles.containerBoton} onPress={() => navigation.navigate("Agregar Cancha")}>
-                    <View style={styles.boton}>
-                        <Text style= {styles.textoBoton}>Agregar Cancha</Text>
-                    </View>
-                </TouchableHighlight>
+                </TouchableHighlight>                
 
             </View>
             

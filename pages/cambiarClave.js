@@ -31,13 +31,10 @@ const styles = StyleSheet.create({
 
 })
 
-const AgregarUsuario = ({guardarUsuario}) => {
-
-    const [email, setEmail] = useState("")
-    const [nombre, setNombre] = useState("")
-    const [apellido, setApellido] = useState("")
-    const [telefono, setTelefono] = useState("")
+const cambiarClave = ({cambiarClave}) => {
+            
     const [contraseña, setContraseña] = useState("")
+    const [nuevaContraseña, setNuevaContraseña] = useState("")
     const [confirmarContraseña, setConfirmarContraseña] = useState("")
 
     const [puedeEnviar, setPuedeEnviar] = useState(false)
@@ -46,41 +43,17 @@ const AgregarUsuario = ({guardarUsuario}) => {
 
     // Validacion de boton enviar
     useEffect( () => {
+
+        setPuedeEnviar(contraseña.length > 8 && nuevaContraseña.length > 8 && confirmarContraseña == nuevaContraseña)
         
-        setPuedeEnviar(email.length > 3 && nombre.length > 1 && apellido.length > 1 && (telefono != 0 && telefono > 7) && contraseña.length > 8 && confirmarContraseña == contraseña)
-        
-    }, [email, nombre, apellido, telefono, contraseña, confirmarContraseña])
-    
+    }, [contraseña, nuevaContraseña, confirmarContraseña])
+
 
     return (
         <View style={styles.container}>
             <BotoneraSuperior/>
-            <Text style={styles.subtitulo}>Registrar usuario</Text>
-            <TextInput
-                style={styles.input}
-                value={email}
-                placeholder="Email"
-                onChangeText={(texto) => setEmail(texto)}
-            />
-            <TextInput
-                style={styles.input}
-                value={nombre}
-                placeholder="Nombre"
-                onChangeText={(texto) => setNombre(texto)}                
-            />
-            <TextInput
-                style={styles.input}
-                value={apellido}
-                placeholder="Apellido"
-                onChangeText={(texto) => setApellido(texto)}            
-            />
-            <TextInput
-                style={styles.input}
-                value={telefono}
-                placeholder="Teléfono"
-                onChangeText={(texto) => setTelefono(texto)}
-                keyboardType="numeric"
-            />
+            <Text style={styles.subtitulo}>Cambiar clave</Text>
+            
             <TextInput
                 style={styles.input}
                 value={contraseña}
@@ -89,13 +62,19 @@ const AgregarUsuario = ({guardarUsuario}) => {
             />
             <TextInput
                 style={styles.input}
+                value={nuevaContraseña}
+                placeholder="Nueva contraseña"
+                onChangeText={(texto) => setNuevaContraseña(texto)}
+            />
+            <TextInput
+                style={styles.input}
                 value={confirmarContraseña}
                 placeholder="Confirmar contraseña"
                 onChangeText={(texto) => setConfirmarContraseña(texto)}            
             />
             <Button
-                title={"Guardar Usuario"}
-                onPress={() => guardarUsuario({email, nombre, apellido, telefono, contraseña, confirmarContraseña})}
+                title={"Cambiar Clave"}
+                onPress={() => modificarUsuario({contraseña, nuevaContraseña, confirmarContraseña})}
                 disabled={!puedeEnviar}
             />
             <Button
@@ -107,4 +86,4 @@ const AgregarUsuario = ({guardarUsuario}) => {
     )
 }
 
-export default AgregarUsuario;
+export default cambiarClave;

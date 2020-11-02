@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, TouchableHighlight } from 'react-native';
 import BotoneraSuperior from '../components/nombreApp';
 import { useNavigation } from '@react-navigation/native';
+import cambiarClave from './cambiarClave';
 
 const styles = StyleSheet.create({
     container: {
@@ -31,14 +32,11 @@ const styles = StyleSheet.create({
 
 })
 
-const AgregarUsuario = ({guardarUsuario}) => {
-
-    const [email, setEmail] = useState("")
+const modificarUsuario = ({modificarUsuario}) => {
+    
     const [nombre, setNombre] = useState("")
     const [apellido, setApellido] = useState("")
-    const [telefono, setTelefono] = useState("")
-    const [contraseña, setContraseña] = useState("")
-    const [confirmarContraseña, setConfirmarContraseña] = useState("")
+    const [telefono, setTelefono] = useState("")       
 
     const [puedeEnviar, setPuedeEnviar] = useState(false)
 
@@ -46,22 +44,17 @@ const AgregarUsuario = ({guardarUsuario}) => {
 
     // Validacion de boton enviar
     useEffect( () => {
+
+        setPuedeEnviar(nombre.length > 1 && apellido.length > 1 && telefono != 0 && telefono.length > 7)
         
-        setPuedeEnviar(email.length > 3 && nombre.length > 1 && apellido.length > 1 && (telefono != 0 && telefono > 7) && contraseña.length > 8 && confirmarContraseña == contraseña)
-        
-    }, [email, nombre, apellido, telefono, contraseña, confirmarContraseña])
-    
+    }, [nombre, apellido, telefono])
+
 
     return (
         <View style={styles.container}>
             <BotoneraSuperior/>
-            <Text style={styles.subtitulo}>Registrar usuario</Text>
-            <TextInput
-                style={styles.input}
-                value={email}
-                placeholder="Email"
-                onChangeText={(texto) => setEmail(texto)}
-            />
+            <Text style={styles.subtitulo}>Modificar usuario</Text>
+            
             <TextInput
                 style={styles.input}
                 value={nombre}
@@ -81,30 +74,23 @@ const AgregarUsuario = ({guardarUsuario}) => {
                 onChangeText={(texto) => setTelefono(texto)}
                 keyboardType="numeric"
             />
-            <TextInput
-                style={styles.input}
-                value={contraseña}
-                placeholder="Contraseña"
-                onChangeText={(texto) => setContraseña(texto)}                
-            />
-            <TextInput
-                style={styles.input}
-                value={confirmarContraseña}
-                placeholder="Confirmar contraseña"
-                onChangeText={(texto) => setConfirmarContraseña(texto)}            
-            />
+            
             <Button
-                title={"Guardar Usuario"}
-                onPress={() => guardarUsuario({email, nombre, apellido, telefono, contraseña, confirmarContraseña})}
+                title={"Modificar Usuario"}
+                onPress={() => modificarUsuario({nombre, apellido, telefono})}
                 disabled={!puedeEnviar}
             />
             <Button
                 title={"Volver"}
                 onPress={() => navigation.goBack()}
             />
+            <Button
+                title={"Cambiar Clave"}
+                onPress={() => navigation.navigate("Cambiar Clave")}
+            />
 
         </View>
     )
 }
 
-export default AgregarUsuario;
+export default modificarUsuario;
