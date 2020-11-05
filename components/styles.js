@@ -5,7 +5,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: 20,
-        
     },
 
     botoneraInferior: {
@@ -15,23 +14,25 @@ const styles = StyleSheet.create({
     },
 
     iconoDerecho:{
-        paddingLeft : 20, 
+        paddingLeft : 25, 
     },
 
     iconoIzquierdo:{
-        paddingRight : 20, 
+        paddingRight : 25, 
     },
 
+    contenedorPicker:{
+        borderWidth:1, 
+        borderRadius:5, 
+        marginLeft:20, 
+        marginRight:20,
+        marginTop:10,
+        marginBottom:20,
+        backgroundColor: '#EAECEE'
+        
+    },
     picker: {
-        minWidth: 100,
-        marginTop: 20,
-        marginBottom: 20,
-        marginHorizontal: 10,
-        paddingHorizontal: 10,
-        paddingVertical: 5,
-        borderRadius: 3,
-        borderWidth:1,
-        borderColor: 'black'
+        color: 'black',
     },
 
     titulo:{
@@ -60,6 +61,32 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
         paddingHorizontal: 10,
         paddingVertical: 5,
+    },
+    containerBoton:{
+        alignItems: 'center',
+    },
+
+    boton:{
+        width:300,
+        height: 40,
+        backgroundColor: '#720876',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop:10,
+        marginBottom: 10,
+        borderWidth:1,
+        borderRadius:10,
+    },
+
+    textoBoton:{
+        color: 'white',
+        fontSize:15
+    },
+
+    reserva: {
+        marginLeft: 40,
+        marginTop: 30,
+        marginBottom: 30,
     },
   })
 
