@@ -90,6 +90,14 @@ export default function NuevaReserva() {
             .catch((error) => console.error(error));
     }, [tipoElegido]);
 
+    useEffect(() => {
+        //adaptar con ip de la compu que ejecute: http://ip:3000/api..
+        fetch('http://192.168.0.117:3000/api/reservas/buscar' + canchaElegida)
+            .then((response) => response.json())
+            .then((json) => setDias(json))
+            .catch((error) => console.error(error));
+    }, [canchaElegida]);
+
     return (
         <View style={s.container} >
             <BotoneraSuperior />
@@ -109,8 +117,6 @@ export default function NuevaReserva() {
                 </Picker>
             </View>
 
-
-
             <Text style={s.texto}>Paso 2: Elegí la cancha</Text>
             <View style={s.contenedorPicker}>
                 <Picker
@@ -123,15 +129,35 @@ export default function NuevaReserva() {
                         <Picker.Item label={item.numero} value={item.numero} key={key} />)
                     )}
                 </Picker>
-
             </View>
 
-
             <Text style={s.texto}>Paso 3: Elegí el día</Text>
-
+            <View style={s.contenedorPicker}>
+                <Picker
+                    selectedValue={diaElegido}
+                    style={s.picker}
+                    onValueChange={(itemValue, itemIndex) => setDiaElegido(itemValue)}
+                >
+                    <Picker.Item label="Seleccionar día" value="0" />
+                    {dias.map((item) => (
+                        <Picker.Item label={item}  />)
+                    )}
+                </Picker>
+            </View>
 
             <Text style={s.texto}>Paso 4: Elegí el horario</Text>
-
+            <View style={s.contenedorPicker}>
+                <Picker
+                    selectedValue={horarioElegido}
+                    style={s.picker}
+                    onValueChange={(itemValue, itemIndex) => setHorarioElegido(itemValue)}
+                >
+                    <Picker.Item label="Seleccionar horario" value="0" />
+                    {horarios.map((item, key) => (
+                        <Picker.Item label={item.numero} value={item.numero} key={key} />)
+                    )}
+                </Picker>
+            </View>
 
             <View style={s.botoneraInferior}>
                 <Icon
@@ -149,7 +175,6 @@ export default function NuevaReserva() {
                     onPress={reservar}
                 />
             </View>
-
 
         </View>
     );
