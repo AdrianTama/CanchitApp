@@ -17,7 +17,7 @@ export default function NuevaReserva() {
 
     const navigation = useNavigation();
     const [puedeEnviar, setPuedeEnviar] = useState(false);
-    const [error, setError] = useState(false);
+    const ip ='http://192.168.0.117:3000/';
 
     //Variables para la selección que conforma la reserva a enviar
     const [tipoElegido, setTipoElegido] = useState([]);
@@ -36,7 +36,8 @@ export default function NuevaReserva() {
         if (puedeEnviar == true) {
             Alert.alert(
                 "Confirmar reserva",
-                "Usted seleccionó la " + tipoElegido + ' número ' + canchaElegida + ' para el día '+ diaElegido.dia.substring(0,10) + ' a las '+horarioElegido+':00hs',
+                "Usted seleccionó la " + tipoElegido + ' número ' + canchaElegida + ' para el día '
+                + diaElegido.dia.substring(0,10) + ' a las '+horarioElegido+':00hs',
                 [
                     {
                         text: "Cancelar",
@@ -61,41 +62,57 @@ export default function NuevaReserva() {
     };
 
     function guardarReserva() {
-        navigation.navigate("Mi Reserva", {
+
+        fetch(ip+'api/reservas/agregarReserva/', {
+            method: 'POST',
+            headers:{
+                Accept: 'application/json',
+                'Content-Type': 'application/json' 
+            },
+            body: JSON.stringify({
+                nroCancha: canchaElegida,
+                dia: diaElegido.dia,
+                hora: horarioElegido,
+                suspendida: false
+            })
+        })
+
+        /* navigation.navigate("Mi Reserva", {
             dia: diaElegido,
             hora: horarioElegido,
             cancha: canchaElegida
-        });
+        }); */
     }
 
 
     useEffect(() => {
-        if (tipoElegido != 0 && canchaElegida != 0) {
+        if (tipoElegido != 0 && canchaElegida != 0 && diaElegido.dia !=0 && horarioElegido !=0) {
             setPuedeEnviar(true);
         }
-    }, [canchaElegida]);
+    }, [horarioElegido]);
 
-    //ejecuta el fetch luego del primer renderizado
+    //ejecuta el fetch cuando se carga la page
     useEffect(() => {
         //adaptar con ip de la compu que ejecute: http://ip:3000/api...
-        fetch('http://192.168.0.117:3000/api/tipocancha/')
+        fetch(ip+'api/tipocancha/')
             .then((response) => response.json())
             .then((json) => setTipos(json))
             .catch((error) => console.error(error));
     }, []);
 
-    //ejecuta el fetch recién cuando se selecciona un tipo de cancha
+    //ejecuta el fetch también cuando el tipoElegido cambia
     useEffect(() => {
         //adaptar con ip de la compu que ejecute: http://ip:3000/api..
-        fetch('http://192.168.0.117:3000/api/canchas/' + tipoElegido)
+        fetch(ip+'api/canchas/' + tipoElegido)
             .then((response) => response.json())
             .then((json) => setCanchas(json))
             .catch((error) => console.error(error));
     }, [tipoElegido]);
 
+    //ejecuta el fetch también cuando la canchaElegida cambia
     useEffect(() => {
         //adaptar con ip de la compu que ejecute: http://ip:3000/api..
-        fetch('http://192.168.0.117:3000/api/reservas/buscar/' + canchaElegida)
+        fetch(ip+'api/reservas/buscar/' + canchaElegida)
             .then((response) => response.json())
             .then((json) => setDiasHorarios(json))
             .catch((error) => {
@@ -104,6 +121,7 @@ export default function NuevaReserva() {
             });
     }, [canchaElegida]);
 
+    //ejecuta el fetch sólo cuando el diaElegido cambia
     useEffect(() => {
 
         if (diaElegido.horarios !== undefined) {
