@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/Octicons';
 //creé un componente con el stylesheet para llamarlo cada vez que lo necesitamos así no repetimos código en cada componente
 import s from '../components/styles'
 import BotoneraSuperior from '../components/botoneraSuperior';
+import { onChange } from 'react-native-reanimated';
 
 
 //Ver si dividimos los picker en distintos componentes
@@ -16,12 +17,12 @@ export default function NuevaReserva() {
 
     const navigation = useNavigation();
     const [puedeEnviar, setPuedeEnviar] = useState(false);
+    const [error, setError] = useState(false);
 
     //Variables para la selección que conforma la reserva a enviar
     const [tipoElegido, setTipoElegido] = useState([]);
     const [canchaElegida, setCanchaElegida] = useState([]);
-    const [diaElegido, setDiaElegido] = useState([]);
-    const [diaHorarioElegido, setDiaHorarioElegido] = useState ([]);
+    const [diaElegido, setDiaElegido] = useState({ "dia": "algo" });
     const [horarioElegido, setHorarioElegido] = useState([]);
 
     //Variables para los picker
@@ -29,13 +30,13 @@ export default function NuevaReserva() {
     const [canchas, setCanchas] = useState([]);
     const [diasHorarios, setDiasHorarios] = useState([]);
     const [horarios, setHorarios] = useState([]);
-    
+
 
     function reservar() {
         if (puedeEnviar == true) {
             Alert.alert(
                 "Confirmar reserva",
-                "Usted seleccionó la " + tipoElegido + ' número ' + canchaElegida,
+                "Usted seleccionó la " + tipoElegido + ' número ' + canchaElegida + ' para el día '+ diaElegido.dia.substring(0,10) + ' a las '+horarioElegido+':00hs',
                 [
                     {
                         text: "Cancelar",
@@ -97,14 +98,19 @@ export default function NuevaReserva() {
         fetch('http://192.168.0.117:3000/api/reservas/buscar/' + canchaElegida)
             .then((response) => response.json())
             .then((json) => setDiasHorarios(json))
-            .catch((error) => console.error(error));
+            .catch((error) => {
+                setError(true);
+                console.error(error)
+            });
     }, [canchaElegida]);
 
-    function renderHorario(dia) {
-        setDiaElegido(dia);
-        let d= diasHorarios.find(data => data.dia == diaElegido);
-        console.log(d)
-    }
+    useEffect(() => {
+
+        if (diaElegido.horarios !== undefined) {
+            setHorarios(diaElegido.horarios)
+        }
+
+    }, [diaElegido]);
 
 
     return (
@@ -135,7 +141,7 @@ export default function NuevaReserva() {
                 >
                     <Picker.Item label="Seleccionar cancha" value="0" />
                     {canchas.map((item, key) => (
-                        <Picker.Item label={item.numero} value={item.numero} key={key} />)
+                        <Picker.Item label={'Número '+item.numero} value={item.numero} key={key} />)
                     )}
                 </Picker>
             </View>
@@ -145,11 +151,11 @@ export default function NuevaReserva() {
                 <Picker
                     selectedValue={diaElegido}
                     style={s.picker}
-                    onValueChange={(itemValue, itemIndex) => renderHorario(itemValue)}
+                    onValueChange={(itemValue, itemIndex) => setDiaElegido(itemValue)}
                 >
                     <Picker.Item label="Seleccionar día" value="0" />
                     {diasHorarios.map((item, key) => (
-                        <Picker.Item label={item.dia} value={item.dia} key={key} />)
+                        <Picker.Item label={(item.dia).substring(0,10)} value={item} key={key} />)
                     )}
                 </Picker>
             </View>
@@ -163,7 +169,7 @@ export default function NuevaReserva() {
                 >
                     <Picker.Item label="Seleccionar horario" value="0" />
                     {horarios.map((item, key) => (
-                        <Picker.Item label={item} value={item} key={key} />)
+                        <Picker.Item label={item.toString()+':00hs'} value={item.toString()} key={key} />)
                     )}
                 </Picker>
             </View>
