@@ -22,7 +22,7 @@ export default function NuevaReserva() {
     //Variables para la selección que conforma la reserva a enviar
     const [tipoElegido, setTipoElegido] = useState([]);
     const [canchaElegida, setCanchaElegida] = useState([]);
-    const [diaElegido, setDiaElegido] = useState({ "dia": "algo" });
+    const [diaElegido, setDiaElegido] = useState([]);
     const [horarioElegido, setHorarioElegido] = useState([]);
 
     //Variables para los picker
@@ -117,7 +117,6 @@ export default function NuevaReserva() {
                 .then((response) => response.json())
                 .then((json) => setDiasHorarios(json))
                 .catch((error) => {
-                    setError(true);
                     console.error(error)
                 });
         }
