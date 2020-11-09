@@ -23,16 +23,15 @@ const styles = StyleSheet.create({
 
     contenedorPicker:{
         borderWidth:1, 
-        borderRadius:5, 
+        borderRadius:0,
         marginLeft:20, 
         marginRight:20,
         marginTop:10,
-        marginBottom:20,
-        backgroundColor: '#EAECEE'
-        
+        marginBottom:10,
+        backgroundColor: '#5AA877',
     },
     picker: {
-        color: 'black',
+        color: 'white',
     },
 
     titulo:{

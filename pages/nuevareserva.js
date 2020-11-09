@@ -17,7 +17,7 @@ export default function NuevaReserva() {
 
     const navigation = useNavigation();
     const [puedeEnviar, setPuedeEnviar] = useState(false);
-    const ip ='http://192.168.0.117:3000/';
+    const ip = 'http://192.168.0.117:3000/';
 
     //Variables para la selección que conforma la reserva a enviar
     const [tipoElegido, setTipoElegido] = useState([]);
@@ -37,7 +37,7 @@ export default function NuevaReserva() {
             Alert.alert(
                 "Confirmar reserva",
                 "Usted seleccionó la " + tipoElegido + ' número ' + canchaElegida + ' para el día '
-                + diaElegido.dia.substring(0,10) + ' a las '+horarioElegido+':00hs',
+                + diaElegido.dia.substring(0, 10) + ' a las ' + horarioElegido + ':00hs',
                 [
                     {
                         text: "Cancelar",
@@ -63,11 +63,11 @@ export default function NuevaReserva() {
 
     function guardarReserva() {
 
-        fetch(ip+'api/reservas/agregarReserva/', {
+        fetch(ip + 'api/reservas/agregarReserva/', {
             method: 'POST',
-            headers:{
+            headers: {
                 Accept: 'application/json',
-                'Content-Type': 'application/json' 
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 nroCancha: canchaElegida,
@@ -86,7 +86,7 @@ export default function NuevaReserva() {
 
 
     useEffect(() => {
-        if (tipoElegido != 0 && canchaElegida != 0 && diaElegido.dia !=0 && horarioElegido !=0) {
+        if (tipoElegido != 0 && canchaElegida != 0 && diaElegido.dia != 0 && horarioElegido != 0) {
             setPuedeEnviar(true);
         }
     }, [horarioElegido]);
@@ -94,36 +94,37 @@ export default function NuevaReserva() {
     //ejecuta el fetch cuando se carga la page
     useEffect(() => {
         //adaptar con ip de la compu que ejecute: http://ip:3000/api...
-        fetch(ip+'api/tipocancha/')
+        fetch(ip + 'api/tipocancha/')
             .then((response) => response.json())
             .then((json) => setTipos(json))
             .catch((error) => console.error(error));
     }, []);
 
-    //ejecuta el fetch también cuando el tipoElegido cambia
-    useEffect(() => {
-        //adaptar con ip de la compu que ejecute: http://ip:3000/api..
-        fetch(ip+'api/canchas/' + tipoElegido)
+    //ejecuta el fetch sólo cuando cambia el tipoElegido
+    useEffect(() => {   
+        if(tipoElegido !== undefined){
+            fetch(ip + 'api/canchas/' + tipoElegido)
             .then((response) => response.json())
             .then((json) => setCanchas(json))
             .catch((error) => console.error(error));
+        } 
     }, [tipoElegido]);
 
-    //ejecuta el fetch también cuando la canchaElegida cambia
+    //ejecuta el fetch sólo cuando cambia la canchaElegida
     useEffect(() => {
-        //adaptar con ip de la compu que ejecute: http://ip:3000/api..
-        fetch(ip+'api/reservas/buscar/' + canchaElegida)
-            .then((response) => response.json())
-            .then((json) => setDiasHorarios(json))
-            .catch((error) => {
-                setError(true);
-                console.error(error)
-            });
+        if (canchaElegida !== undefined) {
+            fetch(ip + 'api/reservas/buscar/' + canchaElegida)
+                .then((response) => response.json())
+                .then((json) => setDiasHorarios(json))
+                .catch((error) => {
+                    setError(true);
+                    console.error(error)
+                });
+        }
     }, [canchaElegida]);
 
     //ejecuta el fetch sólo cuando el diaElegido cambia
     useEffect(() => {
-
         if (diaElegido.horarios !== undefined) {
             setHorarios(diaElegido.horarios)
         }
@@ -159,7 +160,7 @@ export default function NuevaReserva() {
                 >
                     <Picker.Item label="Seleccionar cancha" value="0" />
                     {canchas.map((item, key) => (
-                        <Picker.Item label={'Número '+item.numero} value={item.numero} key={key} />)
+                        <Picker.Item label={'Número ' + item.numero} value={item.numero} key={key} />)
                     )}
                 </Picker>
             </View>
@@ -173,7 +174,7 @@ export default function NuevaReserva() {
                 >
                     <Picker.Item label="Seleccionar día" value="0" />
                     {diasHorarios.map((item, key) => (
-                        <Picker.Item label={(item.dia).substring(0,10)} value={item} key={key} />)
+                        <Picker.Item label={(item.dia).substring(0, 10)} value={item} key={key} />)
                     )}
                 </Picker>
             </View>
@@ -187,7 +188,7 @@ export default function NuevaReserva() {
                 >
                     <Picker.Item label="Seleccionar horario" value="0" />
                     {horarios.map((item, key) => (
-                        <Picker.Item label={item.toString()+':00hs'} value={item.toString()} key={key} />)
+                        <Picker.Item label={item.toString() + ':00hs'} value={item.toString()} key={key} />)
                     )}
                 </Picker>
             </View>
