@@ -1,30 +1,23 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-
+import s from './styles';
 import IconoMenu from './iconoMenu';
 import IconoUser from './iconoUser';
 import NombreApp from './nombreApp';
 
-export default function BotoneraSuperior(){
+export default function BotoneraSuperior() {
 
-    const navigation = useNavigation(); 
+    const navigation = useNavigation();
 
     return (
-        <View style={styles.container} >
-            <IconoMenu/>
-            <NombreApp/>
-            <IconoUser/>
+        <View style={s.botoneraSuperior} >
+            <IconoMenu />
+            <NombreApp />
+            <IconoUser />
         </View>
     );
-  }
+}
 
-  const styles = StyleSheet.create({
-    container: {
-        marginTop:20,
-        marginBottom: 50,
-        flexDirection: 'row',
-        justifyContent: 'space-between'
-    },
-  })
+

@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Octicons';
 
+import s from './styles'
 
 export default function IconoUser(){
 
@@ -14,15 +15,11 @@ export default function IconoUser(){
                 name='person' 
                 size={30} 
                 color='#000' 
-                style= {styles.icono}
+                style= {s.iconoUser}
                 onPress={() => navigation.navigate('Mi perfil')}
             />
         </View>
     );
   }
 
-  const styles = StyleSheet.create({
-    icono:{
-        paddingRight : 20, 
-    }
-  })
+  

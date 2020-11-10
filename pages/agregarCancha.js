@@ -43,6 +43,13 @@ const styles = StyleSheet.create({
         
     },
 
+    botoneraSuperior: {
+        marginTop: 20,
+        marginBottom: 50,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+
     botoneraInferior: {
         marginTop: 20,
         flexDirection: 'row',

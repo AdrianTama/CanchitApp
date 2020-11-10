@@ -7,10 +7,25 @@ const styles = StyleSheet.create({
         paddingTop: 20,
     },
 
+    botoneraSuperior:{
+        marginTop:20,
+        marginBottom: 50,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+
     botoneraInferior: {
         marginTop: 20,
         flexDirection: 'row',
         justifyContent: 'space-between'
+    },
+
+    iconoUser:{
+        paddingRight : 20, 
+    },
+
+    iconoMenu:{
+        paddingLeft : 20, 
     },
 
     iconoDerecho:{
@@ -32,6 +47,13 @@ const styles = StyleSheet.create({
     },
     picker: {
         color: 'white',
+    },
+
+    logo:{
+        textAlign: 'center',
+        fontSize:30,
+        fontStyle: 'italic',
+        fontWeight: 'bold',
     },
 
     titulo:{

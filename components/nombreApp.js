@@ -1,21 +1,13 @@
 import React from 'react';
-import { Text , View, StyleSheet } from 'react-native';
+import { Text, View } from 'react-native';
 
+import s from './styles'
 
-export default function NombreApp(){
+export default function NombreApp() {
 
     return (
         <View>
-            <Text style={styles.titulo}>CanchitApp</Text>
+            <Text style={s.logo}>CanchitApp</Text>
         </View>
     );
-  }
-
-  const styles = StyleSheet.create({
-    titulo:{
-        textAlign: 'center',
-        fontSize:30,
-        fontStyle: 'italic',
-        fontWeight: 'bold',
-    },
-  })
+}
