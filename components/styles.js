@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
         marginBottom:10,
         backgroundColor: '#5AA877',
     },
+
     picker: {
         color: 'white',
     },
@@ -70,7 +71,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
-        
+        marginBottom: 30,
     },
 
     texto:{
@@ -93,6 +94,7 @@ const styles = StyleSheet.create({
         borderBottomWidth:1,
         borderColor: 'gray',
         minWidth: 100,
+        marginTop: 20,
         marginBottom: 20,
         marginHorizontal: 20,
         paddingHorizontal: 10,
@@ -136,5 +138,4 @@ const styles = StyleSheet.create({
     },
   })
 
-  
   export default styles;
