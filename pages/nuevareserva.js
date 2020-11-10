@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Picker, Text, Alert, View, TouchableHighlight } from 'react-native';
+import { Picker, Text, Alert, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Octicons';
 
 //creé un componente con el stylesheet para llamarlo cada vez que lo necesitamos así no repetimos código en cada componente
 import s from '../components/styles'
 import BotoneraSuperior from '../components/botoneraSuperior';
-import { onChange } from 'react-native-reanimated';
+
 
 
 //Ver si dividimos los picker en distintos componentes
@@ -30,20 +30,28 @@ export default function NuevaReserva() {
     const [canchas, setCanchas] = useState([]);
     const [diasHorarios, setDiasHorarios] = useState([]);
     const [horarios, setHorarios] = useState([]);
+    const [precio, setPrecio] = useState([]);
 
 
     function reservar() {
         if (puedeEnviar == true) {
             Alert.alert(
                 "Confirmar reserva",
-                "Usted seleccionó la " + tipoElegido + ' número ' + canchaElegida + ' para el día '
+                "Usted seleccionó la " + tipoElegido + ' número ' + canchaElegida.numero + ' para el día '
                 + diaElegido.dia.substring(0, 10) + ' a las ' + horarioElegido + ':00hs',
                 [
                     {
                         text: "Cancelar",
                         onPress: console.log('Yes Pressed'),
                     },
-                    { text: "Confirmar", onPress: guardarReserva }
+                    {
+                        text: "Confirmar", onPress: navigation.navigate('Pago Reserva', {
+                            nroCancha: canchaElegida.nro,
+                            dia: diaElegido.dia,
+                            hora: horarioElegido,
+                            precio: precio
+                        })
+                    }
                 ],
                 { cancelable: false }
             );
@@ -61,30 +69,6 @@ export default function NuevaReserva() {
 
     };
 
-    function guardarReserva() {
-
-        fetch(ip + 'api/reservas/agregarReserva/', {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                nroCancha: canchaElegida,
-                dia: diaElegido.dia,
-                hora: horarioElegido,
-                suspendida: false
-            })
-        })
-
-        /* navigation.navigate("Mi Reserva", {
-            dia: diaElegido,
-            hora: horarioElegido,
-            cancha: canchaElegida
-        }); */
-    }
-
-
     useEffect(() => {
         if (tipoElegido != 0 && canchaElegida != 0 && diaElegido.dia != 0 && horarioElegido != 0) {
             setPuedeEnviar(true);
@@ -101,18 +85,19 @@ export default function NuevaReserva() {
     }, []);
 
     //ejecuta el fetch sólo cuando cambia el tipoElegido
-    useEffect(() => {   
-        if(tipoElegido !== undefined){
+    useEffect(() => {
+        if (tipoElegido !== undefined) {
             fetch(ip + 'api/canchas/' + tipoElegido)
-            .then((response) => response.json())
-            .then((json) => setCanchas(json))
-            .catch((error) => console.error(error));
-        } 
+                .then((response) => response.json())
+                .then((json) => setCanchas(json))
+                .catch((error) => console.error(error));
+        }
     }, [tipoElegido]);
 
     //ejecuta el fetch sólo cuando cambia la canchaElegida
     useEffect(() => {
         if (canchaElegida !== undefined) {
+            setPrecio(canchaElegida.precio);
             fetch(ip + 'api/reservas/buscar/' + canchaElegida)
                 .then((response) => response.json())
                 .then((json) => setDiasHorarios(json))
@@ -159,10 +144,13 @@ export default function NuevaReserva() {
                 >
                     <Picker.Item label="Seleccionar cancha" value="0" />
                     {canchas.map((item, key) => (
-                        <Picker.Item label={'Número ' + item.numero} value={item.numero} key={key} />)
+                        <Picker.Item label={'Número ' + item.numero} value={item} key={key} />)
                     )}
                 </Picker>
             </View>
+
+            <Text style={s.texto}>Precio: ${precio}</Text>
+
 
             <Text style={s.texto}>Paso 3: Elegí el día</Text>
             <View style={s.contenedorPicker}>

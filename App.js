@@ -17,6 +17,7 @@ import AgregarCancha from "./pages/agregarCancha";
 import AgregarUsuario from './pages/agregarUsuario';
 import Perfil from './pages/perfil';
 import CambiarClave from './pages/cambiarClave';
+import PagoReserva from './pages/pagoReserva'
 
 
 function CustomDrawerContent(props) {
@@ -33,11 +34,12 @@ function MyDrawer() {
   return (
     <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />}>
       <Drawer.Screen name="Sign In" component={ SignIn } />
+      <Drawer.Screen name="Registrar Usuario" component={ AgregarUsuario } />
       <Drawer.Screen name="Home" component={ PaginaPrincipal } />
       <Drawer.Screen name="Nueva Reserva" component={NuevaReserva } />
       <Drawer.Screen name="Mi Reserva" component={ MiReserva } />
+      <Drawer.Screen name="Pago Reserva" component={ PagoReserva } />
       <Drawer.Screen name="Agregar Cancha" component={ AgregarCancha } />
-      <Drawer.Screen name="Registrar Usuario" component={ AgregarUsuario } />
       <Drawer.Screen name="Mi perfil" component={ Perfil } />
       <Drawer.Screen name="Cambiar Clave" component={ CambiarClave } />
     </Drawer.Navigator>

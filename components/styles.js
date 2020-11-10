@@ -61,6 +61,31 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         paddingVertical: 5,
     },
+
+    dato:{
+        fontSize:10,
+        paddingLeft : 20, 
+    },
+
+    input: {
+        borderBottomWidth:1,
+        borderColor: 'gray',
+        minWidth: 100,
+        marginBottom: 20,
+        marginHorizontal: 20,
+        paddingHorizontal: 10,
+        paddingVertical: 5,
+       
+    },
+
+    link: {
+        marginLeft:20,
+        marginTop: 30,
+        fontSize:18,
+        color: '#33A8FF',
+        paddingVertical: 5,
+    },
+
     containerBoton:{
         alignItems: 'center',
     },

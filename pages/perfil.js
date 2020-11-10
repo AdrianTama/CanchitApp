@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Octicons';
 
 import BotoneraSuperior from '../components/botoneraSuperior';
-
+import s from '../components/styles'
 
 
 const Perfil = ({guardarUsuario}) => {
@@ -27,32 +27,32 @@ const Perfil = ({guardarUsuario}) => {
 
 
     return (
-        <View style={styles.container}>
+        <View style={s.container}>
             <BotoneraSuperior/>
-            <Text style={styles.subtitulo}>Mi perfil</Text>
-            <Text style={styles.dato}>Email</Text>
+            <Text style={s.subtitulo}>Mi perfil</Text>
+            <Text style={s.dato}>Email</Text>
             <TextInput
-                style={styles.input}
+                style={s.input}
                 value={email}
                
             />
-            <Text style={styles.dato}>Nombre</Text>
+            <Text style={s.dato}>Nombre</Text>
             <TextInput
-                style={styles.input}
+                style={s.input}
                 value={nombre}
                 placeholder="Nombre"
                 onChangeText={(texto) => setNombre(texto)}                
             />
-            <Text style={styles.dato}>Apellido</Text>
+            <Text style={s.dato}>Apellido</Text>
             <TextInput
-                style={styles.input}
+                style={s.input}
                 value={apellido}
                 placeholder="Apellido"
                 onChangeText={(texto) => setApellido(texto)}            
             />
-            <Text style={styles.dato}>Teléfono</Text>
+            <Text style={s.dato}>Teléfono</Text>
             <TextInput
-                style={styles.input}
+                style={s.input}
                 value={telefono}
                 placeholder="Teléfono"
                 onChangeText={(texto) => setTelefono(texto)}
@@ -60,26 +60,26 @@ const Perfil = ({guardarUsuario}) => {
             />
             
 
-            <View style={styles.botoneraInferior}>
+            <View style={s.botoneraInferior}>
                 <Icon 
                 name='x' 
                 size={40} 
                 color='#000' 
-                style= {styles.iconoDerecho}
+                style= {s.iconoDerecho}
                 onPress={() => navigation.goBack()}
                 />
                 <Icon 
                 name='check' 
                 size={40} 
                 color='#000' 
-                style= {styles.iconoIzquierdo}
+                style= {s.iconoIzquierdo}
                 onPress={() => guardarUsuario({email, nombre, apellido, telefono})}
                 />
             </View>
             
-            <TouchableHighlight style={styles.containerBoton} onPress={() => navigation.navigate("Cambiar Clave")}>
+            <TouchableHighlight style={s.containerBoton} onPress={() => navigation.navigate("Cambiar Clave")}>
                 <View>
-                    <Text style={styles.link}>Cambiar contraseña</Text>
+                    <Text style={s.link}>Cambiar contraseña</Text>
                 </View>
             </TouchableHighlight>
 
@@ -88,59 +88,3 @@ const Perfil = ({guardarUsuario}) => {
 }
 
 export default Perfil;
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        paddingTop: 20,
-        
-    },
-
-    input: {
-        borderBottomWidth:1,
-        borderColor: 'gray',
-        minWidth: 100,
-        marginBottom: 20,
-        marginHorizontal: 20,
-        paddingHorizontal: 10,
-        paddingVertical: 5,
-       
-    },
-
-    subtitulo:{
-        fontSize:20,
-        justifyContent: 'center',
-        alignItems: 'center',
-        textAlign: 'center',
-        marginBottom:20
-    },
-
-    link: {
-        marginLeft:20,
-        marginTop: 30,
-        fontSize:18,
-        color: '#33A8FF',
-        paddingVertical: 5,
-    },
-
-    botoneraInferior: {
-        marginTop: 20,
-        flexDirection: 'row',
-        justifyContent: 'space-between'
-    },
-
-    iconoDerecho:{
-        paddingLeft : 20, 
-    },
-
-
-    iconoIzquierdo:{
-        paddingRight : 20, 
-    },
-
-    dato:{
-        fontSize:10,
-        paddingLeft : 20, 
-    }
-
-})
