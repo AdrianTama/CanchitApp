@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/Octicons';
 
 import BotoneraSuperior from '../components/botoneraSuperior';
 import s from '../components/styles';
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 const AgregarCancha = () => {
@@ -29,7 +30,7 @@ const AgregarCancha = () => {
     }
 
     return (
-        <View style={s.container}>
+        <ScrollView style={s.container}>
             <BotoneraSuperior />
             <Text style={s.subtitulo}>Agregar Cancha</Text>
             <TextInput
@@ -78,7 +79,7 @@ const AgregarCancha = () => {
                     onPress={() => guardarCancha({ descripcion, numero, tipo })}
                 />
             </View>
-        </View>
+        </ScrollView>
     )
 }
 

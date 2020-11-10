@@ -4,6 +4,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 
 import s from '../components/styles';
 import BotoneraSuperior from '../components/botoneraSuperior';
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default function MiReserva(){
 
@@ -12,7 +13,7 @@ export default function MiReserva(){
     
 
     return (
-        <View style={s.container} >
+        <ScrollView style={s.container} >
             <BotoneraSuperior/>
             <Text style={s.subtitulo}>Mi reserva</Text>
             { cancha.length > 0  ?  
@@ -32,7 +33,7 @@ export default function MiReserva(){
                     <Text style= {s.textoBoton}>Cancelar Reserva</Text>
                 </View>
             </TouchableOpacity>
-        </View>
+        </ScrollView>
 
         
     );

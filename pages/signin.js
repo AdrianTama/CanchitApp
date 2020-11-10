@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/Octicons';
 
 import BotoneraSuperior from '../components/nombreApp';
 import s from '../components/styles';
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default function SignIn() {
     const [usuario, onChangeUser] = React.useState('');
@@ -21,7 +22,7 @@ export default function SignIn() {
     };
 
     return (
-        <View style={s.contenedorSignin} >
+        <ScrollView style={s.contenedorSignin} >
             <BotoneraSuperior />
             <View style={s.containerIngreso}>
                 <StatusBar style="auto" />
@@ -67,6 +68,6 @@ export default function SignIn() {
                     </View>
                 </TouchableHighlight>
             </View>
-        </View>
+        </ScrollView>
     );
 }

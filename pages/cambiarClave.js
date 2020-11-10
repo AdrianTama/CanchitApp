@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, TouchableHighlight } from 'react-native';
 import BotoneraSuperior from '../components/nombreApp';
 import { useNavigation } from '@react-navigation/native';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const styles = StyleSheet.create({
     container: {
@@ -50,7 +51,7 @@ const cambiarClave = ({cambiarClave}) => {
 
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <BotoneraSuperior/>
             <Text style={styles.subtitulo}>Cambiar clave</Text>
             
@@ -82,7 +83,7 @@ const cambiarClave = ({cambiarClave}) => {
                 onPress={() => navigation.goBack()}
             />
 
-        </View>
+        </ScrollView>
     )
 }
 

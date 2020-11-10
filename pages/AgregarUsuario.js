@@ -4,6 +4,7 @@ import BotoneraSuperior from '../components/nombreApp';
 import { useNavigation } from '@react-navigation/native';
 
 import s from '../components/styles'
+import { ScrollView } from 'react-native-gesture-handler';
 
 const AgregarUsuario = ({ guardarUsuario }) => {
 
@@ -27,7 +28,7 @@ const AgregarUsuario = ({ guardarUsuario }) => {
 
 
     return (
-        <View style={s.contenedorRegistro}>
+        <ScrollView style={s.contenedorRegistro}>
             <BotoneraSuperior />
             <Text style={s.subtitulo}>Registrarme</Text>
             <TextInput
@@ -80,7 +81,7 @@ const AgregarUsuario = ({ guardarUsuario }) => {
                 </View>
             </TouchableHighlight>
 
-        </View>
+        </ScrollView>
     )
 }
 

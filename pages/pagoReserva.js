@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/Octicons';
 
 import BotoneraSuperior from '../components/botoneraSuperior';
 import s from '../components/styles'
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 export default function NuevaReserva() {
@@ -78,7 +79,7 @@ export default function NuevaReserva() {
 
 
     return (
-        <View style={s.container}>
+        <ScrollView style={s.container}>
             <BotoneraSuperior/>
             <Text style={s.subtitulo}>Pago con Tarjeta de Crédito</Text>
             <Text style={s.dato}>Número</Text>
@@ -122,6 +123,6 @@ export default function NuevaReserva() {
                 />
             </View>
 
-        </View>
+        </ScrollView>
     )
 }

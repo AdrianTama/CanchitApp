@@ -2,13 +2,14 @@ import React from 'react';
 import { Picker, StyleSheet, Text , View, TouchableHighlight, Button} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import BotoneraSuperior from '../components/botoneraSuperior';
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default function Home(){
 
     const navigation = useNavigation(); 
 
     return (
-        <View style={styles.container} >
+        <ScrollView style={styles.container} >
             <BotoneraSuperior/>
 
             <View style={styles.botonera}>
@@ -26,7 +27,7 @@ export default function Home(){
 
             </View>
             
-        </View>
+        </ScrollView>
     );
   }
 

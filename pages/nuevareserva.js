@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/Octicons';
 //creé un componente con el stylesheet para llamarlo cada vez que lo necesitamos así no repetimos código en cada componente
 import s from '../components/styles'
 import BotoneraSuperior from '../components/botoneraSuperior';
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 
@@ -117,7 +118,7 @@ export default function NuevaReserva() {
 
 
     return (
-        <View style={s.container} >
+        <ScrollView style={s.container} >
             <BotoneraSuperior />
             <Text style={s.subtitulo}>Nueva Reserva</Text>
 
@@ -197,7 +198,7 @@ export default function NuevaReserva() {
                 />
             </View>
 
-        </View>
+        </ScrollView>
     );
 }
 

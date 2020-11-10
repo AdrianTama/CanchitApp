@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/Octicons';
 
 import BotoneraSuperior from '../components/botoneraSuperior';
 import s from '../components/styles'
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 const Perfil = ({guardarUsuario}) => {
@@ -27,7 +28,7 @@ const Perfil = ({guardarUsuario}) => {
 
 
     return (
-        <View style={s.container}>
+        <ScrollView style={s.container}>
             <BotoneraSuperior/>
             <Text style={s.subtitulo}>Mi perfil</Text>
             <Text style={s.dato}>Email</Text>
@@ -83,7 +84,7 @@ const Perfil = ({guardarUsuario}) => {
                 </View>
             </TouchableHighlight>
 
-        </View>
+        </ScrollView>
     )
 }
 
