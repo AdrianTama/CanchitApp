@@ -9,7 +9,6 @@ import s from '../components/styles';
 
 const AgregarCancha = () => {
 
-    const [descripcion, setDescripcion] = useState("");
     const [numero, setNumero] = useState("");
     const [tipo, setTipo] = useState("0");
     const [precio, setPrecio] = useState("");
@@ -21,12 +20,12 @@ const AgregarCancha = () => {
     // Validacion de boton enviar
     useEffect(() => {
 
-        setPuedeEnviar(descripcion.length > 3 && numero != 0 && tipo != '0')
+        setPuedeEnviar(numero != "" && tipo != '0' && precio !="")
 
-    }, [descripcion, numero, tipo])
+    }, [precio, numero, tipo])
 
     const guardarCancha = () => {
-        console.log("cancha guardada", descripcion, numero, tipo)
+        console.log("cancha guardada", precio, numero, tipo)
     }
 
     return (

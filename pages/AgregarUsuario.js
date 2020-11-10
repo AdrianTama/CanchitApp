@@ -1,37 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, TouchableHighlight } from 'react-native';
+import { Text, View, TextInput, Button, TouchableHighlight } from 'react-native';
 import BotoneraSuperior from '../components/nombreApp';
 import { useNavigation } from '@react-navigation/native';
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        paddingTop: 20,
-        
-    },
+import s from '../components/styles'
 
-    input: {
-        borderWidth: 1,
-        borderColor: 'black',
-        minWidth: 100,
-        marginTop: 20,
-        marginHorizontal: 10,
-        paddingHorizontal: 10,
-        paddingVertical: 5,
-        borderRadius: 3
-    },
-
-    subtitulo:{
-        fontSize:20,
-        justifyContent: 'center',
-        alignItems: 'center',
-        textAlign: 'center',
-        
-    },
-
-})
-
-const AgregarUsuario = ({guardarUsuario}) => {
+const AgregarUsuario = ({ guardarUsuario }) => {
 
     const [email, setEmail] = useState("")
     const [nombre, setNombre] = useState("")
@@ -42,66 +16,69 @@ const AgregarUsuario = ({guardarUsuario}) => {
 
     const [puedeEnviar, setPuedeEnviar] = useState(false)
 
-    const navigation = useNavigation(); 
+    const navigation = useNavigation();
 
     // Validacion de boton enviar
-    useEffect( () => {
-        
+    useEffect(() => {
+
         setPuedeEnviar(email.length > 3 && nombre.length > 1 && apellido.length > 1 && (telefono != 0 && telefono > 7) && contraseña.length >= 8 && confirmarContraseña == contraseña)
-        
+
     }, [email, nombre, apellido, telefono, contraseña, confirmarContraseña])
-    
+
 
     return (
-        <View style={styles.container}>
-            <BotoneraSuperior/>
-            <Text style={styles.subtitulo}>Registrar usuario</Text>
+        <View style={s.contenedorRegistro}>
+            <BotoneraSuperior />
+            <Text style={s.subtitulo}>Registrarme</Text>
             <TextInput
-                style={styles.input}
+                style={s.input}
                 value={email}
                 placeholder="Email"
                 onChangeText={(texto) => setEmail(texto)}
             />
             <TextInput
-                style={styles.input}
+                style={s.input}
                 value={nombre}
                 placeholder="Nombre"
-                onChangeText={(texto) => setNombre(texto)}                
+                onChangeText={(texto) => setNombre(texto)}
             />
             <TextInput
-                style={styles.input}
+                style={s.input}
                 value={apellido}
                 placeholder="Apellido"
-                onChangeText={(texto) => setApellido(texto)}            
+                onChangeText={(texto) => setApellido(texto)}
             />
             <TextInput
-                style={styles.input}
+                style={s.input}
                 value={telefono}
                 placeholder="Teléfono"
                 onChangeText={(texto) => setTelefono(texto)}
                 keyboardType="numeric"
             />
             <TextInput
-                style={styles.input}
+                style={s.input}
                 value={contraseña}
                 placeholder="Contraseña"
-                onChangeText={(texto) => setContraseña(texto)}                
+                onChangeText={(texto) => setContraseña(texto)}
             />
             <TextInput
-                style={styles.input}
+                style={s.input}
                 value={confirmarContraseña}
                 placeholder="Confirmar contraseña"
-                onChangeText={(texto) => setConfirmarContraseña(texto)}            
+                onChangeText={(texto) => setConfirmarContraseña(texto)}
             />
-            <Button
-                title={"Guardar Usuario"}
-                onPress={() => guardarUsuario({email, nombre, apellido, telefono, contraseña, confirmarContraseña})}
-                disabled={!puedeEnviar}
-            />
-            <Button
-                title={"Volver"}
-                onPress={() => navigation.goBack()}
-            />
+
+            <TouchableHighlight style={s.containerBoton} onPress={() => guardarUsuario({ email, nombre, apellido, telefono, contraseña, confirmarContraseña })}>
+                <View style={s.boton}>
+                    <Text style={s.textoBoton}>Confirmar</Text>
+                </View>
+            </TouchableHighlight>
+
+            <TouchableHighlight style={s.containerBoton} onPress={() => navigation.goBack()}>
+                <View style={s.boton}>
+                    <Text style={s.textoBoton}>Cancelar</Text>
+                </View>
+            </TouchableHighlight>
 
         </View>
     )
