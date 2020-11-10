@@ -60,12 +60,14 @@ const AgregarUsuario = ({ guardarUsuario }) => {
                 style={s.input}
                 value={contraseña}
                 placeholder="Contraseña"
+                secureTextEntry={true}
                 onChangeText={(texto) => setContraseña(texto)}
             />
             <TextInput
                 style={s.input}
                 value={confirmarContraseña}
                 placeholder="Confirmar contraseña"
+                secureTextEntry={true}
                 onChangeText={(texto) => setConfirmarContraseña(texto)}
             />
 

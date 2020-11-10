@@ -35,8 +35,8 @@ const styles = StyleSheet.create({
     },
 
     containerIngreso:{
-        paddingTop: 50,
-        marginTop:20
+        paddingTop: 15,
+        marginTop:50
     },
 
     contenedorRow:{
@@ -44,8 +44,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop:20,
-        marginBottom:60
+        marginTop:10,
+        marginBottom:10
     },
 
     botoneraSuperior:{
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         marginLeft: 20,
         marginRight:20,
-        marginTop:50
+        marginTop:30
     },
 
     picker: {
