@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, TextInput, Button, TouchableHighlight } from 'react-native';
-import BotoneraSuperior from '../components/nombreApp';
+import { Text, View, TextInput, TouchableHighlight, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { ScrollView } from 'react-native-gesture-handler';
 
+import BotoneraSuperior from '../components/nombreApp';
 import s from '../components/styles'
 
 
@@ -15,28 +15,82 @@ const AgregarUsuario = ({ guardarUsuario }) => {
     const [telefono, setTelefono] = useState("")
     const [contraseña, setContraseña] = useState("")
     const [confirmarContraseña, setConfirmarContraseña] = useState("")
+    const [usuario, setUsuario] = useState([]);
 
     const [puedeEnviar, setPuedeEnviar] = useState(false)
-
     const navigation = useNavigation();
+    const ip = 'https://fast-tor-75300.herokuapp.com/';
+    // const ip = 'http://192.168.0.117:3000/'
 
     // Validacion de boton enviar
     useEffect(() => {
 
-        setPuedeEnviar(email.length > 3 && nombre.length > 1 && apellido.length > 1 && (telefono != 0 && telefono > 7) && contraseña.length >= 8 && confirmarContraseña == contraseña)
+        setPuedeEnviar(email.length > 3 && nombre.length > 1 && apellido.length > 1 && (telefono != 0 && telefono > 7) && contraseña.length >= 4 && confirmarContraseña === contraseña)
 
     }, [email, nombre, apellido, telefono, contraseña, confirmarContraseña])
 
+
+
+    async function guardarUsuario() {
+        console.log(puedeEnviar);
+
+        if (puedeEnviar) {
+
+            const headers = new Headers();
+
+            headers.append("Content-type", "application/json")
+
+            const requestOptions = {
+                method: "POST",
+                headers: headers,
+                body: JSON.stringify({
+                    email: email,
+                    password: contraseña,
+                    nombre: nombre,
+                    apellido: apellido,
+                    telefono: telefono,
+                    admin: false
+                })
+            }
+
+            let response = await fetch(ip + 'api/usuarios/agregarUsuario', requestOptions)
+                .then((res) => res.json())
+                .catch(err => {
+                    console.log("Error: ", err)
+                })
+
+            if (response.email === undefined) {
+                Alert.alert("Error","El mail ya se encuentra registrado.")
+            } else {
+                Alert.alert("Usted se registró con éxito.")
+            }
+
+
+
+        } else {
+            Alert.alert(
+                "Error",
+                "¡Revisar todos los campos!",
+                [{
+                    text: "Cancelar",
+                    onPress: console.log('Yes Pressed'),
+                }]
+            )
+        }
+
+    }
 
     return (
         <ScrollView style={s.contenedorRegistro}>
             <BotoneraSuperior />
             <View style={s.containerIngreso}>
+
                 <TextInput
                     style={s.input}
                     value={email}
                     placeholder="Email"
                     onChangeText={(texto) => setEmail(texto)}
+                    errorMessage="Hola"
                 />
                 <TextInput
                     style={s.input}
@@ -73,7 +127,7 @@ const AgregarUsuario = ({ guardarUsuario }) => {
                 />
             </View>
 
-            <TouchableHighlight style={s.containerBoton} onPress={() => guardarUsuario({ email, nombre, apellido, telefono, contraseña, confirmarContraseña })}>
+            <TouchableHighlight style={s.containerBoton} onPress={() => guardarUsuario()}>
                 <View style={s.boton}>
                     <Text style={s.textoBoton}>Confirmar</Text>
                 </View>
