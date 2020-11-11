@@ -16,37 +16,40 @@ export default function NuevaReserva() {
 
     const [puedeEnviar, setPuedeEnviar] = useState(false)
 
-    const {dia, hora, cancha, precio } = useRoute().params;
-    const navigation = useNavigation(); 
-    const ip = 'http://192.168.0.117:3000/';
+    const { tipo, dia, hora, nroCancha, precio } = useRoute().params;
+    const navigation = useNavigation();
+    const ip = 'https://fast-tor-75300.herokuapp.com/';
 
     // Validacion de boton enviar
-    useEffect( () => {
+    useEffect(() => {
 
-        setPuedeEnviar(tarjeta.length == 16 && vto.length == 5 && cvv.length == 3 )
-        
+        setPuedeEnviar(tarjeta.length == 16 && vto.length == 5 && cvv.length == 3)
+
     }, [tarjeta, vto, cvv])
 
     function pagar() {
         if (puedeEnviar == true) {
             Alert.alert(
-                "Confirmar pago",
-                "¿Confirma el pago por $"+precio+'?',
+                "Confirmar pago y reserva",
+                "Usted seleccionó la " + tipo + ' número ' + nroCancha + ' para el día '
+                + dia.substring(0, 10) + ' a las ' + hora + ':00hs por un valor de $' + precio + '. ¿Confirma el pago?',
                 [
                     {
                         text: "Cancelar",
                         onPress: console.log('Yes Pressed'),
                     },
-                    { text: "Confirmar", onPress: guardarReserva }
+                    {
+                        text: "Confirmar", onPress: guardarReserva
+                    }
                 ],
-                { cancelable: false }
-            );
+                { cancelable: false })
         } else {
             Alert.alert(
                 "Error",
                 "¡Corroborar los datos ingresados!",
                 [{
-                    text: "Cancelar", onPress: console.log('Yes Pressed'),
+                    text: "Cancelar", 
+                    onPress: console.log('Yes Pressed'),
                 }]
             )
         }
@@ -54,72 +57,83 @@ export default function NuevaReserva() {
 
     };
 
-    function guardarReserva() {
+    async function guardarReserva() {
+        console.log('hola')
+        const headers = new Headers();
 
-        fetch(ip + 'api/reservas/agregarReserva/', {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
+        headers.append("Content-type", "application/json")
+
+        const requestOptions = {
+            method: "POST",
+            headers: headers,
             body: JSON.stringify({
-                nroCancha: cancha,
+                nroCancha: nroCancha,
                 dia: dia,
                 hora: hora,
                 suspendida: false
             })
-        })
+        }
 
-        /* navigation.navigate("Mi Reserva", {
-            dia: diaElegido,
-            hora: horarioElegido,
-            cancha: canchaElegida
-        }); */
+        let response = await fetch(ip + 'api/reservas/agregarReserva/', requestOptions)
+            .then((res) => res.json())
+            .catch(err => {
+                console.log("Error: ", err)
+            })
+        
+        if(response.dia === undefined){
+            Alert.alert("Error", "La cancha no se encuentra disponible en esa fecha y hora.")
+        }else{
+            navigation.navigate("Mi Reserva")
+        }
+        
     }
 
 
     return (
         <ScrollView style={s.container}>
-            <BotoneraSuperior/>
+            <BotoneraSuperior />
             <Text style={s.subtitulo}>Pago con Tarjeta de Crédito</Text>
             <Text style={s.dato}>Número</Text>
             <TextInput
                 style={s.input}
                 placeholder="Número"
-                onChangeText={(texto)=>setTarjeta(texto)}
+                onChangeText={(texto) => setTarjeta(texto)}
+                keyboardType="numeric"
             />
             <Text style={s.dato}>Vencimiento</Text>
             <TextInput
                 style={s.input}
                 placeholder="Vencimiento"
-                onChangeText={(texto) => setVto(texto)}                
+                onChangeText={(texto) => setVto(texto)}
+                keyboardType="numbers-and-punctuation"
             />
             <Text style={s.dato}>CVV</Text>
             <TextInput
                 style={s.input}
                 placeholder="Código de Seguridad"
-                onChangeText={(texto) => setCvv(texto)}            
+                onChangeText={(texto) => setCvv(texto)}
+                keyboardType="numeric"
             />
             <Text style={s.dato}>Precio</Text>
             <TextInput
                 style={s.input}
-                value={'$'+precio}         
+                value={'$' + precio}
             />
 
             <View style={s.botoneraInferior}>
-                <Icon 
-                name='x' 
-                size={40} 
-                color='#000' 
-                style= {s.iconoDerecho}
-                onPress={() => navigation.goBack()}
+                <Icon
+                    name='x'
+                    size={40}
+                    color='#000'
+                    style={s.iconoDerecho}
+                    onPress={() => navigation.goBack()}
                 />
-                <Icon 
-                name='check' 
-                size={40} 
-                color='#000' 
-                style= {s.iconoIzquierdo}
-                onPress={() => pagar()}
+                <Icon
+                    name='check'
+                    size={40}
+                    color='#000'
+                    style={s.iconoIzquierdo}
+                    onPress={() => pagar()}
                 />
             </View>
 

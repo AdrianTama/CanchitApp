@@ -36,169 +36,157 @@ export default function NuevaReserva() {
 
     function reservar() {
         if (puedeEnviar == true) {
-            Alert.alert(
-                "Confirmar reserva",
-                "Usted seleccionó la " + tipoElegido + ' número ' + canchaElegida.numero + ' para el día '
-                + diaElegido.dia.substring(0, 10) + ' a las ' + horarioElegido + ':00hs',
-                [
-                    {
-                        text: "Cancelar",
-                        onPress: console.log('Yes Pressed'),
-                    },
-                    {
-                        text: "Confirmar", onPress: navigation.navigate('Pago Reserva', {
-                            nroCancha: canchaElegida.nro,
-                            dia: diaElegido.dia,
-                            hora: horarioElegido,
-                            precio: precio
-                        })
-                    }
-                ],
-                { cancelable: false }
-            );
+            console.log(canchaElegida.nro)
+            navigation.navigate('Pago Reserva', {
+                tipo: tipoElegido,
+                nroCancha: canchaElegida.numero,
+                dia: diaElegido.dia,
+                hora: horarioElegido,
+                precio: precio
+            })
         } else {
-            Alert.alert(
-                "Error",
-                "¡Falta completar algún campo!",
-                [{
-                    text: "Cancelar",
-                    onPress: console.log('Yes Pressed'),
-                }]
-            )
-        }
+        Alert.alert(
+            "Error",
+            "¡Falta completar algún campo!",
+            [{
+                text: "Cancelar",
+                onPress: console.log('Yes Pressed'),
+            }]
+        )
+    }
 
 
-    };
+};
 
-    useEffect(() => {
-        if (tipoElegido != 0 && canchaElegida != 0 && diaElegido.dia != 0 && horarioElegido != 0) {
-            setPuedeEnviar(true);
-        }
-    }, [horarioElegido]);
+useEffect(() => {
+    if (tipoElegido != 0 && canchaElegida != 0 && diaElegido.dia != 0 && horarioElegido != 0) {
+        setPuedeEnviar(true);
+    }
+}, [horarioElegido]);
 
-    //ejecuta el fetch cuando se carga la page
-    useEffect(() => {
-        //adaptar con ip de la compu que ejecute: http://ip:3000/api...
-        fetch(ip + 'api/tipocancha/')
+//ejecuta el fetch cuando se carga la page
+useEffect(() => {
+    //adaptar con ip de la compu que ejecute: http://ip:3000/api...
+    fetch(ip + 'api/tipocancha/')
+        .then((response) => response.json())
+        .then((json) => setTipos(json))
+        .catch((error) => console.error(error));
+}, []);
+
+//ejecuta el fetch sólo cuando cambia el tipoElegido
+useEffect(() => {
+    if (tipoElegido !== undefined) {
+        fetch(ip + 'api/canchas/' + tipoElegido)
             .then((response) => response.json())
-            .then((json) => setTipos(json))
+            .then((json) => setCanchas(json))
             .catch((error) => console.error(error));
-    }, []);
+    }
+}, [tipoElegido]);
 
-    //ejecuta el fetch sólo cuando cambia el tipoElegido
-    useEffect(() => {
-        if (tipoElegido !== undefined) {
-            fetch(ip + 'api/canchas/' + tipoElegido)
-                .then((response) => response.json())
-                .then((json) => setCanchas(json))
-                .catch((error) => console.error(error));
-        }
-    }, [tipoElegido]);
+//ejecuta el fetch sólo cuando cambia la canchaElegida
+useEffect(() => {
+    if (canchaElegida !== undefined) {
+        setPrecio(canchaElegida.precio);
+        fetch(ip + 'api/reservas/buscar/' + canchaElegida)
+            .then((response) => response.json())
+            .then((json) => setDiasHorarios(json))
+            .catch((error) => {
+                console.error(error)
+            });
+    }
+}, [canchaElegida]);
 
-    //ejecuta el fetch sólo cuando cambia la canchaElegida
-    useEffect(() => {
-        if (canchaElegida !== undefined) {
-            setPrecio(canchaElegida.precio);
-            fetch(ip + 'api/reservas/buscar/' + canchaElegida)
-                .then((response) => response.json())
-                .then((json) => setDiasHorarios(json))
-                .catch((error) => {
-                    console.error(error)
-                });
-        }
-    }, [canchaElegida]);
+//ejecuta el fetch sólo cuando el diaElegido cambia
+useEffect(() => {
+    if (diaElegido.horarios !== undefined) {
+        setHorarios(diaElegido.horarios)
+    }
 
-    //ejecuta el fetch sólo cuando el diaElegido cambia
-    useEffect(() => {
-        if (diaElegido.horarios !== undefined) {
-            setHorarios(diaElegido.horarios)
-        }
-
-    }, [diaElegido]);
+}, [diaElegido]);
 
 
-    return (
-        <ScrollView style={s.container} >
-            <BotoneraSuperior />
-            <Text style={s.subtitulo}>Nueva Reserva</Text>
+return (
+    <ScrollView style={s.container} >
+        <BotoneraSuperior />
+        <Text style={s.subtitulo}>Nueva Reserva</Text>
 
-            <Text style={s.texto}>Paso 1: Elegí el tipo de cancha</Text>
-            <View style={s.contenedorPicker}>
-                <Picker
-                    selectedValue={tipoElegido}
-                    style={s.picker}
-                    onValueChange={(itemValue, itemIndex) => setTipoElegido(itemValue)}
-                >
-                    <Picker.Item label="Seleccionar tipo de cancha" value="0" />
-                    {tipos.map((item, key) => (
-                        <Picker.Item label={item.descripcion} value={item.descripcion} key={key} />)
-                    )}
-                </Picker>
-            </View>
+        <Text style={s.texto}>Paso 1: Elegí el tipo de cancha</Text>
+        <View style={s.contenedorPicker}>
+            <Picker
+                selectedValue={tipoElegido}
+                style={s.picker}
+                onValueChange={(itemValue, itemIndex) => setTipoElegido(itemValue)}
+            >
+                <Picker.Item label="Seleccionar tipo de cancha" value="0" />
+                {tipos.map((item, key) => (
+                    <Picker.Item label={item.descripcion} value={item.descripcion} key={key} />)
+                )}
+            </Picker>
+        </View>
 
-            <Text style={s.texto}>Paso 2: Elegí la cancha</Text>
-            <View style={s.contenedorPicker}>
-                <Picker
-                    selectedValue={canchaElegida}
-                    style={s.picker}
-                    onValueChange={(itemValue, itemIndex) => setCanchaElegida(itemValue)}
-                >
-                    <Picker.Item label="Seleccionar cancha" value="0" />
-                    {canchas.map((item, key) => (
-                        <Picker.Item label={'Número ' + item.numero} value={item} key={key} />)
-                    )}
-                </Picker>
-            </View>
+        <Text style={s.texto}>Paso 2: Elegí la cancha</Text>
+        <View style={s.contenedorPicker}>
+            <Picker
+                selectedValue={canchaElegida}
+                style={s.picker}
+                onValueChange={(itemValue, itemIndex) => setCanchaElegida(itemValue)}
+            >
+                <Picker.Item label="Seleccionar cancha" value="0" />
+                {canchas.map((item, key) => (
+                    <Picker.Item label={'Número ' + item.numero} value={item} key={key} />)
+                )}
+            </Picker>
+        </View>
 
-            <Text style={s.texto}>Precio: ${precio}</Text>
+        <Text style={s.texto}>Precio: ${precio}</Text>
 
 
-            <Text style={s.texto}>Paso 3: Elegí el día</Text>
-            <View style={s.contenedorPicker}>
-                <Picker
-                    selectedValue={diaElegido}
-                    style={s.picker}
-                    onValueChange={(itemValue, itemIndex) => setDiaElegido(itemValue)}
-                >
-                    <Picker.Item label="Seleccionar día" value="0" />
-                    {diasHorarios.map((item, key) => (
-                        <Picker.Item label={(item.dia).substring(0, 10)} value={item} key={key} />)
-                    )}
-                </Picker>
-            </View>
+        <Text style={s.texto}>Paso 3: Elegí el día</Text>
+        <View style={s.contenedorPicker}>
+            <Picker
+                selectedValue={diaElegido}
+                style={s.picker}
+                onValueChange={(itemValue, itemIndex) => setDiaElegido(itemValue)}
+            >
+                <Picker.Item label="Seleccionar día" value="0" />
+                {diasHorarios.map((item, key) => (
+                    <Picker.Item label={(item.dia).substring(0, 10)} value={item} key={key} />)
+                )}
+            </Picker>
+        </View>
 
-            <Text style={s.texto}>Paso 4: Elegí el horario</Text>
-            <View style={s.contenedorPicker}>
-                <Picker
-                    selectedValue={horarioElegido}
-                    style={s.picker}
-                    onValueChange={(itemValue, itemIndex) => setHorarioElegido(itemValue)}
-                >
-                    <Picker.Item label="Seleccionar horario" value="0" />
-                    {horarios.map((item, key) => (
-                        <Picker.Item label={item.toString() + ':00hs'} value={item.toString()} key={key} />)
-                    )}
-                </Picker>
-            </View>
+        <Text style={s.texto}>Paso 4: Elegí el horario</Text>
+        <View style={s.contenedorPicker}>
+            <Picker
+                selectedValue={horarioElegido}
+                style={s.picker}
+                onValueChange={(itemValue, itemIndex) => setHorarioElegido(itemValue)}
+            >
+                <Picker.Item label="Seleccionar horario" value="0" />
+                {horarios.map((item, key) => (
+                    <Picker.Item label={item.toString() + ':00hs'} value={item.toString()} key={key} />)
+                )}
+            </Picker>
+        </View>
 
-            <View style={s.botoneraInferior}>
-                <Icon
-                    name='x'
-                    size={40}
-                    color='#000'
-                    style={s.iconoDerecho}
-                    onPress={() => navigation.goBack()}
-                />
-                <Icon
-                    name='check'
-                    size={40}
-                    color='#000'
-                    style={s.iconoIzquierdo}
-                    onPress={reservar}
-                />
-            </View>
+        <View style={s.botoneraInferior}>
+            <Icon
+                name='x'
+                size={40}
+                color='#000'
+                style={s.iconoDerecho}
+                onPress={() => navigation.goBack()}
+            />
+            <Icon
+                name='check'
+                size={40}
+                color='#000'
+                style={s.iconoIzquierdo}
+                onPress={reservar}
+            />
+        </View>
 
-        </ScrollView>
-    );
+    </ScrollView>
+);
 }
 

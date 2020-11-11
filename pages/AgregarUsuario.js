@@ -91,7 +91,7 @@ export default function AgregarUsuario (){
                     value={email}
                     placeholder="Email"
                     onChangeText={(texto) => setEmail(texto)}
-                    errorMessage="Hola"
+                    keyboardType="email-address"
                 />
                 <TextInput
                     style={s.input}
@@ -110,7 +110,7 @@ export default function AgregarUsuario (){
                     value={telefono}
                     placeholder="Teléfono"
                     onChangeText={(texto) => setTelefono(texto)}
-                    keyboardType="numeric"
+                    keyboardType="phone-pad"
                 />
                 <TextInput
                     style={s.input}
