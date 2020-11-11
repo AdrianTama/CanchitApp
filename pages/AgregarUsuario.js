@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, TextInput, Button, TouchableHighlight } from 'react-native';
 import BotoneraSuperior from '../components/nombreApp';
 import { useNavigation } from '@react-navigation/native';
+import { ScrollView } from 'react-native-gesture-handler';
 
 import s from '../components/styles'
-import { ScrollView } from 'react-native-gesture-handler';
+
 
 const AgregarUsuario = ({ guardarUsuario }) => {
 
