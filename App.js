@@ -14,7 +14,7 @@ import NuevaReserva from './pages/nuevareserva';
 import PaginaPrincipal from './pages/home';
 import MiReserva from './pages/mireserva';
 import AgregarCancha from "./pages/agregarCancha";
-import AgregarUsuario from './pages/agregarUsuario';
+import AgregarUsuario from './pages/AgregarUsuario';
 import Perfil from './pages/perfil';
 import CambiarClave from './pages/cambiarClave';
 import PagoReserva from './pages/pagoReserva'

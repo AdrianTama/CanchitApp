@@ -18,7 +18,7 @@ export default function NuevaReserva() {
 
     const navigation = useNavigation();
     const [puedeEnviar, setPuedeEnviar] = useState(false);
-    const ip = 'http://192.168.0.117:3000/';
+    const ip = 'https://fast-tor-75300.herokuapp.com/';
 
     //Variables para la selección que conforma la reserva a enviar
     const [tipoElegido, setTipoElegido] = useState([]);
