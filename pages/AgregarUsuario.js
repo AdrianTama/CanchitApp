@@ -6,8 +6,10 @@ import { ScrollView } from 'react-native-gesture-handler';
 import BotoneraSuperior from '../components/nombreApp';
 import s from '../components/styles'
 
+//Falta mejorar mensajes de error en cada input
+//Ver si cuando se registra se tiene que loguear automáticamente
 
-const AgregarUsuario = ({ guardarUsuario }) => {
+export default function AgregarUsuario (){
 
     const [email, setEmail] = useState("")
     const [nombre, setNombre] = useState("")
@@ -15,7 +17,6 @@ const AgregarUsuario = ({ guardarUsuario }) => {
     const [telefono, setTelefono] = useState("")
     const [contraseña, setContraseña] = useState("")
     const [confirmarContraseña, setConfirmarContraseña] = useState("")
-    const [usuario, setUsuario] = useState([]);
 
     const [puedeEnviar, setPuedeEnviar] = useState(false)
     const navigation = useNavigation();
@@ -32,10 +33,10 @@ const AgregarUsuario = ({ guardarUsuario }) => {
 
 
     async function guardarUsuario() {
-        console.log(puedeEnviar);
 
         if (puedeEnviar) {
 
+            //Conformación de componentes para el fetch
             const headers = new Headers();
 
             headers.append("Content-type", "application/json")
@@ -53,24 +54,24 @@ const AgregarUsuario = ({ guardarUsuario }) => {
                 })
             }
 
+            //Almacenamos el response del fetch
             let response = await fetch(ip + 'api/usuarios/agregarUsuario', requestOptions)
                 .then((res) => res.json())
                 .catch(err => {
                     console.log("Error: ", err)
                 })
-
+            //Dependiendo el response, mostramos un msj    
             if (response.email === undefined) {
-                Alert.alert("Error","El mail ya se encuentra registrado.")
+                Alert.alert("Error", "El mail ya se encuentra registrado.")
             } else {
                 Alert.alert("Usted se registró con éxito.")
             }
 
-
-
         } else {
+            //Mensaje de error cuando falta algún campo o hay algún campo inválido
             Alert.alert(
                 "Error",
-                "¡Revisar todos los campos!",
+                "¡Revisar los campos completados!",
                 [{
                     text: "Cancelar",
                     onPress: console.log('Yes Pressed'),
@@ -143,4 +144,3 @@ const AgregarUsuario = ({ guardarUsuario }) => {
     )
 }
 
-export default AgregarUsuario;
