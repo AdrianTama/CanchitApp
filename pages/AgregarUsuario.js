@@ -30,46 +30,47 @@ const AgregarUsuario = ({ guardarUsuario }) => {
     return (
         <ScrollView style={s.contenedorRegistro}>
             <BotoneraSuperior />
-            <Text style={s.subtitulo}>Registrarme</Text>
-            <TextInput
-                style={s.input}
-                value={email}
-                placeholder="Email"
-                onChangeText={(texto) => setEmail(texto)}
-            />
-            <TextInput
-                style={s.input}
-                value={nombre}
-                placeholder="Nombre"
-                onChangeText={(texto) => setNombre(texto)}
-            />
-            <TextInput
-                style={s.input}
-                value={apellido}
-                placeholder="Apellido"
-                onChangeText={(texto) => setApellido(texto)}
-            />
-            <TextInput
-                style={s.input}
-                value={telefono}
-                placeholder="Teléfono"
-                onChangeText={(texto) => setTelefono(texto)}
-                keyboardType="numeric"
-            />
-            <TextInput
-                style={s.input}
-                value={contraseña}
-                placeholder="Contraseña"
-                secureTextEntry={true}
-                onChangeText={(texto) => setContraseña(texto)}
-            />
-            <TextInput
-                style={s.input}
-                value={confirmarContraseña}
-                placeholder="Confirmar contraseña"
-                secureTextEntry={true}
-                onChangeText={(texto) => setConfirmarContraseña(texto)}
-            />
+            <View style={s.containerIngreso}>
+                <TextInput
+                    style={s.input}
+                    value={email}
+                    placeholder="Email"
+                    onChangeText={(texto) => setEmail(texto)}
+                />
+                <TextInput
+                    style={s.input}
+                    value={nombre}
+                    placeholder="Nombre"
+                    onChangeText={(texto) => setNombre(texto)}
+                />
+                <TextInput
+                    style={s.input}
+                    value={apellido}
+                    placeholder="Apellido"
+                    onChangeText={(texto) => setApellido(texto)}
+                />
+                <TextInput
+                    style={s.input}
+                    value={telefono}
+                    placeholder="Teléfono"
+                    onChangeText={(texto) => setTelefono(texto)}
+                    keyboardType="numeric"
+                />
+                <TextInput
+                    style={s.input}
+                    value={contraseña}
+                    placeholder="Contraseña"
+                    secureTextEntry={true}
+                    onChangeText={(texto) => setContraseña(texto)}
+                />
+                <TextInput
+                    style={s.input}
+                    value={confirmarContraseña}
+                    placeholder="Confirmar contraseña"
+                    secureTextEntry={true}
+                    onChangeText={(texto) => setConfirmarContraseña(texto)}
+                />
+            </View>
 
             <TouchableHighlight style={s.containerBoton} onPress={() => guardarUsuario({ email, nombre, apellido, telefono, contraseña, confirmarContraseña })}>
                 <View style={s.boton}>

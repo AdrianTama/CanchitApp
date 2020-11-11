@@ -35,7 +35,6 @@ const Perfil = ({guardarUsuario}) => {
             <TextInput
                 style={s.input}
                 value={email}
-               
             />
             <Text style={s.dato}>Nombre</Text>
             <TextInput
@@ -78,7 +77,7 @@ const Perfil = ({guardarUsuario}) => {
                 />
             </View>
             
-            <TouchableHighlight style={s.containerBoton} onPress={() => navigation.navigate("Cambiar Clave")}>
+            <TouchableHighlight style={s.containerBoton} onPress={() => navigation.navigate("Cambiar Contraseña")}>
                 <View>
                     <Text style={s.link}>Cambiar contraseña</Text>
                 </View>

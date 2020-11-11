@@ -18,7 +18,7 @@ export default function SignIn() {
     };
 
     function registrarme() {
-        navigation.navigate("Registrar Usuario");
+        navigation.navigate("Registrarme");
     };
 
     return (

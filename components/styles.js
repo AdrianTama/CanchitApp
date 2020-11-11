@@ -5,18 +5,18 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: 20,
+        marginBottom: 20
     },
 
     contenedorSignin:{
-        paddingTop: 150,
+        paddingTop: 80,
         flex: 1,
         marginTop: 20,
+        marginBottom: 20
     },
 
     contenedorRegistro:{
-        flex: 1,
-        marginTop: 15,
-        paddingTop: 80
+        marginTop:20
     },
 
     contenedorPicker:{
