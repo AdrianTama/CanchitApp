@@ -36,7 +36,6 @@ export default function NuevaReserva() {
 
     function reservar() {
         if (puedeEnviar == true) {
-            console.log(canchaElegida.nro)
             navigation.navigate('Pago Reserva', {
                 tipo: tipoElegido,
                 nroCancha: canchaElegida.numero,
@@ -87,7 +86,7 @@ useEffect(() => {
 useEffect(() => {
     if (canchaElegida !== undefined) {
         setPrecio(canchaElegida.precio);
-        fetch(ip + 'api/reservas/buscar/' + canchaElegida)
+        fetch(ip + 'api/reservas/buscar/' + canchaElegida.numero)
             .then((response) => response.json())
             .then((json) => setDiasHorarios(json))
             .catch((error) => {

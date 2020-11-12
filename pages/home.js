@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import BotoneraSuperior from '../components/botoneraSuperior';
 import { ScrollView } from 'react-native-gesture-handler';
 
+
 export default function Home(){
 
     const navigation = useNavigation(); 
