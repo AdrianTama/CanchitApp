@@ -1,6 +1,6 @@
+import React , {useEffect, useState} from 'react';
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, TextInput, View, TouchableHighlight } from 'react-native';
+import {  Text, TextInput, View, TouchableHighlight, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Octicons';
 
@@ -9,12 +9,52 @@ import s from '../components/styles';
 import { ScrollView } from 'react-native-gesture-handler';
 
 export default function SignIn() {
-    const [usuario, onChangeUser] = React.useState('');
-    const [clave, onChangeClave] = React.useState('');
+    const [email, setEmail] = useState('');
+    const [contraseña, setContraseña] = useState('');
+    const [puedeEnviar, setPuedeEnviar] = useState(false)
+    
     const navigation = useNavigation();
+    const ip = 'https://fast-tor-75300.herokuapp.com/';
 
-    function ingresar() {
-        navigation.navigate("Home");
+    useEffect(() => {
+
+        setPuedeEnviar(email.length > 3 && contraseña.length >= 4 )
+
+    }, [email, contraseña])
+
+    async function ingresar() {
+        if(puedeEnviar){
+            const headers = new Headers();
+
+            headers.append("Content-type", "appilcation/json")
+            const requestOptions = {
+                method: "POST",
+                headers: headers,
+                body: JSON.stringify({
+                    email: email,
+                    password: contraseña,
+                })
+            }
+
+            let response = await fetch(ip + 'api/usuarios/login', requestOptions)
+                .then((res) => res.json())
+                .catch(err => {
+                    console.log("Error: ", err)
+                })
+            
+            console.log(response)
+            
+            /* if(response.usuario === undefined){
+                Alert.alert("Error", "Credenciales inválidas.")
+            }else{
+                navigation.navigate("Home");
+            } */
+
+            
+        }else{
+            Alert.alert("Error", "Falta completar algún campo.")
+        }
+        
     };
 
     function registrarme() {
@@ -35,8 +75,8 @@ export default function SignIn() {
                     />
                     <TextInput
                         style={s.box}
-                        onChangeText={text => onChangeUser(text)}
-                        value={usuario}
+                        onChangeText={text => setEmail(text)}
+                        value={email}
                         placeholder='Ingresa tu usuario'
                     />
                 </View>
@@ -50,8 +90,8 @@ export default function SignIn() {
                     <TextInput
                         secureTextEntry={true}
                         style={s.box}
-                        onChangeText={text => onChangeClave(text)}
-                        value={clave}
+                        onChangeText={text => setContraseña(text)}
+                        value={contraseña}
                         placeholder='Ingresa tu contraseña'
                     />
                 </View>
