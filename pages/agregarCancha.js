@@ -16,7 +16,7 @@ const AgregarCancha = () => {
 
     const [puedeEnviar, setPuedeEnviar] = useState(false)
     const navigation = useNavigation();
-    const ip = 'https://fast-tor-75300.herokuapp.com/';
+    const ip = 'https://secret-shore-39623.herokuapp.com';
     // Validacion de boton enviar
     useEffect(() => {
 
