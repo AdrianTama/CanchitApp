@@ -11,7 +11,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 const AgregarCancha = () => {
 
     const [numero, setNumero] = useState("");
-    const [tipo, setTipo] = useState("0");
+    const [descripcion, setDescripcion] = useState("0");
     const [precio, setPrecio] = useState("");
 
     const [puedeEnviar, setPuedeEnviar] = useState(false)
@@ -20,9 +20,9 @@ const AgregarCancha = () => {
     // Validacion de boton enviar
     useEffect(() => {
 
-        setPuedeEnviar(numero != "" && tipo != '0' && precio !="")
+        setPuedeEnviar(numero != "" && descripcion != '0' && precio !="")
 
-    }, [precio, numero, tipo])
+    }, [descripcion, numero, precio ])
 
     async function guardarCancha() {
 
@@ -37,9 +37,9 @@ const AgregarCancha = () => {
                 method: "POST",
                 headers: headers,
                 body: JSON.stringify({
+                    descripcion : descripcion,
                     numero : numero,
-                    precio : precio,
-                    tipo   : tipo,
+                    precio : precio
                 })
             }
 
@@ -97,17 +97,17 @@ const AgregarCancha = () => {
             />
             <View style={s.contenedorPicker}>
                 <Picker
-                    selectedValue={tipo}
+                    selectedValue={descripcion}
                     style={s.picker}
                     placeholder='Selecciona un tipo de cancha'
                     onValueChange={(itemValue, itemIndex) => {
-                        setTipo(itemValue);
+                        setDescripcion(itemValue);
                     }}
                 >
                     <Picker.Item label="Seleccionar tipo de cancha" value="0" />
-                    <Picker.Item label="Cancha Futbol 5" value="5" />
-                    <Picker.Item label="Cancha Futbol 7" value="7" />
-                    <Picker.Item label="Cancha Futbol 11" value="11" />
+                    <Picker.Item label="Cancha Futbol 5" value="Cancha Futbol 5" />
+                    <Picker.Item label="Cancha Futbol 7" value="Cancha Futbol 7" />
+                    <Picker.Item label="Cancha Futbol 11" value="Cancha Futbol 11" />
                 </Picker>
             </View>
             
@@ -124,7 +124,7 @@ const AgregarCancha = () => {
                     size={40}
                     color='#000'
                     style={s.iconoIzquierdo}
-                    onPress={() => guardarCancha({ precio, numero, tipo })}
+                    onPress={() => guardarCancha({ descripcion, numero, precio })}
                 />
             </View>
         </ScrollView>
