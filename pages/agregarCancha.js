@@ -15,9 +15,8 @@ const AgregarCancha = () => {
     const [precio, setPrecio] = useState("");
 
     const [puedeEnviar, setPuedeEnviar] = useState(false)
-
     const navigation = useNavigation();
-
+    const ip = 'https://fast-tor-75300.herokuapp.com/';
     // Validacion de boton enviar
     useEffect(() => {
 
@@ -25,9 +24,58 @@ const AgregarCancha = () => {
 
     }, [precio, numero, tipo])
 
-    const guardarCancha = () => {
-        console.log("cancha guardada", precio, numero, tipo)
+    async function guardarCancha() {
+
+        if (puedeEnviar) {
+
+            //Conformación de componentes para el fetch
+            const headers = new Headers();
+
+            headers.append("Content-type", "application/json")
+
+            const requestOptions = {
+                method: "POST",
+                headers: headers,
+                body: JSON.stringify({
+                    numero : numero,
+                    precio : precio,
+                    tipo   : tipo,
+                })
+            }
+
+            //Almacenamos el response del fetch
+            let response = await fetch(ip + 'api/canchas/agregarCanchas', requestOptions)
+                .then((res) => res.json())
+                .catch(err => {
+                    console.log("Error: ", err)
+                })
+            //Dependiendo el response, mostramos un msj    
+            if (response === undefined) {
+                Alert.alert("Error", "La cancha ya existe")
+            } else {
+                Alert.alert("La cancha se agregó con éxito")
+            }
+
+        } else {
+            //Mensaje de error cuando falta algún campo o hay algún campo inválido
+            Alert.alert(
+                "Error",
+                "¡Revisar los campos completados!",
+                [{
+                    text: "Cancelar",
+                    onPress: console.log('Yes Pressed'),
+                }]
+            )
+        }
+
     }
+
+    // useEffect(() => {
+    //     fetch(ip + 'api/tipocancha/')
+    //         .then((response) => response.json())
+    //         .then((json) => setTipos(json))
+    //         .catch((error) => console.error(error));
+    // }, []);
 
     return (
         <ScrollView style={s.container}>
@@ -76,7 +124,7 @@ const AgregarCancha = () => {
                     size={40}
                     color='#000'
                     style={s.iconoIzquierdo}
-                    onPress={() => guardarCancha({ descripcion, numero, tipo })}
+                    onPress={() => guardarCancha({ precio, numero, tipo })}
                 />
             </View>
         </ScrollView>

@@ -26,7 +26,7 @@ export default function SignIn() {
         if(puedeEnviar){
             const headers = new Headers();
 
-            headers.append("Content-type", "appilcation/json")
+            headers.append("Content-type", "application/json")
             const requestOptions = {
                 method: "POST",
                 headers: headers,
@@ -44,11 +44,11 @@ export default function SignIn() {
             
             console.log(response)
             
-            /* if(response.usuario === undefined){
+             if(response.usuario === undefined){
                 Alert.alert("Error", "Credenciales inválidas.")
             }else{
                 navigation.navigate("Home");
-            } */
+            } 
 
             
         }else{
