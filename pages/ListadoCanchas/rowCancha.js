@@ -7,17 +7,20 @@ import s from '../../components/styles'
 
 export default function Row({ cancha }) {
     const navigation = useNavigation();
-    
+
     return (
-        <View style={s.contenedorRow}>
+        <View style={s.contenedorRowList}>
             <Text style={s.itemList}>Cancha número {cancha.numero}</Text>
-            <Icon
-                name='chevron-right'
-                size={20}
-                color='#000'
-                style={s.iconoList}
-                onPress={() => navigation.goBack()}
-            />
+            <View style={s.contenedorMas}>
+                <Icon
+                    name='chevron-right'
+                    size={20}
+                    color='#000'
+                    style={s.iconoList}
+                    onPress={() => navigation.goBack()}
+                />
+            </View>
+
         </View>
     )
 }

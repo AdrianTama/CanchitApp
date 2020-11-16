@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, Text } from 'react-native';
-import Row from "./rowCancha";
+import Icon from 'react-native-vector-icons/Octicons';
+import Row from "./rowTurno";
 
 import s from '../../components/styles';
 import BotoneraSuperior from '../../components/botoneraSuperior';

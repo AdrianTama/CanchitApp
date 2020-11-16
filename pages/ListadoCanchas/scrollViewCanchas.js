@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView, Text } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import Row from "./rowCancha";
+import Icon from 'react-native-vector-icons/Octicons';
 
 import s from '../../components/styles';
 import BotoneraSuperior from '../../components/botoneraSuperior';
@@ -20,15 +21,18 @@ export default function ScrollViewCanchas() {
     return (
         <ScrollView style={s.container}>
             <BotoneraSuperior />
-            <View style={s.row}>
-                <Text style={s.subtitulo}>Mis canchas</Text>
-                <Icon
-                    name='plus'
-                    size={20}
-                    color='#000'
-                    style={s.iconoList}
-                    onPress={() => navigation.navigate('Agregar Cancha')}
-                />
+            <View style={s.contenedorSubtitulo}>
+                <Text style={s.subtituloAdmin} >Mis canchas</Text>
+                <View style={s.contenedorMas}>
+                    <Icon
+                        name='plus'
+                        size={20}
+                        color='#000'
+                        style={s.iconoList}
+                        onPress={() => navigation.navigate('Agregar Cancha')}
+                    />
+                </View>
+
             </View>
 
             {

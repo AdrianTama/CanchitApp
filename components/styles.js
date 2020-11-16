@@ -48,6 +48,28 @@ const styles = StyleSheet.create({
         marginBottom: 10
     },
 
+    contenedorRowList:{
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        padding: 15,
+    },
+
+    contenedorSubtitulo: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 10,
+        marginBottom: 10,
+        paddingTop:20,
+        paddingBottom: 20,
+        backgroundColor: '#4F77A4',
+    },
+    contenedorMas:{
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+
     botoneraSuperior: {
         marginTop: 20,
         marginBottom: 20,
@@ -92,7 +114,7 @@ const styles = StyleSheet.create({
     },
 
     iconoList: {
-        paddingLeft: 20,
+        color: "#d6d7da"
     },
 
     iconoDerecho: {
@@ -127,7 +149,12 @@ const styles = StyleSheet.create({
         marginBottom: 30,
         paddingTop: 20,
         paddingBottom:20,
-        backgroundColor: '#8BF07B'
+        
+    },
+
+    subtituloAdmin:{
+        fontSize: 20,
+        color: '#d6d7da',
     },
 
     texto: {
