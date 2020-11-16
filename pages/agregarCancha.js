@@ -13,6 +13,8 @@ const AgregarCancha = () => {
     const [numero, setNumero] = useState("");
     const [descripcion, setDescripcion] = useState("0");
     const [precio, setPrecio] = useState("");
+    const [tipoElegido, setTipoElegido] = useState([]);
+    const [tipos, setTipos] = useState([]);
 
     const [puedeEnviar, setPuedeEnviar] = useState(false)
     const navigation = useNavigation();
@@ -20,9 +22,9 @@ const AgregarCancha = () => {
     // Validacion de boton enviar
     useEffect(() => {
 
-        setPuedeEnviar(numero != "" && descripcion != '0' && precio !="")
+        setPuedeEnviar(numero != "" && descripcion != '0' && precio != "")
 
-    }, [descripcion, numero, precio ])
+    }, [descripcion, numero, precio])
 
     async function guardarCancha() {
 
@@ -37,9 +39,9 @@ const AgregarCancha = () => {
                 method: "POST",
                 headers: headers,
                 body: JSON.stringify({
-                    descripcion : descripcion,
-                    numero : numero,
-                    precio : precio
+                    descripcion: descripcion,
+                    numero: numero,
+                    precio: precio
                 })
             }
 
@@ -70,12 +72,14 @@ const AgregarCancha = () => {
 
     }
 
-    // useEffect(() => {
-    //     fetch(ip + 'api/tipocancha/')
-    //         .then((response) => response.json())
-    //         .then((json) => setTipos(json))
-    //         .catch((error) => console.error(error));
-    // }, []);
+    useEffect(() => {
+        //adaptar con ip de la compu que ejecute: http://ip:3000/api...
+        fetch(ip + 'api/tipocancha/')
+            .then((response) => response.json())
+            .then((json) => setTipos(json))
+            .catch((error) => console.error(error));
+    }, []);
+
 
     return (
         <ScrollView style={s.container}>
@@ -97,20 +101,17 @@ const AgregarCancha = () => {
             />
             <View style={s.contenedorPicker}>
                 <Picker
-                    selectedValue={descripcion}
+                    selectedValue={tipoElegido}
                     style={s.picker}
-                    placeholder='Selecciona un tipo de cancha'
-                    onValueChange={(itemValue, itemIndex) => {
-                        setDescripcion(itemValue);
-                    }}
+                    onValueChange={(itemValue, itemIndex) => setTipoElegido(itemValue)}
                 >
                     <Picker.Item label="Seleccionar tipo de cancha" value="0" />
-                    <Picker.Item label="Cancha Futbol 5" value="Cancha Futbol 5" />
-                    <Picker.Item label="Cancha Futbol 7" value="Cancha Futbol 7" />
-                    <Picker.Item label="Cancha Futbol 11" value="Cancha Futbol 11" />
+                    {tipos.map((item, key) => (
+                        <Picker.Item label={item.descripcion} value={item.descripcion} key={key} />)
+                    )}
                 </Picker>
             </View>
-            
+
             <View style={s.botoneraInferior}>
                 <Icon
                     name='x'
