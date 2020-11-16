@@ -21,6 +21,7 @@ export default function AgregarUsuario (){
     const [puedeEnviar, setPuedeEnviar] = useState(false)
     const navigation = useNavigation();
     const ip = 'https://secret-shore-39623.herokuapp.com/';
+    // const ip = 'http://192.168.0.117:3000/'
 
     // Validacion de boton enviar
     useEffect(() => {
@@ -64,6 +65,7 @@ export default function AgregarUsuario (){
                 Alert.alert("Error", "El mail ya se encuentra registrado.")
             } else {
                 Alert.alert("Usted se registró con éxito.")
+                navigation.navigate("Home")
             }
 
         } else {
@@ -142,4 +144,3 @@ export default function AgregarUsuario (){
         </ScrollView>
     )
 }
-
