@@ -44,7 +44,7 @@ export default function SignIn() {
             
             console.log(response)
             
-             if(response.usuario === undefined){
+             if(!response){
                 Alert.alert("Error", "Credenciales inválidas.")
             }else{
                 navigation.navigate("Home");
