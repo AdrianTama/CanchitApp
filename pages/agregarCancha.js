@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, TextInput, Button, TouchableHighlight, Picker ,Alert} from 'react-native';
+import { Text, View, TextInput,  Picker ,Alert} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Octicons';
 
@@ -11,7 +11,6 @@ import { ScrollView } from 'react-native-gesture-handler';
 const AgregarCancha = () => {
 
     const [numero, setNumero] = useState("");
-    const [descripcion, setDescripcion] = useState("0");
     const [precio, setPrecio] = useState("");
     const [tipoElegido, setTipoElegido] = useState([]);
     const [tipos, setTipos] = useState([]);
@@ -22,12 +21,12 @@ const AgregarCancha = () => {
     // Validacion de boton enviar
     useEffect(() => {
 
-        setPuedeEnviar(numero != "" && descripcion != '0' && precio != "")
+        setPuedeEnviar(numero != "" && tipoElegido != '0' && precio != "")
 
-    }, [descripcion, numero, precio])
+    }, [tipoElegido, numero, precio])
 
     async function guardarCancha() {
-
+        
         if (puedeEnviar) {
 
             //Conformación de componentes para el fetch
@@ -39,7 +38,7 @@ const AgregarCancha = () => {
                 method: "POST",
                 headers: headers,
                 body: JSON.stringify({
-                    descripcion: descripcion,
+                    descripcion: tipoElegido,
                     numero: numero,
                     precio: precio
                 })
@@ -125,7 +124,7 @@ const AgregarCancha = () => {
                     size={40}
                     color='#000'
                     style={s.iconoIzquierdo}
-                    onPress={() => guardarCancha({ descripcion, numero, precio })}
+                    onPress={() => guardarCancha()}
                 />
             </View>
         </ScrollView>
