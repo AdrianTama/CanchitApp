@@ -18,7 +18,9 @@ import AgregarCancha from "./pages/agregarCancha";
 import AgregarUsuario from './pages/AgregarUsuario';
 import Perfil from './pages/perfil';
 import CambiarClave from './pages/cambiarClave';
-import PagoReserva from './pages/pagoReserva'
+import PagoReserva from './pages/pagoReserva';
+import ListadoCanchas from './pages/ListadoCanchas/scrollViewCanchas';
+import ListadoTurnos from './pages/ListadoTurnos/scrollViewTurnos';
 
 
 const Stack = createStackNavigator();
@@ -64,6 +66,8 @@ function Home() {
       <Drawer.Screen name="Mi Reserva" component={MiReserva} />
       <Drawer.Screen name="Pago Reserva" component={PagoReserva} />
       <Drawer.Screen name="Agregar Cancha" component={AgregarCancha} />
+      <Drawer.Screen name="Listado Canchas" component={ListadoCanchas} />
+      <Drawer.Screen name="Listado Turnos" component={ListadoTurnos} />
       <Drawer.Screen name="Mi perfil" component={MiPerfil} />
     </Drawer.Navigator>
   );

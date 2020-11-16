@@ -24,6 +24,18 @@ export default function Home(){
                     <View style={styles.boton}>
                         <Text style= {styles.textoBoton}>Mi Reserva</Text>
                     </View>
+                </TouchableHighlight> 
+
+                <TouchableHighlight style={styles.containerBoton} onPress={() => navigation.navigate("Listado Canchas")}>
+                    <View style={styles.boton}>
+                        <Text style= {styles.textoBoton}>Listado de canchas</Text>
+                    </View>
+                </TouchableHighlight>
+
+                <TouchableHighlight style={styles.containerBoton} onPress={() => navigation.navigate("Listado Reservas")}>
+                    <View style={styles.boton}>
+                        <Text style= {styles.textoBoton}>Listado de reservas</Text>
+                    </View>
                 </TouchableHighlight>                
 
             </View>

@@ -5,51 +5,51 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: 20,
-        backgroundColor:'#FFFFFF' 
+        backgroundColor: '#FFFFFF'
     },
 
-    contenedorSignin:{
+    contenedorSignin: {
         paddingTop: 80,
         flex: 1,
-        backgroundColor:'#FFFFFF' 
+        backgroundColor: '#FFFFFF'
     },
 
-    contenedorRegistro:{
-        paddingTop:20,
-        backgroundColor:'#FFFFFF' 
+    contenedorRegistro: {
+        paddingTop: 20,
+        backgroundColor: '#FFFFFF'
     },
 
-    contenedorPicker:{
-        borderWidth:1, 
-        borderRadius:0,
-        marginLeft:20, 
-        marginRight:20,
-        marginTop:10,
-        marginBottom:10,
+    contenedorPicker: {
+        borderWidth: 1,
+        borderRadius: 0,
+        marginLeft: 20,
+        marginRight: 20,
+        marginTop: 10,
+        marginBottom: 10,
         backgroundColor: '#5AA877',
     },
 
-    containerBoton:{
+    containerBoton: {
         alignItems: 'center',
-        marginTop:10,
+        marginTop: 10,
     },
 
-    containerIngreso:{
+    containerIngreso: {
         paddingTop: 15,
-        marginTop:50
+        marginTop: 50
     },
 
-    contenedorRow:{
+    contenedorRow: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop:10,
-        marginBottom:10
+        marginTop: 10,
+        marginBottom: 10
     },
 
-    botoneraSuperior:{
-        marginTop:20,
+    botoneraSuperior: {
+        marginTop: 20,
         marginBottom: 20,
         flexDirection: 'row',
         justifyContent: 'space-between'
@@ -61,87 +61,93 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
 
-    boton:{
-        width:300,
+    boton: {
+        width: 300,
         height: 40,
         backgroundColor: '#720876',
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop:10,
+        marginTop: 10,
         marginBottom: 10,
-        borderWidth:1,
-        borderRadius:10,
+        borderWidth: 1,
+        borderRadius: 10,
     },
 
-    textoBoton:{
+    textoBoton: {
         color: 'white',
-        fontSize:15
+        fontSize: 15
     },
 
-    iconoUser:{
-        paddingRight : 20, 
+    iconoUser: {
+        paddingRight: 20,
     },
 
-    iconoMenu:{
-        paddingLeft : 20, 
+    iconoMenu: {
+        paddingLeft: 20,
     },
 
-    iconoSignin:{
-        paddingLeft : 20, 
-        marginTop:20
+    iconoSignin: {
+        paddingLeft: 20,
+        marginTop: 20
     },
 
-    iconoDerecho:{
-        paddingLeft : 25, 
+    iconoList: {
+        paddingLeft: 20,
     },
 
-    iconoIzquierdo:{
-        paddingRight : 25, 
+    iconoDerecho: {
+        paddingLeft: 25,
     },
 
-    logo:{
+    iconoIzquierdo: {
+        paddingRight: 25,
+    },
+
+    logo: {
         textAlign: 'center',
-        fontSize:30,
+        fontSize: 30,
         fontStyle: 'italic',
         fontWeight: 'bold',
     },
 
-    titulo:{
+    titulo: {
         textAlign: 'center',
-        fontSize:40,
+        fontSize: 40,
         marginBottom: 90,
-        marginTop:50,
+        marginTop: 50,
         fontStyle: 'italic',
         fontWeight: 'bold',
     },
 
-    subtitulo:{
-        fontSize:20,
+    subtitulo: {
+        fontSize: 20,
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
         marginBottom: 30,
-        marginTop:30
+        paddingTop: 20,
+        paddingBottom:20,
+        backgroundColor: '#8BF07B'
     },
 
-    texto:{
-        fontSize:15,
+    texto: {
+        fontSize: 15,
         textAlign: 'left',
         alignContent: 'center',
-        marginTop:20,
+        marginTop: 20,
         marginTop: 20,
         marginHorizontal: 10,
         paddingHorizontal: 10,
         paddingVertical: 5,
     },
 
-    dato:{
-        fontSize:10,
-        paddingLeft : 20, 
+    dato: {
+        fontSize: 10,
+        paddingLeft: 20,
     },
 
     input: {
-        borderBottomWidth:1,
+        borderBottomWidth: 1,
         borderColor: 'gray',
         minWidth: 100,
         marginTop: 20,
@@ -149,18 +155,23 @@ const styles = StyleSheet.create({
         marginHorizontal: 20,
         paddingHorizontal: 10,
         paddingVertical: 5,
-       
+
+    },
+
+    itemList: {
+        fontSize: 18,
+        color: '#4A90E2',
     },
 
     box: {
-        height:40,
+        height: 40,
         width: 350,
         borderBottomWidth: 1,
         marginVertical: 30,
         alignContent: 'center',
         marginLeft: 20,
-        marginRight:20,
-        marginTop:30
+        marginRight: 20,
+        marginTop: 30
     },
 
     picker: {
@@ -169,7 +180,7 @@ const styles = StyleSheet.create({
 
     link: {
         marginTop: 30,
-        fontSize:18,
+        fontSize: 18,
         color: '#33A8FF',
         paddingVertical: 5,
     },
@@ -179,6 +190,6 @@ const styles = StyleSheet.create({
         marginTop: 30,
         marginBottom: 30,
     },
-  })
+})
 
-  export default styles;
+export default styles;

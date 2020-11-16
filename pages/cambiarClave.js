@@ -7,6 +7,7 @@ import Icon from 'react-native-vector-icons/Octicons';
 import BotoneraSuperior from '../components/nombreApp';
 import s from '../components/styles'
 
+//Falta método en el back para hacer el cambio de clave
 
 const cambiarClave = ({ cambiarClave }) => {
 
