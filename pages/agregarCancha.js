@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, TextInput, Button, TouchableHighlight, Picker } from 'react-native';
+import { Text, View, TextInput, Button, TouchableHighlight, Picker ,Alert} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Octicons';
 
@@ -50,7 +50,7 @@ const AgregarCancha = () => {
                     console.log("Error: ", err)
                 })
             //Dependiendo el response, mostramos un msj    
-            if (response === undefined) {
+            if (!response) {
                 Alert.alert("Error", "La cancha ya existe")
             } else {
                 Alert.alert("La cancha se agregó con éxito")
