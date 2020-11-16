@@ -18,7 +18,7 @@ export default function NuevaReserva() {
 
     const navigation = useNavigation();
     const [puedeEnviar, setPuedeEnviar] = useState(false);
-    const ip = 'https://secret-shore-39623.herokuapp.com';
+    const ip = 'https://secret-shore-39623.herokuapp.com/';
 
     //Variables para la selección que conforma la reserva a enviar
     const [tipoElegido, setTipoElegido] = useState([]);

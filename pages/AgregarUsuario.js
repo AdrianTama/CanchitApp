@@ -20,8 +20,7 @@ export default function AgregarUsuario (){
 
     const [puedeEnviar, setPuedeEnviar] = useState(false)
     const navigation = useNavigation();
-    const ip = 'https://secret-shore-39623.herokuapp.com';
-    // const ip = 'http://192.168.0.117:3000/'
+    const ip = 'https://secret-shore-39623.herokuapp.com/';
 
     // Validacion de boton enviar
     useEffect(() => {
