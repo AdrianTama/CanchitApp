@@ -14,7 +14,7 @@ export default function Row({ cancha }) {
             <View style={s.contenedorMas}>
                 <Icon
                     name='chevron-right'
-                    size={20}
+                    size={24}
                     color='#000'
                     style={s.iconoList}
                     onPress={() => navigation.goBack()}
