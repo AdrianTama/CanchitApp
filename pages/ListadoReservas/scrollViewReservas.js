@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Octicons';
-import Row from "./rowTurno";
+import Row from "./rowReserva";
 
 import s from '../../components/styles';
 import BotoneraSuperior from '../../components/botoneraSuperior';
@@ -16,6 +16,7 @@ export default function ScrollViewTurnos() {
             .then((response) => response.json())
             .then((json) => setReservas(json))
             .catch((error) => console.error(error));
+
     })
 
     return (

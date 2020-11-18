@@ -34,6 +34,12 @@ const styles = StyleSheet.create({
         marginTop: 10,
     },
 
+    containerBotonHome:{
+        alignItems: 'center',
+        marginTop: 10,
+        marginBottom: 15,
+    },
+
     containerIngreso: {
         paddingTop: 15,
         marginTop: 50
@@ -72,6 +78,10 @@ const styles = StyleSheet.create({
     contenedorMas:{
         justifyContent: 'center',
         paddingRight:30
+    },
+
+    botonera:{
+        marginTop: 50,
     },
 
     botoneraSuperior: {
