@@ -1,8 +1,9 @@
-import React , {useEffect, useState} from 'react';
+import React , {useEffect, useState, useContext} from 'react';
 import { StatusBar } from 'expo-status-bar';
 import {  Text, TextInput, View, TouchableHighlight, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Octicons';
+import GlobalContext from '../components/context';
 
 import BotoneraSuperior from '../components/nombreApp';
 import s from '../components/styles';
@@ -12,6 +13,7 @@ export default function SignIn() {
     const [email, setEmail] = useState('');
     const [contraseña, setContraseña] = useState('');
     const [puedeEnviar, setPuedeEnviar] = useState(false)
+    const context = useContext(GlobalContext);
     
     const navigation = useNavigation();
     const ip = 'https://secret-shore-39623.herokuapp.com/';
@@ -42,12 +44,17 @@ export default function SignIn() {
                     console.log("Error: ", err)
                 })
             
-            console.log(response)
-            
+                function datosLogin(usuario, token) {
+                   
+                     context.cambioDatos(usuario, token);
+                }
+
              if(!response){
                 Alert.alert("Error", "Credenciales inválidas.")
             }else{
+                datosLogin(response.usuario, response.token);
                 navigation.navigate("Home");
+
             } 
 
             

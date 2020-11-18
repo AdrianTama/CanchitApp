@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React  from 'react';
 import { View, Text, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -8,6 +8,8 @@ import {
   DrawerItemList,
   DrawerItem,
 } from '@react-navigation/drawer';
+import { useState} from 'react';
+import GlobalContext from './components/context'
 
 
 import SignIn from './pages/signin';
@@ -74,7 +76,18 @@ function Home() {
 }
 
 export default function App() {
+
+  const [authData, setAuthData] = useState({
+    usuario: '',
+    token: '',
+    cambioDatos:(usuario, token) => {
+      setAuthData({ ...authData, usuario: usuario, token: token})
+    }
+  })
+
+
   return (
+    <GlobalContext.Provider value={authData}>
     <NavigationContainer >
       <Stack.Navigator initialRouteName="Sign In">
         <Stack.Screen name="Sign In" component={SignIn} />
@@ -82,5 +95,6 @@ export default function App() {
         <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
+    </GlobalContext.Provider>
   );
 }

@@ -1,13 +1,15 @@
-import React from 'react';
+import React , {useEffect, useState, useContext} from 'react';
 import { Picker, StyleSheet, Text , View, TouchableHighlight, Button} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import BotoneraSuperior from '../components/botoneraSuperior';
 import { ScrollView } from 'react-native-gesture-handler';
+import GlobalContext from '../components/context';
 
 
 export default function Home(){
 
     const navigation = useNavigation(); 
+    const context = useContext(GlobalContext);
 
     return (
         <ScrollView style={styles.container} >
@@ -36,8 +38,8 @@ export default function Home(){
                     <View style={styles.boton}>
                         <Text style= {styles.textoBoton}>Listado de reservas</Text>
                     </View>
-                </TouchableHighlight>                
-
+                </TouchableHighlight>       
+     
             </View>
             
         </ScrollView>
