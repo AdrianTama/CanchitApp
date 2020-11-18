@@ -9,7 +9,7 @@ export default function Row({ reserva }) {
     const navigation = useNavigation();
 
     function verReserva(){
-        navigation.navigate('Reserva', reserva)
+        navigation.navigate('Ver Reserva', {reserva})
     }
 
     return (

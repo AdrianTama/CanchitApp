@@ -76,7 +76,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#4F77A4',
     },
     contenedorMas:{
-        justifyContent: 'center',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
         paddingRight:30
     },
 
@@ -128,8 +129,12 @@ const styles = StyleSheet.create({
     },
 
     iconoList: {
-        color: "#d6d7da",
-        
+        color: "gray",
+        paddingLeft:50
+    },
+
+    iconoListClaro: {
+        color: 'white'
     },
 
     iconoDerecho: {
@@ -218,6 +223,7 @@ const styles = StyleSheet.create({
 
     picker: {
         color: 'white',
+        backgroundColor: '#4F77A4',
     },
 
     link: {

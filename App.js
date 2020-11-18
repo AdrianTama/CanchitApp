@@ -25,6 +25,7 @@ import PagoReserva from './pages/pagoReserva';
 import ListadoCanchas from './pages/ListadoCanchas/scrollViewCanchas';
 import ListadoReservas from './pages/ListadoReservas/scrollViewReservas';
 import VerReserva from './pages/verReserva';
+import EditarCancha from './pages/editarCancha';
 
 
 const Stack = createStackNavigator();
@@ -64,7 +65,7 @@ function AdminReservas(){
   return (
     <Stack.Navigator initialRouteName="Listado Reservas">
       <Stack.Screen name="Listado Reservas" component={ListadoReservas} options={{ headerShown: false }} />
-      <Stack.Screen name="Ver Reserva" component={VerReserva} />
+      <Stack.Screen name="Modificar Reserva" component={VerReserva} />
     </Stack.Navigator>
   )
 }
@@ -74,6 +75,7 @@ function AdminCanchas(){
     <Stack.Navigator initialRouteName="Listado Canchas">
       <Stack.Screen name="Listado Canchas" component={ListadoCanchas} options={{ headerShown: false }} />
       <Stack.Screen name="Agregar Cancha" component={AgregarCancha} />
+      <Stack.Screen name="Editar Cancha" component={EditarCancha} />
     </Stack.Navigator>
   )
 }

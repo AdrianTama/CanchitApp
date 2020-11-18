@@ -6,11 +6,10 @@ import s from '../components/styles';
 import BotoneraSuperior from '../components/botoneraSuperior';
 import { ScrollView } from 'react-native-gesture-handler';
 
-export default function VerReserva({ reserva }) {
+export default function VerReserva({route}) {
 
     const navigation = useNavigation();
-
-
+    const { reserva } = route.params
 
     return (
         <ScrollView style={s.container} >

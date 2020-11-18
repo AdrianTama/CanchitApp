@@ -28,7 +28,7 @@ export default function ScrollViewCanchas() {
                         name='plus'
                         size={20}
                         color='#000'
-                        style={s.iconoList}
+                        style={s.iconoListClaro}
                         onPress={() => navigation.navigate('Agregar Cancha')}
                     />
                 </View>
