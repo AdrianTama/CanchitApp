@@ -8,6 +8,10 @@ import s from '../../components/styles'
 export default function Row({ cancha }) {
     const navigation = useNavigation();
 
+    function verCancha(){
+        navigation.navigate('')
+    }
+
     return (
         <View style={s.contenedorRowList}>
             <Text style={s.itemList}>Cancha número {cancha.numero}</Text>

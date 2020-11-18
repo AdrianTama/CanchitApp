@@ -23,6 +23,7 @@ import CambiarClave from './pages/cambiarClave';
 import PagoReserva from './pages/pagoReserva';
 import ListadoCanchas from './pages/ListadoCanchas/scrollViewCanchas';
 import ListadoTurnos from './pages/ListadoTurnos/scrollViewTurnos';
+import VerReserva from './pages/verReserva';
 
 
 const Stack = createStackNavigator();
@@ -69,7 +70,8 @@ function Home() {
       <Drawer.Screen name="Pago Reserva" component={PagoReserva} />
       <Drawer.Screen name="Agregar Cancha" component={AgregarCancha} />
       <Drawer.Screen name="Listado Canchas" component={ListadoCanchas} />
-      <Drawer.Screen name="Listado Turnos" component={ListadoTurnos} />
+      <Drawer.Screen name="Listado Reservas" component={ListadoTurnos} />
+      <Drawer.Screen name="Reserva" component={VerReserva} />
       <Drawer.Screen name="Mi perfil" component={MiPerfil} />
     </Drawer.Navigator>
   );
