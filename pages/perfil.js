@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Alert, Text, View, TextInput, Button, TouchableHighlight } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { ScrollView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Octicons';
+
 
 import BotoneraSuperior from '../components/botoneraSuperior';
 import s from '../components/styles'
-import { ScrollView } from 'react-native-gesture-handler';
+import GlobalContext from '../components/context';
+
 
 //Cuando tengamos el usuario guardado en una variable de entorno, 
 //debemos finalizar la codificación de la conexión a la API.
@@ -13,15 +16,17 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 const Perfil = ({guardarUsuario}) => {
 
-    const [email] = useState("Admin")
-    const [nombre, setNombre] = useState("")
-    const [apellido, setApellido] = useState("")
-    const [telefono, setTelefono] = useState("")
-    const [id, setId] = useState("5fb1da4491cb460024ad8cb4")
+    const context = useContext(GlobalContext);
+    const [email] = useState(context.usuario.email)
+    const [nombre, setNombre] = useState(context.usuario.nombre)
+    const [apellido, setApellido] = useState(context.usuario.apellido)
+    const [telefono, setTelefono] = useState(context.usuario.telefono)
+    const [id, setId] = useState(context.usuario._id)
 
     const [puedeEnviar, setPuedeEnviar] = useState(false)
     const ip = 'https://secret-shore-39623.herokuapp.com/';
     const navigation = useNavigation(); 
+    
 
     // Validacion de boton enviar
     useEffect( () => {
