@@ -3,8 +3,8 @@ import { Text, View, TextInput, Picker, Alert } from 'react-native';
 import { NavigationHelpersContext, useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Octicons';
 
-import BotoneraSuperior from '../components/botoneraSuperior';
-import s from '../components/styles';
+import BotoneraSuperior from '../../components/botoneraSuperior';
+import s from '../../components/styles';
 import { ScrollView } from 'react-native-gesture-handler';
 
 

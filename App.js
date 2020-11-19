@@ -17,16 +17,15 @@ import NuevaReserva from './pages/nuevareserva';
 import PagPrincCliente from './pages/homeCliente';
 import PagPrincAdmin from './pages/homeAdmin';
 import MiReserva from './pages/mireserva';
-import AgregarCancha from "./pages/agregarCancha";
+import AgregarCancha from "./pages/ListadoCanchas/agregarCancha";
 import AgregarUsuario from './pages/AgregarUsuario';
 import Perfil from './pages/perfil';
 import CambiarClave from './pages/cambiarClave';
 import PagoReserva from './pages/pagoReserva';
-import ListadoCanchas from './pages/ListadoCanchas/scrollViewCanchas';
+import ListadoCanchas from './pages/ListadoCanchas/misCanchas';
 import ListadoReservas from './pages/ListadoReservas/scrollViewReservas';
 import VerReserva from './pages/verReserva';
-import EditarCancha from './pages/editarCancha';
-
+import EditarCancha from './pages/ListadoCanchas/editarCancha';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();

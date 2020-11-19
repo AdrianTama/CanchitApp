@@ -22,21 +22,6 @@ export default function ScrollViewCanchas() {
 
     return (
         <ScrollView style={s.container}>
-            <BotoneraSuperior />
-            <View style={s.contenedorSubtitulo}>
-                <Text style={s.subtituloAdmin} >Mis canchas</Text>
-                <View style={s.contenedorMas}>
-                    <Icon
-                        name='plus'
-                        size={28}
-                        color='#000'
-                        style={s.iconoListClaro}
-                        onPress={() => navigation.navigate('Agregar Cancha')}
-                    />
-                </View>
-
-            </View>
-
             {
                 canchas.map((cancha) => (
                     <Row key={cancha._id} cancha={cancha} />

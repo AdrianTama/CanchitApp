@@ -5,14 +5,14 @@ import { ScrollView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Octicons';
 
 
-import BotoneraSuperior from '../components/botoneraSuperior';
-import s from '../components/styles'
+import BotoneraSuperior from '../../components/botoneraSuperior';
+import s from '../../components/styles'
 
 
 const Cancha = ({ route }) => {
     const { cancha } = route.params
-    const [numero, setNumero] = useState(cancha.numero);
-    const [precio, setPrecio] = useState(cancha.precio);
+    const [numero, setNumero] = useState(cancha.numero.toString());
+    const [precio, setPrecio] = useState(cancha.precio.toString());
     const [tipoElegido, setTipoElegido] = useState(cancha.descripcion)
     const [tipos, setTipos] = useState([]);
 
@@ -56,8 +56,9 @@ const Cancha = ({ route }) => {
                     console.log("Error: ", err)
                 })
             //Dependiendo el response, mostramos un msj    
-            if (!response) {
+            if (response.numero === undefined) {
                 console.log("No se pudo modificar.")
+                Alert.alert('Error',"Ya existe una cancha con el mismo número.")
             } else {
                 Alert.alert("Los datos se modificaron con éxito.")
                 navigation.navigate("Listado Canchas")
@@ -97,10 +98,8 @@ const Cancha = ({ route }) => {
                 <Text style={s.dato}>Número de cancha</Text>
                 <TextInput
                     style={s.input}
+                    editable={false}
                     value={numero}
-                    placeholder="Número"
-                    onChangeText={(texto) => setNumero(texto)}
-                    keyboardType="numeric"
                 />
                 <Text style={s.dato}>Precio de reserva</Text>
                 <TextInput

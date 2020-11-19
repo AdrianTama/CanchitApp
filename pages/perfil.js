@@ -92,6 +92,7 @@ const Perfil = ({guardarUsuario}) => {
             <Text style={s.dato}>Email</Text>
             <TextInput
                 style={s.input}
+                editable={false}
                 value={email}
             />
             <Text style={s.dato}>Nombre</Text>

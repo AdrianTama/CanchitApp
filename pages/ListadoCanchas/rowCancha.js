@@ -1,19 +1,22 @@
-import React from 'react';
-import { Alert, Text, View } from 'react-native';
+import React, { useState, useEffect, useContext } from 'react';
+import { Alert, Text, View, TextInput, Button, TouchableHighlight, Picker } from 'react-native';
+import { NavigationHelpersContext, useNavigation } from '@react-navigation/native';
+import { ScrollView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Octicons';
-import { useNavigation } from '@react-navigation/native';
 
+import BotoneraSuperior from '../../components/botoneraSuperior';
 import s from '../../components/styles'
+import eliminarCancha from './eliminarCancha'
 
 export default function Row({ cancha }) {
     const navigation = useNavigation();
     const ip = 'https://secret-shore-39623.herokuapp.com/';
 
-    function verCancha() {
+    function editar() {
         navigation.navigate('Editar Cancha', { cancha })
     }
 
-    function confirmacionEliminar() {
+    function confirmarEliminar() {
         Alert.alert(
             "Confirmar eliminación de cancha",
             "¿Está seguro de que quiere eliminar la cancha número " + cancha.numero + "?",
@@ -56,22 +59,26 @@ export default function Row({ cancha }) {
     }
 
     return (
-        <View style={s.contenedorRowList}>
-            <Text style={s.itemList} onPress={verCancha}>Cancha número {cancha.numero}</Text>
-            <View style={s.contenedorMas}>
+        <View style={s.contenedorMenuLateral}>
+            <View style={s.contenedorListado}>
+                <Text style={s.itemList}>Número de cancha: {cancha.numero}</Text>
+                <Text style={s.itemList}>{cancha.descripcion}</Text>
+                <Text style={s.itemList}>Precio de reserva : ${cancha.precio}</Text>
+            </View>
+            <View style={s.botoneraDerecha}>
                 <Icon
                     name='trashcan'
-                    size={24}
+                    size={30}
                     color='#000'
-                    style={s.iconoList}
-                    onPress={confirmacionEliminar}
+                    style={s.iconoEditar}
+                    onPress={confirmarEliminar}
                 />
                 <Icon
-                    name='chevron-right'
-                    size={24}
+                    name='pencil'
+                    size={30}
                     color='#000'
-                    style={s.iconoList}
-                    onPress={verCancha}
+                    style={s.iconoEditar}
+                    onPress={editar}
                 />
             </View>
 

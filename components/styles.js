@@ -4,8 +4,8 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 20,
-        backgroundColor: '#FFFFFF'
+        backgroundColor: '#FFFFFF',
+        paddingBottom:20
     },
 
     contenedorSignin: {
@@ -19,6 +19,23 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFFFFF'
     },
 
+    contenedorMenuLateral:{
+        flexDirection:'row',
+        justifyContent: 'space-between',
+        backgroundColor: '#DCDCDC',
+        marginTop:20,
+        marginLeft:20,
+        marginRight:20,
+    },
+
+    contenedorListado:{
+        paddingTop:20,
+        paddingBottom:20,
+        paddingRight:30,
+        paddingLeft:30,
+    },
+
+    
     contenedorPicker: {
         borderWidth: 1,
         borderRadius: 0,
@@ -65,12 +82,9 @@ const styles = StyleSheet.create({
     },
 
     contenedorSubtitulo: {
-        flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingLeft:20,
-        marginTop: 10,
-        marginBottom: 10,
         paddingTop:20,
         paddingBottom: 20,
         backgroundColor: '#4F77A4',
@@ -97,6 +111,14 @@ const styles = StyleSheet.create({
         marginTop: 20,
         flexDirection: 'row',
         justifyContent: 'space-between'
+    },
+
+    botoneraDerecha: {
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        paddingTop:20,
+        paddingBottom:20,
+        paddingRight:20,
     },
 
     boton: {
@@ -145,6 +167,10 @@ const styles = StyleSheet.create({
 
     iconoIzquierdo: {
         paddingRight: 25,
+    },
+
+    iconoEditar:{
+        color: "gray",
     },
 
     logo: {
