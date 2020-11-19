@@ -102,15 +102,16 @@ const styles = StyleSheet.create({
 
     botoneraSuperior: {
         marginTop: 20,
-        marginBottom: 20,
+        marginBottom:10,
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        paddingTop:20,
     },
 
     botoneraInferior: {
         marginTop: 20,
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     },
 
     botoneraDerecha: {
@@ -139,10 +140,12 @@ const styles = StyleSheet.create({
     },
 
     iconoUser: {
+        paddingTop:10,
         paddingRight: 20,
     },
 
     iconoMenu: {
+        paddingTop:10,
         paddingLeft: 20,
     },
 
