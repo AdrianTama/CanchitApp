@@ -7,13 +7,14 @@ import s from '../../components/styles'
 
 export default function Row({ cancha }) {
     const navigation = useNavigation();
+    const ip = 'https://secret-shore-39623.herokuapp.com/';
 
     function verCancha() {
-        navigation.navigate('Ver Cancha', { cancha })
+        navigation.navigate('Editar Cancha', { cancha })
     }
 
     async function eliminar() {
-        const id = cancha.id;
+        const id = cancha._id;
 
         const headers = new Headers();
 
@@ -33,7 +34,7 @@ export default function Row({ cancha }) {
                 console.log("Error: ", err)
             })
         
-        if (!eliminacion) {
+        if (eliminacion) {
             console.log("No se pudo modificar.")
         } else {
             Alert.alert("La cancha se eliminó con éxito.")
