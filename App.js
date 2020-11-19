@@ -74,8 +74,8 @@ function AdminCanchas(){
   return (
     <Stack.Navigator initialRouteName="Listado Canchas">
       <Stack.Screen name="Listado Canchas" component={ListadoCanchas} options={{ headerShown: false }} />
-      <Stack.Screen name="Agregar Cancha" component={AgregarCancha} />
-      <Stack.Screen name="Editar Cancha" component={EditarCancha} />
+      <Stack.Screen name="Agregar Cancha" component={AgregarCancha} options={{ headerShown: false }}/>
+      <Stack.Screen name="Editar Cancha" component={EditarCancha} options={{ headerShown: false }} />
     </Stack.Navigator>
   )
 }

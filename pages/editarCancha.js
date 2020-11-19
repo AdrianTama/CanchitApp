@@ -9,7 +9,7 @@ import BotoneraSuperior from '../components/botoneraSuperior';
 import s from '../components/styles'
 
 
-const Cancha = ({route}) => {
+const Cancha = ({ route }) => {
     const { cancha } = route.params
     const [numero, setNumero] = useState(cancha.numero);
     const [precio, setPrecio] = useState(cancha.precio);
@@ -89,49 +89,57 @@ const Cancha = ({route}) => {
 
     return (
         <ScrollView style={s.container}>
-            
-            <TextInput
-                style={s.input}
-                value={numero}
-                placeholder="Número"
-                onChangeText={(texto) => setNumero(texto)}
-                keyboardType="numeric"
-            />
-            <TextInput
-                style={s.input}
-                value={precio}
-                placeholder="Precio"
-                onChangeText={(texto) => setPrecio(texto)}
-                keyboardType="numeric"
-            />
-            <View style={s.contenedorPicker}>
-                <Picker
-                    selectedValue={tipoElegido}
-                    style={s.picker}
-                    onValueChange={(itemValue, itemIndex) => setTipoElegido(itemValue)}
-                >
-                    <Picker.Item label="Seleccionar tipo de cancha" value="0" />
-                    {tipos.map((item, key) => (
-                        <Picker.Item label={item.descripcion} value={item.descripcion} key={key} />)
-                    )}
-                </Picker>
+            <BotoneraSuperior />
+            <View style={s.contenedorSubtitulo}>
+                <Text style={s.subtituloAdmin} >Editar cancha</Text>
             </View>
+            <View style={s.containerIngreso}>
+                <Text style={s.dato}>Número de cancha</Text>
+                <TextInput
+                    style={s.input}
+                    value={numero}
+                    placeholder="Número"
+                    onChangeText={(texto) => setNumero(texto)}
+                    keyboardType="numeric"
+                />
+                <Text style={s.dato}>Precio de reserva</Text>
+                <TextInput
+                    style={s.input}
+                    value={precio}
+                    placeholder="Precio"
+                    onChangeText={(texto) => setPrecio(texto)}
+                    keyboardType="numeric"
+                />
+                <View style={s.contenedorPicker}>
+                    <Picker
+                        selectedValue={tipoElegido}
+                        style={s.picker}
+                        onValueChange={(itemValue, itemIndex) => setTipoElegido(itemValue)}
+                    >
+                        <Picker.Item label="Seleccionar tipo de cancha" value="0" />
+                        {tipos.map((item, key) => (
+                            <Picker.Item label={item.descripcion} value={item.descripcion} key={key} />)
+                        )}
+                    </Picker>
+                </View>
 
-            <View style={s.botoneraInferior}>
-                <Icon
-                    name='x'
-                    size={40}
-                    color='#000'
-                    style={s.iconoDerecho}
-                    onPress={() => navigation.goBack()}
-                />
-                <Icon
-                    name='check'
-                    size={40}
-                    color='#000'
-                    style={s.iconoIzquierdo}
-                    onPress={() => guardarCancha()}
-                />
+                <View style={s.botoneraInferior}>
+                    <Icon
+                        name='x'
+                        size={40}
+                        color='#000'
+                        style={s.iconoDerecho}
+                        onPress={() => navigation.goBack()}
+                    />
+                    <Icon
+                        name='check'
+                        size={40}
+                        color='#000'
+                        style={s.iconoIzquierdo}
+                        onPress={() => guardarCancha()}
+                    />
+                </View>
+
             </View>
 
         </ScrollView>

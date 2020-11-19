@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, TextInput,  Picker ,Alert} from 'react-native';
+import { Text, View, TextInput, Picker, Alert } from 'react-native';
 import { NavigationHelpersContext, useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Octicons';
 
@@ -26,7 +26,7 @@ const AgregarCancha = () => {
     }, [tipoElegido, numero, precio])
 
     async function guardarCancha() {
-        
+
         if (puedeEnviar) {
 
             //Conformación de componentes para el fetch
@@ -84,49 +84,53 @@ const AgregarCancha = () => {
     return (
         <ScrollView style={s.container}>
             <BotoneraSuperior />
-            <Text style={s.subtitulo}>Agregar Cancha</Text>
-            <TextInput
-                style={s.input}
-                value={numero}
-                placeholder="Número"
-                onChangeText={(texto) => setNumero(texto)}
-                keyboardType="numeric"
-            />
-            <TextInput
-                style={s.input}
-                value={precio}
-                placeholder="Precio"
-                onChangeText={(texto) => setPrecio(texto)}
-                keyboardType="numeric"
-            />
-            <View style={s.contenedorPicker}>
-                <Picker
-                    selectedValue={tipoElegido}
-                    style={s.picker}
-                    onValueChange={(itemValue, itemIndex) => setTipoElegido(itemValue)}
-                >
-                    <Picker.Item label="Seleccionar tipo de cancha" value="0" />
-                    {tipos.map((item, key) => (
-                        <Picker.Item label={item.descripcion} value={item.descripcion} key={key} />)
-                    )}
-                </Picker>
+            <View style={s.contenedorSubtitulo}>
+                <Text style={s.subtituloAdmin} >Agregar cancha</Text>
             </View>
+            <View style={s.contenedorRegistro}>
+                <TextInput
+                    style={s.input}
+                    value={numero}
+                    placeholder="Número"
+                    onChangeText={(texto) => setNumero(texto)}
+                    keyboardType="numeric"
+                />
+                <TextInput
+                    style={s.input}
+                    value={precio}
+                    placeholder="Precio"
+                    onChangeText={(texto) => setPrecio(texto)}
+                    keyboardType="numeric"
+                />
+                <View style={s.contenedorPicker}>
+                    <Picker
+                        selectedValue={tipoElegido}
+                        style={s.picker}
+                        onValueChange={(itemValue, itemIndex) => setTipoElegido(itemValue)}
+                    >
+                        <Picker.Item label="Seleccionar tipo de cancha" value="0" />
+                        {tipos.map((item, key) => (
+                            <Picker.Item label={item.descripcion} value={item.descripcion} key={key} />)
+                        )}
+                    </Picker>
+                </View>
 
-            <View style={s.botoneraInferior}>
-                <Icon
-                    name='x'
-                    size={40}
-                    color='#000'
-                    style={s.iconoDerecho}
-                    onPress={() => navigation.goBack()}
-                />
-                <Icon
-                    name='check'
-                    size={40}
-                    color='#000'
-                    style={s.iconoIzquierdo}
-                    onPress={() => guardarCancha()}
-                />
+                <View style={s.botoneraInferior}>
+                    <Icon
+                        name='x'
+                        size={40}
+                        color='#000'
+                        style={s.iconoDerecho}
+                        onPress={() => navigation.goBack()}
+                    />
+                    <Icon
+                        name='check'
+                        size={40}
+                        color='#000'
+                        style={s.iconoIzquierdo}
+                        onPress={() => guardarCancha()}
+                    />
+                </View>
             </View>
         </ScrollView>
     )

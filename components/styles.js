@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
         paddingTop: 15,
         paddingBottom: 15,
         borderBottomWidth:1,
-        borderColor: 'gray'
+        borderColor: '#CCD2DA'
     },
 
     contenedorSubtitulo: {
