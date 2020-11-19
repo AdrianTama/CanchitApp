@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, TextInput,  Picker ,Alert} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { NavigationHelpersContext, useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Octicons';
 
 import BotoneraSuperior from '../components/botoneraSuperior';
@@ -55,6 +55,7 @@ const AgregarCancha = () => {
                 Alert.alert("Error", "La cancha ya existe")
             } else {
                 Alert.alert("La cancha se agregó con éxito")
+                navigation.navigate('Listado Canchas')
             }
 
         } else {

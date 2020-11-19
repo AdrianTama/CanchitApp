@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Alert, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Octicons';
 import { useNavigation } from '@react-navigation/native';
 
@@ -11,6 +11,22 @@ export default function Row({ cancha }) {
 
     function verCancha() {
         navigation.navigate('Editar Cancha', { cancha })
+    }
+
+    function confirmacionEliminar() {
+        Alert.alert(
+            "Confirmar eliminación de cancha",
+            "¿Está seguro de que quiere eliminar la cancha número " + cancha.numero + "?",
+            [
+                {
+                    text: "Cancelar",
+                    onPress: console.log('Yes Pressed'),
+                },
+                {
+                    text: "Confirmar", onPress: eliminar
+                }
+            ],
+            { cancelable: false })
     }
 
     async function eliminar() {
@@ -33,12 +49,10 @@ export default function Row({ cancha }) {
             .catch(err => {
                 console.log("Error: ", err)
             })
-        
-        if (eliminacion) {
-            console.log("No se pudo modificar.")
-        } else {
-            Alert.alert("La cancha se eliminó con éxito.")
-        }
+
+
+        Alert.alert("La cancha se eliminó con éxito.")
+
     }
 
     return (
@@ -50,7 +64,7 @@ export default function Row({ cancha }) {
                     size={24}
                     color='#000'
                     style={s.iconoList}
-                    onPress={eliminar}
+                    onPress={confirmacionEliminar}
                 />
                 <Icon
                     name='chevron-right'

@@ -78,7 +78,8 @@ const styles = StyleSheet.create({
     contenedorMas:{
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingRight:30
+        paddingRight:30,
+        alignItems: 'center',
     },
 
     botonera:{
@@ -134,7 +135,8 @@ const styles = StyleSheet.create({
     },
 
     iconoListClaro: {
-        color: 'white'
+        color: 'white',
+        paddingLeft:50,
     },
 
     iconoDerecho: {
@@ -174,7 +176,7 @@ const styles = StyleSheet.create({
 
     subtituloAdmin:{
         fontSize: 24,
-        color: '#d6d7da',
+        color: 'white',
     },
 
     texto: {
