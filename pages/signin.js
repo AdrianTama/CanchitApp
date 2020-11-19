@@ -19,6 +19,11 @@ export default function SignIn() {
     const ip = 'https://secret-shore-39623.herokuapp.com/';
 
     useEffect(() => {
+        setEmail('');
+        setContraseña('');
+    }, [])
+
+    useEffect(() => {
 
         setPuedeEnviar(email.length > 3 && contraseña.length >= 4 )
 
