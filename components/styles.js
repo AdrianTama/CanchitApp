@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
         marginTop:20,
         marginLeft:20,
         marginRight:20,
+        // rowUnderlay: 'rgba(154, 154, 154, 0.2)',
     },
 
     contenedorListado:{

@@ -29,11 +29,13 @@ const AgregarCancha = () => {
     async function guardarCancha() {
 
         if (puedeEnviar) {
-
+            const headers = new Headers();
+            headers.append("Content-type", "application/json")
             //Conformación de componentes para el fetch
             const requestOptions = {
                 method: "POST",
                 // headers: {'Authorization': `Bearer ${context.token}`},
+                headers: headers,
                 body: JSON.stringify({
                     descripcion: tipoElegido,
                     numero: numero,
@@ -49,7 +51,7 @@ const AgregarCancha = () => {
                 })
             console.log(response)
             //Dependiendo el response, mostramos un msj    
-            if (!response) {
+            if (response === false) {
                 Alert.alert("Error", "La cancha ya existe")
             } else {
                 Alert.alert("La cancha se agregó con éxito")
@@ -74,7 +76,7 @@ const AgregarCancha = () => {
         //adaptar con ip de la compu que ejecute: http://ip:3000/api...
         const requestOptions = {
             method: "GET",
-            headers: {'Authorization': `Bearer ${context.token}`},
+            // headers: {'Authorization': `Bearer ${context.token}`},
         }
         fetch(ip + 'api/tipocancha/',requestOptions)
             .then((response) => response.json())

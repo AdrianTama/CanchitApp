@@ -53,33 +53,42 @@ export default function Row({ cancha }) {
                 console.log("Error: ", err)
             })
 
-
-        Alert.alert("La cancha se eliminó con éxito.")
+        if (eliminacion === true) {
+            Alert.alert("La cancha se eliminó con éxito.")
+        } else {
+            Alert.alert("La cancha no se pudo eliminar")
+        }
 
     }
 
     return (
         <View style={s.contenedorMenuLateral}>
             <View style={s.contenedorListado}>
-                <Text style={s.itemList}>Número de cancha: {cancha.numero}</Text>
-                <Text style={s.itemList}>{cancha.descripcion}</Text>
-                <Text style={s.itemList}>Precio de reserva : ${cancha.precio}</Text>
+                <View>
+                    <Text style={s.itemList}>Número de cancha: {cancha.numero}</Text>
+                    <Text style={s.itemList}>{cancha.descripcion}</Text>
+                    <Text style={s.itemList}>Precio de reserva : ${cancha.precio}</Text>
+                </View>
             </View>
             <View style={s.botoneraDerecha}>
-                <Icon
-                    name='trashcan'
-                    size={30}
-                    color='#000'
-                    style={s.iconoEditar}
-                    onPress={confirmarEliminar}
-                />
-                <Icon
-                    name='pencil'
-                    size={30}
-                    color='#000'
-                    style={s.iconoEditar}
-                    onPress={editar}
-                />
+                <TouchableHighlight underlayColor='rgba(154, 154, 154, 0,2'>
+                    <Icon
+                        name='trashcan'
+                        size={30}
+                        color='#000'
+                        style={s.iconoEditar}
+                        onPress={confirmarEliminar}
+                    />
+                </TouchableHighlight>
+                <TouchableHighlight underlayColor = '#008b8b'>
+                    <Icon
+                        name='pencil'
+                        size={30}
+                        color='#000'
+                        style={s.iconoEditar}
+                        onPress={editar}
+                    />
+                </TouchableHighlight>
             </View>
 
         </View>

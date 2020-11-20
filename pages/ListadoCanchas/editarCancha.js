@@ -35,10 +35,13 @@ const Cancha = ({ route }) => {
         if (puedeEnviar) {
 
             //Conformación de componentes para el fetch
+            const headers = new Headers();
+            headers.append("Content-type", "application/json")
 
             const requestOptions = {
                 method: "PUT",
-                headers: {'Authorization': `Bearer ${context.token}`},
+                headers: headers,
+                // headers: {'Authorization': `Bearer ${context.token}`},
                 body: JSON.stringify({
                     id: cancha._id,
                     descripcion: tipoElegido,
@@ -79,10 +82,14 @@ const Cancha = ({ route }) => {
 
 
     useEffect(() => {
+
+        const headers = new Headers();
+        headers.append("Content-type", "application/json")
         //adaptar con ip de la compu que ejecute: http://ip:3000/api...
         const requestOptions = {
             method: "GET",
-            headers: {'Authorization': `Bearer ${context.token}`},
+            headers: headers,
+            // headers: {'Authorization': `Bearer ${context.token}`},
         }
         fetch(ip + 'api/tipocancha/', requestOptions)
             .then((response) => response.json())
