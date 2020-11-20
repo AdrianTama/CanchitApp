@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
-import Row from "./rowCancha";
 import Icon from 'react-native-vector-icons/Octicons';
 import { useNavigation } from '@react-navigation/native';
 
@@ -10,7 +9,6 @@ import Listado from './scrollViewCanchas';
 
 export default function ScrollViewCanchas() {
 
-    const ip = 'https://secret-shore-39623.herokuapp.com/';
     const navigation = useNavigation();
 
     return (
@@ -29,7 +27,6 @@ export default function ScrollViewCanchas() {
                 </View>
             </View>
             <Listado/>
-
         </View>
     )
 

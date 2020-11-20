@@ -10,18 +10,14 @@ import s from '../components/styles';
 import { ScrollView } from 'react-native-gesture-handler';
 
 export default function SignIn() {
-    const [email, setEmail] = useState('');
-    const [contraseña, setContraseña] = useState('');
-    const [puedeEnviar, setPuedeEnviar] = useState(false)
     const context = useContext(GlobalContext);
-    
+    const [email, setEmail] = useState('' || context.usuario);
+    const [contraseña, setContraseña] = useState('' || context.usuario);
+    const [puedeEnviar, setPuedeEnviar] = useState(false)
+
     const navigation = useNavigation();
     const ip = 'https://secret-shore-39623.herokuapp.com/';
 
-    useEffect(() => {
-        setEmail('');
-        setContraseña('');
-    }, [])
 
     useEffect(() => {
 
