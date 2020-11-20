@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Picker, Text, Alert, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Octicons';
+import GlobalContext from '../components/context';
 
 //creé un componente con el stylesheet para llamarlo cada vez que lo necesitamos así no repetimos código en cada componente
 import s from '../components/styles'
@@ -16,6 +17,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 //Falta ver la generacion de días y horarios para los picker que quedan
 export default function NuevaReserva() {
 
+    const context = useContext(GlobalContext);
     const navigation = useNavigation();
     const [puedeEnviar, setPuedeEnviar] = useState(false);
     const ip = 'https://secret-shore-39623.herokuapp.com/';
@@ -65,8 +67,12 @@ export default function NuevaReserva() {
 
     //ejecuta el fetch cuando se carga la page
     useEffect(() => {
+        const requestOptions = {
+            method: "GET",
+            headers: {'Authorization': `Bearer ${context.token}`},
+        }
         //adaptar con ip de la compu que ejecute: http://ip:3000/api...
-        fetch(ip + 'api/tipocancha/')
+        fetch(ip + 'api/tipocancha/', requestOptions)
             .then((response) => response.json())
             .then((json) => setTipos(json))
             .catch((error) => console.error(error));

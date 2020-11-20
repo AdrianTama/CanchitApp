@@ -3,13 +3,14 @@ import { Alert, Text, View, TextInput, Button, TouchableHighlight, Picker } from
 import { useNavigation } from '@react-navigation/native';
 import { ScrollView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Octicons';
-
+import GlobalContext from '../../components/context';
 
 import BotoneraSuperior from '../../components/botoneraSuperior';
 import s from '../../components/styles'
 
 
 const Cancha = ({ route }) => {
+    const context = useContext(GlobalContext);
     const { cancha } = route.params
     const [numero, setNumero] = useState(cancha.numero.toString());
     const [precio, setPrecio] = useState(cancha.precio.toString());
@@ -34,13 +35,10 @@ const Cancha = ({ route }) => {
         if (puedeEnviar) {
 
             //Conformación de componentes para el fetch
-            const headers = new Headers();
-
-            headers.append("Content-type", "application/json")
 
             const requestOptions = {
                 method: "PUT",
-                headers: headers,
+                headers: {'Authorization': `Bearer ${context.token}`},
                 body: JSON.stringify({
                     id: cancha._id,
                     descripcion: tipoElegido,
@@ -55,10 +53,11 @@ const Cancha = ({ route }) => {
                 .catch(err => {
                     console.log("Error: ", err)
                 })
+            console.log(response)
             //Dependiendo el response, mostramos un msj    
-            if (response.numero === undefined) {
+            if (!response) {
                 console.log("No se pudo modificar.")
-                Alert.alert('Error',"Ya existe una cancha con el mismo número.")
+                Alert.alert('Error',"No se pudo modificar.")
             } else {
                 Alert.alert("Los datos se modificaron con éxito.")
                 navigation.navigate("Listado Canchas")
@@ -81,7 +80,11 @@ const Cancha = ({ route }) => {
 
     useEffect(() => {
         //adaptar con ip de la compu que ejecute: http://ip:3000/api...
-        fetch(ip + 'api/tipocancha/')
+        const requestOptions = {
+            method: "GET",
+            headers: {'Authorization': `Bearer ${context.token}`},
+        }
+        fetch(ip + 'api/tipocancha/', requestOptions)
             .then((response) => response.json())
             .then((json) => setTipos(json))
             .catch((error) => console.error(error));

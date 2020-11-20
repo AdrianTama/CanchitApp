@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, TextInput, Picker, Alert } from 'react-native';
 import { NavigationHelpersContext, useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Octicons';
+import GlobalContext from '../../components/context';
 
 import BotoneraSuperior from '../../components/botoneraSuperior';
 import s from '../../components/styles';
@@ -9,7 +10,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 
 const AgregarCancha = () => {
-
+    const context = useContext(GlobalContext);
     const [numero, setNumero] = useState("");
     const [precio, setPrecio] = useState("");
     const [tipoElegido, setTipoElegido] = useState([]);
@@ -30,13 +31,9 @@ const AgregarCancha = () => {
         if (puedeEnviar) {
 
             //Conformación de componentes para el fetch
-            const headers = new Headers();
-
-            headers.append("Content-type", "application/json")
-
             const requestOptions = {
                 method: "POST",
-                headers: headers,
+                // headers: {'Authorization': `Bearer ${context.token}`},
                 body: JSON.stringify({
                     descripcion: tipoElegido,
                     numero: numero,
@@ -50,6 +47,7 @@ const AgregarCancha = () => {
                 .catch(err => {
                     console.log("Error: ", err)
                 })
+            console.log(response)
             //Dependiendo el response, mostramos un msj    
             if (!response) {
                 Alert.alert("Error", "La cancha ya existe")
@@ -74,7 +72,11 @@ const AgregarCancha = () => {
 
     useEffect(() => {
         //adaptar con ip de la compu que ejecute: http://ip:3000/api...
-        fetch(ip + 'api/tipocancha/')
+        const requestOptions = {
+            method: "GET",
+            headers: {'Authorization': `Bearer ${context.token}`},
+        }
+        fetch(ip + 'api/tipocancha/',requestOptions)
             .then((response) => response.json())
             .then((json) => setTipos(json))
             .catch((error) => console.error(error));
