@@ -45,7 +45,7 @@ const Perfil = ({guardarUsuario}) => {
             headers.append("Content-type", "application/json")
 
             const requestOptions = {
-                method: "POST",
+                method: "PUT",
                 headers: headers,
                 body: JSON.stringify({
                     email: email,
@@ -57,13 +57,13 @@ const Perfil = ({guardarUsuario}) => {
             }
 
             //Almacenamos el response del fetch
-            let response = await fetch(ip + 'api/usuarios/'+id, requestOptions)
+            let response = await fetch(ip + 'api/usuarios/', requestOptions)
                 .then((res) => res.json())
                 .catch(err => {
                     console.log("Error: ", err)
                 })
             //Dependiendo el response, mostramos un msj    
-            if (!response) {
+            if (response != 1) {
                 console.log("No se pudo modificar.")
             } else {
                 Alert.alert("Sus datos se modificaron con éxito.")
