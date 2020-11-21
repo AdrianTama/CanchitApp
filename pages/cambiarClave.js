@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, TouchableHighlight } from 'react-native';
+import React, { useState, useEffect, useContext } from 'react';
+import { StyleSheet, Text, View, TextInput, Button, TouchableHighlight, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { ScrollView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Octicons';
+import GlobalContext from '../components/context';
 
 import BotoneraSuperior from '../components/nombreApp';
 import s from '../components/styles'
@@ -11,20 +12,64 @@ import s from '../components/styles'
 
 const cambiarClave = ({ cambiarClave }) => {
 
-    const [contraseña, setContraseña] = useState("")
-    const [nuevaContraseña, setNuevaContraseña] = useState("")
-    const [confirmarContraseña, setConfirmarContraseña] = useState("")
+    const context = useContext(GlobalContext);
+    const [email, setEmail] = useState('' || context.usuario.email);
+    const [password, setPassword] = useState('' || context.usuario.password);
+    const [nuevapassword, setNuevaPassword] = useState("")
+    const [confirmPassword, setConfirmPassword] = useState("")
 
     const [puedeEnviar, setPuedeEnviar] = useState(false)
 
     const navigation = useNavigation();
+    const ip = 'https://secret-shore-39623.herokuapp.com/';
 
     // Validacion de boton enviar
     useEffect(() => {
 
-        setPuedeEnviar(contraseña.length >= 8 && nuevaContraseña.length >= 8 && confirmarContraseña == nuevaContraseña)
+        setPuedeEnviar( (password.length >= 4) && (nuevapassword.length >= 4) && (confirmPassword == nuevapassword) && (nuevapassword != password))
 
-    }, [contraseña, nuevaContraseña, confirmarContraseña])
+    }, [password, nuevapassword, confirmPassword])
+
+    async function modificarClave() {
+        if (puedeEnviar) {
+            //Conformación de componentes para el fetch
+            const headers = new Headers();
+
+            headers.append("Content-type", "application/json");
+            console.log(nuevapassword)
+            const requestOptions = {
+                method: "PUT",
+                headers: headers,
+                body: JSON.stringify({
+                    email : email,
+                    password: password,
+                    nuevaPassword: nuevapassword,
+                })
+            }
+
+            //Almacenamos el response del fetch
+            let response = await fetch(ip + 'api/usuarios/modificarContrasena/', requestOptions)
+                .then((res) => res.json())
+                .catch(err => {
+                    console.log("Error: ", err)
+                })
+            //Dependiendo el response, mostramos un msj    
+            if (response === "Contraseña incorrecta") {
+                Alert.alert("Error", "La contraseña actual es errónea");
+            } else {
+                Alert.alert("Contraseña modificada con éxito");
+            } 
+        }else {
+            Alert.alert(
+                "Error",
+                "¡Revisar los campos completados!",
+                [{
+                    text: "Cancelar",
+                    onPress: console.log('Yes Pressed'),
+                }]
+            )
+        }
+    }
 
 
     return (
@@ -33,24 +78,24 @@ const cambiarClave = ({ cambiarClave }) => {
             <View style={s.containerIngreso}>
                 <TextInput
                     style={s.input}
-                    value={contraseña}
+                    value={password}
                     placeholder="Contraseña"
                     secureTextEntry={true}
-                    onChangeText={(texto) => setContraseña(texto)}
+                    onChangeText={(texto) => setPassword(texto)}
                 />
                 <TextInput
                     style={s.input}
-                    value={nuevaContraseña}
+                    value={nuevapassword}
                     placeholder="Nueva contraseña"
                     secureTextEntry={true}
-                    onChangeText={(texto) => setNuevaContraseña(texto)}
+                    onChangeText={(texto) => setNuevaPassword(texto)}
                 />
                 <TextInput
                     style={s.input}
-                    value={confirmarContraseña}
+                    value={confirmPassword}
                     placeholder="Confirmar contraseña"
                     secureTextEntry={true}
-                    onChangeText={(texto) => setConfirmarContraseña(texto)}
+                    onChangeText={(texto) => setConfirmPassword(texto)}
                 />
             </View>
 
@@ -68,7 +113,7 @@ const cambiarClave = ({ cambiarClave }) => {
                     size={40}
                     color='#000'
                     style={s.iconoIzquierdo}
-                    onPress={cambiarClave}
+                    onPress={modificarClave}
                 />
             </View>
 
