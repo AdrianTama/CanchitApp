@@ -18,6 +18,12 @@ export default function Home() {
 
             <View style={s.botonera}>
 
+                <TouchableHighlight style={s.containerBotonHome} onPress={() => navigation.navigate("Días y Horarios de Atención")}>
+                    <View style={s.boton}>
+                        <Text style={s.textoBoton}>Días y Horarios de Atención</Text>
+                    </View>
+                </TouchableHighlight>
+
                 <TouchableHighlight style={s.containerBotonHome} onPress={() => navigation.navigate("Listado Canchas")}>
                     <View style={s.boton}>
                         <Text style={s.textoBoton}>Listado de canchas</Text>

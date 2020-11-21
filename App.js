@@ -28,6 +28,7 @@ import MiReserva from './pages/mireserva';
 //Admin - Reservas
 import ListadoReservas from './pages/ListadoReservas/scrollViewReservas';
 import VerReserva from './pages/verReserva';
+import SeteoAtencion from './pages/seteoAtencion';
 //Admin - Canchas
 import ListadoCanchas from './pages/ListadoCanchas/misCanchas';
 import AgregarCancha from "./pages/ListadoCanchas/agregarCancha";
@@ -89,6 +90,7 @@ function HomeAdmin() {
   return (
     <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />}>
       <Drawer.Screen name="Home" component={PagPrincAdmin} />
+      <Drawer.Screen name="Días y Horarios de Atención" component={SeteoAtencion} />
       <Drawer.Screen name="Listado Canchas" component={AdminCanchas} />
       <Drawer.Screen name="Listado Reservas" component={AdminReservas} />
       <Drawer.Screen name="Salir" component={Salir} />
