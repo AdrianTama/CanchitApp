@@ -111,6 +111,12 @@ const Cancha = ({ route }) => {
                     editable={false}
                     value={numero}
                 />
+                <Text style={s.dato}>Tipo de Cancha</Text>
+                <TextInput
+                    style={s.input}
+                    editable={false}
+                    value={tipoElegido}
+                />
                 <Text style={s.dato}>Precio de reserva</Text>
                 <TextInput
                     style={s.input}
@@ -119,18 +125,6 @@ const Cancha = ({ route }) => {
                     onChangeText={(texto) => setPrecio(texto)}
                     keyboardType="numeric"
                 />
-                <View style={s.contenedorPicker}>
-                    <Picker
-                        selectedValue={tipoElegido}
-                        style={s.picker}
-                        onValueChange={(itemValue, itemIndex) => setTipoElegido(itemValue)}
-                    >
-                        <Picker.Item label="Seleccionar tipo de cancha" value="0" />
-                        {tipos.map((item, key) => (
-                            <Picker.Item label={item.descripcion} value={item.descripcion} key={key} />)
-                        )}
-                    </Picker>
-                </View>
 
                 <View style={s.botoneraInferior}>
                     <Icon
