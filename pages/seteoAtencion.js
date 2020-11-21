@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Text, View, TextInput, Picker, Alert } from 'react-native';
+import { Text, View, TextInput, Picker, Alert, Switch } from 'react-native';
 import { NavigationHelpersContext, useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Octicons';
 
 import BotoneraSuperior from '../components/botoneraSuperior';
 import s from '../components/styles';
 import { ScrollView } from 'react-native-gesture-handler';
+import { set } from 'react-native-reanimated';
 
 
 export default function SeteoAtencion() {
@@ -18,8 +19,20 @@ export default function SeteoAtencion() {
     const navigation = useNavigation();
     const ip = 'https://secret-shore-39623.herokuapp.com/';
 
-    const [isEnabled, setIsEnabled] = useState(false);
-    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+    const [lunes, setLunes] = useState(false);
+    const toggleSwitchLunes = () => setLunes(previousState => !previousState);
+    const [martes, setMartes] = useState(false);
+    const toggleSwitchMartes = () => setMartes(previousState => !previousState);
+    const [miercoles, setMiercoles] = useState(false);
+    const toggleSwitchMiercoles = () => setMiercoles(previousState => !previousState);
+    const [jueves, setJueves] = useState(false);
+    const toggleSwitchJueves = () => setJueves(previousState => !previousState);
+    const [viernes, setViernes] = useState(false);
+    const toggleSwitchViernes = () => setViernes(previousState => !previousState);
+    const [sabado, setSabado] = useState(false);
+    const toggleSwitchSabado = () => setSabado(previousState => !previousState);
+    const [domingo, setDomingo] = useState(false);
+    const toggleSwitchDomingo = () => setDomingo(previousState => !previousState);
 
     // Validacion de boton enviar
     useEffect(() => {
@@ -116,61 +129,82 @@ export default function SeteoAtencion() {
                     keyboardType="numeric"
                 />
 
-                <Switch
-                    trackColor={{ false: "#767577", true: "#81b0ff" }}
-                    thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
-                    ios_backgroundColor="#3e3e3e"
-                    onValueChange={toggleSwitch}
-                    value={isEnabled}
-                />
+                <Text style={s.dato}>Seleccionar los días de atención:</Text>
+                <View style={s.contenedorRegistro}>
+                    <View style={s.contenedorSwitch}>
+                        <Switch
+                            trackColor={{ false: "#767577", true: "#3ca602" }}
+                            thumbColor={lunes ? "#daf5cb" : "#f4f3f4"}
+                            ios_backgroundColor="#3e3e3e"
+                            onValueChange={toggleSwitchLunes}
+                            value={lunes}
+                        />
+                        <Text>Lunes</Text>
+                    </View>
+                    <View style={s.contenedorSwitch}>
+                        <Switch
+                            trackColor={{ false: "#767577", true: "#3ca602" }}
+                            thumbColor={martes ? "#daf5cb" : "#f4f3f4"}
+                            ios_backgroundColor="#3e3e3e"
+                            onValueChange={toggleSwitchMartes}
+                            value={martes}
+                        />
+                        <Text>Martes</Text>
+                    </View>
+                    <View style={s.contenedorSwitch}>
+                        <Switch
+                            trackColor={{ false: "#767577", true: "#3ca602" }}
+                            thumbColor={miercoles ? "#daf5cb" : "#f4f3f4"}
+                            ios_backgroundColor="#3e3e3e"
+                            onValueChange={toggleSwitchMiercoles}
+                            value={miercoles}
+                        />
+                        <Text>Miércoles</Text>
+                    </View>
 
-                <Switch
-                    trackColor={{ false: "#767577", true: "#81b0ff" }}
-                    thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
-                    ios_backgroundColor="#3e3e3e"
-                    onValueChange={toggleSwitch}
-                    value={isEnabled}
-                />
+                    <View style={s.contenedorSwitch}>
+                        <Switch
+                            trackColor={{ false: "#767577", true: "#3ca602" }}
+                            thumbColor={jueves ? "#daf5cb" : "#f4f3f4"}
+                            ios_backgroundColor="#3e3e3e"
+                            onValueChange={toggleSwitchJueves}
+                            value={jueves}
+                        />
+                        <Text>Jueves</Text>
+                    </View>
+                    <View style={s.contenedorSwitch}>
+                        <Switch
+                            trackColor={{ false: "#767577", true: "#3ca602"}}
+                            thumbColor={viernes ? "#daf5cb" : "#f4f3f4"}
+                            ios_backgroundColor="#3e3e3e"
+                            onValueChange={toggleSwitchViernes}
+                            value={viernes}
+                        />
+                        <Text>Viernes</Text>
+                    </View>
+                    <View style={s.contenedorSwitch}>
+                        <Switch
+                            trackColor={{ false: "#767577", true: "#3ca602" }}
+                            thumbColor={sabado ? "#daf5cb" : "#f4f3f4"}
+                            ios_backgroundColor="#3e3e3e"
+                            onValueChange={toggleSwitchSabado}
+                            value={sabado}
+                        />
+                        <Text>Sábado</Text>
+                    </View>
 
-                <Switch
-                    trackColor={{ false: "#767577", true: "#81b0ff" }}
-                    thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
-                    ios_backgroundColor="#3e3e3e"
-                    onValueChange={toggleSwitch}
-                    value={isEnabled}
-                />
+                    <View style={s.contenedorSwitch}>
+                        <Switch
+                            trackColor={{ false: "#767577", true: "#3ca602"}}
+                            thumbColor={domingo ? "#daf5cb" : "#f4f3f4"}
+                            ios_backgroundColor="#3e3e3e"
+                            onValueChange={toggleSwitchDomingo}
+                            value={domingo}
+                        />
+                        <Text>Domingo</Text>
+                    </View>
 
-                <Switch
-                    trackColor={{ false: "#767577", true: "#81b0ff" }}
-                    thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
-                    ios_backgroundColor="#3e3e3e"
-                    onValueChange={toggleSwitch}
-                    value={isEnabled}
-                />
-
-                <Switch
-                    trackColor={{ false: "#767577", true: "#81b0ff" }}
-                    thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
-                    ios_backgroundColor="#3e3e3e"
-                    onValueChange={toggleSwitch}
-                    value={isEnabled}
-                />
-
-                <Switch
-                    trackColor={{ false: "#767577", true: "#81b0ff" }}
-                    thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
-                    ios_backgroundColor="#3e3e3e"
-                    onValueChange={toggleSwitch}
-                    value={isEnabled}
-                />
-
-                <Switch
-                    trackColor={{ false: "#767577", true: "#81b0ff" }}
-                    thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
-                    ios_backgroundColor="#3e3e3e"
-                    onValueChange={toggleSwitch}
-                    value={isEnabled}
-                />
+                </View>
 
                 <View style={s.botoneraInferior}>
                     <Icon

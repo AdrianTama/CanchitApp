@@ -4,39 +4,37 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#FFFFFF',
-        paddingBottom:20
+        paddingBottom: 20
     },
 
     contenedorSignin: {
         paddingTop: 80,
         flex: 1,
-        backgroundColor: '#FFFFFF'
     },
 
     contenedorRegistro: {
         paddingTop: 20,
-        backgroundColor: '#FFFFFF'
+        paddingBottom:20,
     },
 
-    contenedorMenuLateral:{
-        flexDirection:'row',
+    contenedorMenuLateral: {
+        flexDirection: 'row',
         justifyContent: 'space-between',
         backgroundColor: '#DCDCDC',
-        marginTop:20,
-        marginLeft:20,
-        marginRight:20,
+        marginTop: 20,
+        marginLeft: 20,
+        marginRight: 20,
         // rowUnderlay: 'rgba(154, 154, 154, 0.2)',
     },
 
-    contenedorListado:{
-        paddingTop:20,
-        paddingBottom:20,
-        paddingRight:30,
-        paddingLeft:30,
+    contenedorListado: {
+        paddingTop: 20,
+        paddingBottom: 20,
+        paddingRight: 30,
+        paddingLeft: 30,
     },
 
-    
+
     contenedorPicker: {
         borderWidth: 1,
         borderRadius: 0,
@@ -52,7 +50,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
     },
 
-    containerBotonHome:{
+    containerBotonHome: {
         alignItems: 'center',
         marginTop: 10,
         marginBottom: 15,
@@ -72,41 +70,49 @@ const styles = StyleSheet.create({
         marginBottom: 10
     },
 
-    contenedorRowList:{
+    contenedorRowList: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingLeft: 20,
         paddingTop: 15,
         paddingBottom: 15,
-        borderBottomWidth:1,
+        borderBottomWidth: 1,
         borderColor: '#CCD2DA'
     },
 
     contenedorSubtitulo: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingLeft:20,
-        paddingTop:20,
+        paddingLeft: 20,
+        paddingTop: 20,
         paddingBottom: 20,
         backgroundColor: '#4F77A4',
     },
-    contenedorMas:{
+    contenedorMas: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingRight:30,
+        paddingRight: 30,
         alignItems: 'center',
     },
 
-    botonera:{
-        marginTop: 50,
+    contenedorSwitch: {
+        paddingTop:9,
+        flex: 1,
+        alignItems: "center",
+        paddingLeft: 20,
+        flexDirection: 'row',
+    },
+
+    botonera: {
+        marginTop: 50
     },
 
     botoneraSuperior: {
         marginTop: 20,
-        marginBottom:10,
+        marginBottom: 10,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingTop:20,
+        paddingTop: 20,
     },
 
     botoneraInferior: {
@@ -118,9 +124,9 @@ const styles = StyleSheet.create({
     botoneraDerecha: {
         flexDirection: 'column',
         justifyContent: 'space-between',
-        paddingTop:20,
-        paddingBottom:20,
-        paddingRight:20,
+        paddingTop: 20,
+        paddingBottom: 20,
+        paddingRight: 20,
     },
 
     boton: {
@@ -141,12 +147,12 @@ const styles = StyleSheet.create({
     },
 
     iconoUser: {
-        paddingTop:10,
+        paddingTop: 10,
         paddingRight: 20,
     },
 
     iconoMenu: {
-        paddingTop:10,
+        paddingTop: 10,
         paddingLeft: 20,
     },
 
@@ -157,12 +163,12 @@ const styles = StyleSheet.create({
 
     iconoList: {
         color: "gray",
-        paddingLeft:50
+        paddingLeft: 50
     },
 
     iconoListClaro: {
         color: 'white',
-        paddingLeft:50,
+        paddingLeft: 50,
     },
 
     iconoDerecho: {
@@ -173,7 +179,7 @@ const styles = StyleSheet.create({
         paddingRight: 25,
     },
 
-    iconoEditar:{
+    iconoEditar: {
         color: "gray",
     },
 
@@ -200,11 +206,11 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginBottom: 30,
         paddingTop: 20,
-        paddingBottom:20,
-        
+        paddingBottom: 20,
+
     },
 
-    subtituloAdmin:{
+    subtituloAdmin: {
         fontSize: 24,
         color: 'white',
     },
@@ -221,7 +227,7 @@ const styles = StyleSheet.create({
     },
 
     dato: {
-        fontSize: 10,
+        fontSize: 15,
         paddingLeft: 20,
     },
 
