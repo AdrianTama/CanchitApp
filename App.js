@@ -17,6 +17,7 @@ import Salir from './components/salir';
 //Home Cliente/Admin
 import PagPrincCliente from './pages/homeCliente';
 import PagPrincAdmin from './pages/homeAdmin';
+import CambiarPassword from './pages/cambiarClave';
 //Cliente - Usuario
 import AgregarUsuario from './pages/AgregarUsuario';
 import Perfil from './pages/perfil';
@@ -93,6 +94,7 @@ function HomeAdmin() {
       <Drawer.Screen name="Días y Horarios de Atención" component={SeteoAtencion} />
       <Drawer.Screen name="Listado Canchas" component={AdminCanchas} />
       <Drawer.Screen name="Listado Reservas" component={AdminReservas} />
+      <Drawer.Screen name="Cambiar Password" component={CambiarPassword} />
       <Drawer.Screen name="Salir" component={Salir} />
     </Drawer.Navigator>
   );
