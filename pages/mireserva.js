@@ -10,6 +10,51 @@ import GlobalContext from '../components/context';
 export default function MiReserva({ route }) {
     const { reserva } = route.params;
     const navigation = useNavigation();
+    const context = useContext(GlobalContext);
+    const [respuesta, setRespuesta] = useState('');
+    const ip = 'https://secret-shore-39623.herokuapp.com/';
+
+    async function cancelarReserva() {
+        const headers = new Headers();
+
+        headers.append("Content-type", "application/json")
+
+        const requestOptions = {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify({
+                usuario: context.usuario,
+                reserva: reserva,
+            })
+        }
+
+        await fetch(ip + 'api/reservas/cancelacionReserva/', requestOptions)
+            .then((res) => res.json())
+            .then((json) => setRespuesta(json))
+            .catch(err => {
+                console.log("Error: ", err)
+            })
+        navigation.navigate('Home');
+            
+    }
+
+    function cancelar() {
+        
+            Alert.alert(
+                "¿Está seguro que desea cancelar su reserva?",
+                "",
+                [
+                    {
+                        text: "Cancelar", 
+                        onPress: console.log("cancelado")
+                    },
+                    {
+                        text: "Confirmar", 
+                        onPress: cancelarReserva
+                    }
+                ],
+                { cancelable: false })
+    };
     
     
     return (
@@ -28,7 +73,7 @@ export default function MiReserva({ route }) {
                     <Text style={s.textoBoton}>Volver</Text>
                 </View>
             </TouchableHighlight>
-            <TouchableOpacity style={s.containerBoton} onPress={() => navigation.navigate('Home')}>
+            <TouchableOpacity style={s.containerBoton} onPress={() => cancelar()}>
                 <View style={s.boton}>
                     <Text style={s.textoBoton}>Cancelar Reserva</Text>
                 </View>

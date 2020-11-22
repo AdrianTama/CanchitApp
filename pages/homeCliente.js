@@ -31,14 +31,13 @@ export default function Home() {
             headers: headers
         }
 
-        let respuesta = await fetch(ip + 'api/reservas/miReserva/' + context.usuario.email, requestOptions)
+        await fetch(ip + 'api/reservas/miReserva/' + context.usuario.email, requestOptions)
             .then((res) => res.json())
             .then((json) => setResponse(json))
             .catch(err => {
                 console.log("Error: ", err)
             })
             
-        return respuesta
     }
 
     function chequeoReserva(response) {
