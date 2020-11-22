@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Alert, Text, View, TextInput } from 'react-native';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { ScrollView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Octicons';
+import GlobalContext from '../../components/context';
 
 import BotoneraSuperior from '../../components/botoneraSuperior';
 import s from '../../components/styles'
 
 export default Cancha = ({ route }) => {
+    const context = useContext(GlobalContext);
     const { cancha } = route.params
     const [numero] = useState(cancha.numero.toString());
     const [precio, setPrecio] = useState(cancha.precio.toString());

@@ -191,7 +191,7 @@ export default function SeteoAtencion() {
                     keyboardType="numeric"
                 />
 
-                <Text style={s.dato}>Seleccionar los días de atención:</Text>
+                <Text style={s.dato}>Seleccione los días de atención:</Text>
                 <View style={s.contenedorRegistro}>
                     <View style={s.contenedorSwitch}>
                         <Switch
