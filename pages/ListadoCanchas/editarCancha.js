@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Alert, Text, View, TextInput, Button, TouchableHighlight, Picker } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { ScrollView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Octicons';
 import GlobalContext from '../../components/context';
@@ -16,6 +16,7 @@ const Cancha = ({ route }) => {
     const [precio, setPrecio] = useState(cancha.precio.toString());
     const [tipoElegido, setTipoElegido] = useState(cancha.descripcion)
     const [tipos, setTipos] = useState([]);
+    const isFocused = useIsFocused();
 
     const [puedeEnviar, setPuedeEnviar] = useState(false)
     const ip = 'https://secret-shore-39623.herokuapp.com/';
@@ -95,7 +96,7 @@ const Cancha = ({ route }) => {
             .then((response) => response.json())
             .then((json) => setTipos(json))
             .catch((error) => console.error(error));
-    }, []);
+    }, [isFocused]);
 
 
     return (
