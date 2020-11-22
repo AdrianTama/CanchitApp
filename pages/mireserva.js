@@ -15,6 +15,7 @@ export default function MiReserva({ route }) {
     const ip = 'https://secret-shore-39623.herokuapp.com/';
 
     async function cancelarReserva() {
+
         const headers = new Headers();
 
         headers.append("Content-type", "application/json")
@@ -34,6 +35,7 @@ export default function MiReserva({ route }) {
             .catch(err => {
                 console.log("Error: ", err)
             })
+        context.cambioDatos(context.usuario, context.token, 'reserva cancelada', context.objetoReserva);
         navigation.navigate('Home');
 
     }

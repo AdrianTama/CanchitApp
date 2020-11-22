@@ -109,28 +109,28 @@ function HomeCliente() {
 
   useEffect(() => {
 
-    buscarReserva(); 
+    buscarReserva();
 
-}, [isFocused])
+  }, [context])
 
-async function buscarReserva() {
+  async function buscarReserva() {
     const headers = new Headers();
 
     headers.append("Content-type", "application/json")
 
     const requestOptions = {
-        method: "GET",
-        headers: headers
+      method: "GET",
+      headers: headers
     }
 
     await fetch(ip + 'api/reservas/miReserva/' + context.usuario.email, requestOptions)
-        .then((res) => res.json())
-        .then((json) => setResponse(json))
-        .catch(err => {
-            console.log("Error: ", err)
-        })
-        
-}
+      .then((res) => res.json())
+      .then((json) => setResponse(json))
+      .catch(err => {
+        console.log("Error: ", err)
+      })
+
+  }
 
 
 
@@ -138,10 +138,10 @@ async function buscarReserva() {
     <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />}>
       <Drawer.Screen name="Home" component={PagPrincCliente} />
       {response === false ?
-            <Drawer.Screen name="Nueva Reserva" component={Reserva} />
-            :
-            <Drawer.Screen name="Mi Reserva" component={MiReserva} initialParams={{ params: response }} />
-          }
+        <Drawer.Screen name="Nueva Reserva" component={Reserva} />
+        :
+        <Drawer.Screen name="Mi Reserva" component={MiReserva(response)} initialParams={{ params: response }} />
+      }
       <Drawer.Screen name="Mi perfil" component={MiPerfil} />
       <Drawer.Screen name="Salir" component={Salir} />
     </Drawer.Navigator>
@@ -155,9 +155,12 @@ export default function App() {
   const [authData, setAuthData] = useState({
     usuario: '',
     token: '',
-    cambioDatos: (usuario, token) => {
-      setAuthData({ ...authData, usuario: usuario, token: token })
-    }
+    reserva: '',
+    objetoReserva: '',
+    cambioDatos: (usuario, token, reserva, objetoReserva) => {
+      setAuthData({ ...authData, usuario: usuario, token: token, reserva: reserva, objetoReserva: objetoReserva })
+    },
+
   })
 
 

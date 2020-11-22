@@ -62,7 +62,6 @@ export default function NuevaReserva() {
     };
 
     async function guardarReserva() {
-        console.log('hola')
         const headers = new Headers();
 
         headers.append("Content-type", "application/json")
@@ -88,6 +87,7 @@ export default function NuevaReserva() {
         if(response.dia === undefined){
             Alert.alert("Error", "La cancha no se encuentra disponible en esa fecha y hora.")
         }else{
+            context.cambioDatos(context.usuario, context.token, 'nueva reserva', context.objetoReserva);
             navigation.dispatch(popAction);
             navigation.navigate("Home");
         }
