@@ -6,14 +6,13 @@ import Icon from 'react-native-vector-icons/Octicons';
 import BotoneraSuperior from '../components/botoneraSuperior';
 import s from '../components/styles';
 import { ScrollView } from 'react-native-gesture-handler';
-import { set } from 'react-native-reanimated';
 
 
 export default function SeteoAtencion() {
     const [horaIni, setHoraIni] = useState("");
     const [horaFin, setHoraFin] = useState("");
-    const [diaElegido, setDiaElegido] = useState([]);
-    const [atencion, setAtencion] = useState("");
+    const [diasAtencion, setDiasAtencion] = useState([]);
+    const [horarioAtencion, setHorarioAtencion] = useState("")
 
     const [puedeEnviar, setPuedeEnviar] = useState(false)
     const navigation = useNavigation();
@@ -42,6 +41,13 @@ export default function SeteoAtencion() {
     }, [horaFin, horaIni])
 
     async function guardarAtencion() {
+        const dias = [lunes, martes, miercoles, jueves, viernes, sabado, domingo];
+        for (let i = 0; i < (dias.length); i++) {
+            if (dias[i] === false) {
+                diasAtencion.push(i);
+            }
+        }
+
 
         if (puedeEnviar) {
 
@@ -49,7 +55,7 @@ export default function SeteoAtencion() {
             const headers = new Headers();
             headers.append("Content-type", "application/json")
             //Conformación de componentes para el fetch
-            const requestOptions = {
+            const requestOptionsHora = {
                 method: "PUT",
                 // headers: {'Authorization': `Bearer ${context.token}`},
                 headers: headers,
@@ -60,17 +66,37 @@ export default function SeteoAtencion() {
             }
 
             //Almacenamos el response del fetch
-            let response = await fetch(ip + 'api/horariosAtencion/modificarHorario', requestOptions)
+            let responseHora = await fetch(ip + 'api/horariosAtencion/modificarHorario', requestOptionsHora)
                 .then((res) => res.json())
                 .catch(err => {
                     console.log("Error: ", err)
                 })
-            console.log(response)
+
+            //Fetch para los días
+            //Conformación de componentes para el fetch
+            const requestOptionsDia = {
+                method: "PUT",
+                // headers: {'Authorization': `Bearer ${context.token}`},
+                headers: headers,
+                body: JSON.stringify({
+                    dias: diasAtencion
+                })
+            }
+
+            //Almacenamos el response del fetch
+            let responseDia = await fetch(ip + 'api/diasNoAtencion/modificarDias', requestOptionsDia)
+                .then((res) => res.json())
+                .catch(err => {
+                    console.log("Error: ", err)
+                })
+
+            console.log(responseDia)
+            console.log(responseHora)
             //Dependiendo el response, mostramos un msj    
-            if (response === true) {
+            if (responseDia === true && responseHora == true) {
                 Alert.alert("Horario modificado con éxito")
             } else {
-                Alert.alert("Error", "No se pudo modificar el horario.")
+                Alert.alert("Error", "No se pudo modificar los días/horarios de atención.")
             }
 
         } else {
@@ -84,7 +110,6 @@ export default function SeteoAtencion() {
                 }]
             )
         }
-
     }
 
     useEffect(() => {
@@ -96,11 +121,11 @@ export default function SeteoAtencion() {
 
         fetch(ip + 'api/horariosAtencion/', requestOptions)
             .then((response) => response.json())
-            .then((json) => setAtencion(json))
+            .then((json) => setHorarioAtencion(json))
             .catch((error) => console.error(error));
 
-        setHoraIni(atencion.horarioDeInicio);
-        setHoraFin(atencion.horarioDeCierre);
+        setHoraIni(horarioAtencion.horarioDeInicio);
+        setHoraFin(horarioAtencion.horarioDeCierre);
     }, []);
 
 
@@ -174,7 +199,7 @@ export default function SeteoAtencion() {
                     </View>
                     <View style={s.contenedorSwitch}>
                         <Switch
-                            trackColor={{ false: "#767577", true: "#3ca602"}}
+                            trackColor={{ false: "#767577", true: "#3ca602" }}
                             thumbColor={viernes ? "#daf5cb" : "#f4f3f4"}
                             ios_backgroundColor="#3e3e3e"
                             onValueChange={toggleSwitchViernes}
@@ -195,7 +220,7 @@ export default function SeteoAtencion() {
 
                     <View style={s.contenedorSwitch}>
                         <Switch
-                            trackColor={{ false: "#767577", true: "#3ca602"}}
+                            trackColor={{ false: "#767577", true: "#3ca602" }}
                             thumbColor={domingo ? "#daf5cb" : "#f4f3f4"}
                             ios_backgroundColor="#3e3e3e"
                             onValueChange={toggleSwitchDomingo}

@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Alert, Text, View, TextInput } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Octicons';
+import GlobalContext from '../components/context';
 
 import BotoneraSuperior from '../components/botoneraSuperior';
 import s from '../components/styles'
 import { ScrollView } from 'react-native-gesture-handler';
+import context from '../components/context';
 
 
 export default function NuevaReserva() {
@@ -13,6 +15,7 @@ export default function NuevaReserva() {
     const [tarjeta, setTarjeta] = useState([]);
     const [vto, setVto] = useState([]);
     const [cvv, setCvv] = useState([]);
+    const context = useContext(GlobalContext);
 
     const [puedeEnviar, setPuedeEnviar] = useState(false)
 
@@ -70,7 +73,8 @@ export default function NuevaReserva() {
                 nroCancha: nroCancha,
                 dia: dia,
                 hora: hora,
-                suspendida: false
+                suspendida: false,
+                email: context.usuario.email
             })
         }
 
@@ -83,7 +87,7 @@ export default function NuevaReserva() {
         if(response.dia === undefined){
             Alert.alert("Error", "La cancha no se encuentra disponible en esa fecha y hora.")
         }else{
-            navigation.navigate("Mi Reserva")
+            navigation.navigate("Home")
         }
         
     }
