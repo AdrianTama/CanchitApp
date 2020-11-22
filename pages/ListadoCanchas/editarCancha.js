@@ -1,28 +1,22 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Alert, Text, View, TextInput, Button, TouchableHighlight, Picker } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Alert, Text, View, TextInput } from 'react-native';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { ScrollView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Octicons';
-import GlobalContext from '../../components/context';
 
 import BotoneraSuperior from '../../components/botoneraSuperior';
 import s from '../../components/styles'
 
-
-const Cancha = ({ route }) => {
-    const context = useContext(GlobalContext);
+export default Cancha = ({ route }) => {
     const { cancha } = route.params
-    const [numero, setNumero] = useState(cancha.numero.toString());
+    const [numero] = useState(cancha.numero.toString());
     const [precio, setPrecio] = useState(cancha.precio.toString());
-    const [tipoElegido, setTipoElegido] = useState(cancha.descripcion)
-    const [tipos, setTipos] = useState([]);
+    const [tipoElegido] = useState(cancha.descripcion)
     const isFocused = useIsFocused();
 
     const [puedeEnviar, setPuedeEnviar] = useState(false)
     const ip = 'https://secret-shore-39623.herokuapp.com/';
     const navigation = useNavigation();
-
-
 
     // Validacion de boton enviar
     useEffect(() => {
@@ -77,25 +71,7 @@ const Cancha = ({ route }) => {
                 }]
             )
         }
-
     }
-
-
-    useEffect(() => {
-
-        const headers = new Headers();
-        headers.append("Content-type", "application/json")
-        //adaptar con ip de la compu que ejecute: http://ip:3000/api...
-        const requestOptions = {
-            method: "GET",
-            headers: headers,
-            // headers: {'Authorization': `Bearer ${context.token}`},
-        }
-        fetch(ip + 'api/tipocancha/', requestOptions)
-            .then((response) => response.json())
-            .then((json) => setTipos(json))
-            .catch((error) => console.error(error));
-    }, [isFocused]);
 
 
     return (
@@ -149,4 +125,3 @@ const Cancha = ({ route }) => {
     )
 }
 
-export default Cancha;
