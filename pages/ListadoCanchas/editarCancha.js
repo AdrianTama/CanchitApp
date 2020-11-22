@@ -60,7 +60,6 @@ const Cancha = ({ route }) => {
             console.log(response)
             //Dependiendo el response, mostramos un msj    
             if (!response) {
-                console.log("No se pudo modificar.")
                 Alert.alert('Error',"No se pudo modificar.")
             } else {
                 Alert.alert("Los datos se modificaron con éxito.")

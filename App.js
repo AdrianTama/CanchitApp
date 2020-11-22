@@ -89,7 +89,7 @@ function AdminCanchas() {
 function HomeAdmin() {
   return (
     <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />}>
-      <Drawer.Screen name="Home" component={PagPrincAdmin} />
+      <Drawer.Screen name="Menu" component={PagPrincAdmin} />
       <Drawer.Screen name="Días y Horarios de Atención" component={SeteoAtencion} />
       <Drawer.Screen name="Listado Canchas" component={AdminCanchas} />
       <Drawer.Screen name="Listado Reservas" component={AdminReservas} />

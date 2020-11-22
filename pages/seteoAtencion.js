@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, TextInput, Picker, Alert, Switch } from 'react-native';
-import { NavigationHelpersContext, useNavigation } from '@react-navigation/native';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Octicons';
 
 import BotoneraSuperior from '../components/botoneraSuperior';
@@ -9,36 +9,90 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 
 export default function SeteoAtencion() {
-    const [horaIni, setHoraIni] = useState("");
-    const [horaFin, setHoraFin] = useState("");
+    const [horaIni, setHoraIni] = useState('');
+    const [horaFin, setHoraFin] = useState('');
     const [diasAtencion, setDiasAtencion] = useState([]);
-    const [horarioAtencion, setHorarioAtencion] = useState("")
 
     const [puedeEnviar, setPuedeEnviar] = useState(false)
     const navigation = useNavigation();
     const ip = 'https://secret-shore-39623.herokuapp.com/';
+    const isFocused = useIsFocused();
 
-    const [lunes, setLunes] = useState(false);
+    const [lunes, setLunes] = useState(true);
     const toggleSwitchLunes = () => setLunes(previousState => !previousState);
-    const [martes, setMartes] = useState(false);
+    const [martes, setMartes] = useState(true);
     const toggleSwitchMartes = () => setMartes(previousState => !previousState);
-    const [miercoles, setMiercoles] = useState(false);
+    const [miercoles, setMiercoles] = useState(true);
     const toggleSwitchMiercoles = () => setMiercoles(previousState => !previousState);
-    const [jueves, setJueves] = useState(false);
+    const [jueves, setJueves] = useState(true);
     const toggleSwitchJueves = () => setJueves(previousState => !previousState);
-    const [viernes, setViernes] = useState(false);
+    const [viernes, setViernes] = useState(true);
     const toggleSwitchViernes = () => setViernes(previousState => !previousState);
-    const [sabado, setSabado] = useState(false);
+    const [sabado, setSabado] = useState(true);
     const toggleSwitchSabado = () => setSabado(previousState => !previousState);
-    const [domingo, setDomingo] = useState(false);
+    const [domingo, setDomingo] = useState(true);
     const toggleSwitchDomingo = () => setDomingo(previousState => !previousState);
 
     // Validacion de boton enviar
     useEffect(() => {
 
-        setPuedeEnviar(horaIni != "" && horaFin != '0')
+        setPuedeEnviar(horaIni != '' && horaFin != '')
 
     }, [horaFin, horaIni])
+
+    useEffect(() => {
+
+        const requestOptions = {
+            method: "GET",
+            // headers: {'Authorization': `Bearer ${context.token}`},
+        }
+
+        fetch(ip + 'api/horariosAtencion/', requestOptions)
+            .then((response) => response.json())
+            .then((json) => setHoraIni(json.horarioDeInicio))
+            .catch((error) => console.error(error));
+
+        fetch(ip + 'api/horariosAtencion/', requestOptions)
+            .then((response) => response.json())
+            .then((json) => setHoraFin(json.horarioDeCierre))
+            .catch((error) => console.error(error));
+
+        fetch(ip + 'api/diasNoAtencion/', requestOptions)
+            .then((response) => response.json())
+            // .then((json)=>console.log(json.dias.dias.length))
+            .then((json) => {
+                for (let i = 0; i < json.dias.dias.length; i++) {
+                    switch (json.dias.dias[i]) {
+                        case 0:
+                            setLunes(false);
+                            break;
+                        case 1:
+                            setMartes(false);
+                            break;
+                        case 2:
+                            setMiercoles(false);
+                            break;
+                        case 3:
+                            setJueves(false);
+                            break;
+                        case 4:
+                            setViernes(false);
+                            break;
+                        case 5:
+                            setSabado(false);
+                            break;
+                        case 6:
+                            setDomingo(false);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            )
+            .catch((error) => console.error(error));
+
+    }, [])
 
     async function guardarAtencion() {
         const dias = [lunes, martes, miercoles, jueves, viernes, sabado, domingo];
@@ -90,11 +144,10 @@ export default function SeteoAtencion() {
                     console.log("Error: ", err)
                 })
 
-            console.log(responseDia)
-            console.log(responseHora)
             //Dependiendo el response, mostramos un msj    
             if (responseDia === true && responseHora == true) {
                 Alert.alert("Horario modificado con éxito")
+                navigation.navigate("Menu")
             } else {
                 Alert.alert("Error", "No se pudo modificar los días/horarios de atención.")
             }
@@ -111,22 +164,6 @@ export default function SeteoAtencion() {
             )
         }
     }
-
-    useEffect(() => {
-        //adaptar con ip de la compu que ejecute: http://ip:3000/api...
-        const requestOptions = {
-            method: "GET",
-            // headers: {'Authorization': `Bearer ${context.token}`},
-        }
-
-        fetch(ip + 'api/horariosAtencion/', requestOptions)
-            .then((response) => response.json())
-            .then((json) => setHorarioAtencion(json))
-            .catch((error) => console.error(error));
-
-        setHoraIni(horarioAtencion.horarioDeInicio);
-        setHoraFin(horarioAtencion.horarioDeCierre);
-    }, []);
 
 
     return (
