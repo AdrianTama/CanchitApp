@@ -5,7 +5,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Octicons';
 import GlobalContext from '../components/context';
 
-import BotoneraSuperior from '../components/nombreApp';
+import BotoneraSuperior from '../components/botoneraSuperior';
 import s from '../components/styles'
 
 //Falta método en el back para hacer el cambio de clave
@@ -26,7 +26,7 @@ const cambiarClave = ({ cambiarClave }) => {
     // Validacion de boton enviar
     useEffect(() => {
 
-        setPuedeEnviar( (password.length >= 4) && (nuevapassword.length >= 4) && (confirmPassword == nuevapassword) && (nuevapassword != password))
+        setPuedeEnviar((password.length >= 4) && (nuevapassword.length >= 4) && (confirmPassword == nuevapassword) && (nuevapassword != password))
 
     }, [password, nuevapassword, confirmPassword])
 
@@ -41,7 +41,7 @@ const cambiarClave = ({ cambiarClave }) => {
                 method: "PUT",
                 headers: headers,
                 body: JSON.stringify({
-                    email : email,
+                    email: email,
                     password: password,
                     nuevaPassword: nuevapassword,
                 })
@@ -58,8 +58,8 @@ const cambiarClave = ({ cambiarClave }) => {
                 Alert.alert("Error", "La contraseña actual es errónea");
             } else {
                 Alert.alert("Contraseña modificada con éxito");
-            } 
-        }else {
+            }
+        } else {
             Alert.alert(
                 "Error",
                 "¡Revisar los campos completados!",
@@ -75,11 +75,15 @@ const cambiarClave = ({ cambiarClave }) => {
     return (
         <ScrollView style={s.container}>
             <BotoneraSuperior />
+            <View style={s.contenedorSubtitulo}>
+                <Text style={s.subtituloAdmin} >Cambiar contraseña</Text>
+            </View>
             <View style={s.containerIngreso}>
+
                 <TextInput
                     style={s.input}
                     value={password}
-                    placeholder="Contraseña"
+                    placeholder="Contraseña actual"
                     secureTextEntry={true}
                     onChangeText={(texto) => setPassword(texto)}
                 />
@@ -93,7 +97,7 @@ const cambiarClave = ({ cambiarClave }) => {
                 <TextInput
                     style={s.input}
                     value={confirmPassword}
-                    placeholder="Confirmar contraseña"
+                    placeholder="Confirmar nueva contraseña"
                     secureTextEntry={true}
                     onChangeText={(texto) => setConfirmPassword(texto)}
                 />

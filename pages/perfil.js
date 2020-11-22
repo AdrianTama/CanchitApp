@@ -88,7 +88,10 @@ const Perfil = ({guardarUsuario}) => {
     return (
         <ScrollView style={s.container}>
             <BotoneraSuperior/>
-            <Text style={s.subtitulo}>Mi perfil</Text>
+            <View style={s.contenedorSubtitulo}>
+                <Text style={s.subtituloAdmin} >Mi perfil</Text>
+            </View>
+            <View style = {s.contenedorRegistro}>
             <Text style={s.dato}>Email</Text>
             <TextInput
                 style={s.input}
@@ -141,6 +144,7 @@ const Perfil = ({guardarUsuario}) => {
                     <Text style={s.link}>Cambiar contraseña</Text>
                 </View>
             </TouchableHighlight>
+            </View>
 
         </ScrollView>
     )

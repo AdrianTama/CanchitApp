@@ -63,7 +63,7 @@ function MiPerfil() {
   return (
     <Stack.Navigator initialRouteName="Mi Perfil">
       <Stack.Screen name="Mi Perfil" component={Perfil} options={{ headerShown: false }} />
-      <Stack.Screen name="Cambiar Contraseña" component={CambiarClave} />
+      <Stack.Screen name="Cambiar Contraseña" component={CambiarClave} options={{ headerShown: false }} />
     </Stack.Navigator>
   )
 }
