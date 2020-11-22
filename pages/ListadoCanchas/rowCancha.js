@@ -1,12 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Alert, Text, View, TextInput, Button, TouchableHighlight, Picker } from 'react-native';
-import { NavigationHelpersContext, useNavigation } from '@react-navigation/native';
-import { ScrollView } from 'react-native-gesture-handler';
+import React from 'react';
+import { Alert, Text, View, TouchableHighlight } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Octicons';
 
-import BotoneraSuperior from '../../components/botoneraSuperior';
 import s from '../../components/styles'
-import eliminarCancha from './eliminarCancha'
 
 export default function Row({ cancha }) {
     const navigation = useNavigation();
@@ -90,7 +87,6 @@ export default function Row({ cancha }) {
                     />
                 </TouchableHighlight>
             </View>
-
         </View>
     )
 }

@@ -1,12 +1,10 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { ScrollView } from 'react-native';
 import Row from "./rowCancha";
-import Icon from 'react-native-vector-icons/Octicons';
 import { useNavigation } from '@react-navigation/native';
 import GlobalContext from '../../components/context';
 
 import s from '../../components/styles';
-import BotoneraSuperior from '../../components/botoneraSuperior';
 
 export default function ScrollViewCanchas() {
     const context = useContext(GlobalContext);

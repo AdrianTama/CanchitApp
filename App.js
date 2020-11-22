@@ -1,12 +1,10 @@
 import * as React from 'react';
-import { View, Text, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
   DrawerItemList,
-  DrawerItem,
 } from '@react-navigation/drawer';
 import { useState } from 'react';
 import GlobalContext from './components/context'
@@ -44,16 +42,13 @@ function CustomDrawerContent(props) {
   );
 }
 
-
 function Reserva() {
   return (
-
     <Stack.Navigator initialRouteName="Nueva Reserva">
       <Stack.Screen name="Nueva Reserva" component={NuevaReserva} options={{ headerShown: false }} />
       <Stack.Screen name="Pago Reserva" component={PagoReserva} options={{ headerShown: false }} />
       <Stack.Screen name="Mi Reserva" component={MiReserva} options={{ headerShown: false }} />
     </Stack.Navigator>
-
   )
 }
 
@@ -108,10 +103,7 @@ function HomeCliente() {
   );
 }
 
-
-
 export default function App() {
-
   const [authData, setAuthData] = useState({
     usuario: '',
     token: '',
@@ -119,7 +111,6 @@ export default function App() {
       setAuthData({ ...authData, usuario: usuario, token: token })
     }
   })
-
 
   return (
     <GlobalContext.Provider value={authData}>
