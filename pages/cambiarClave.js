@@ -13,8 +13,8 @@ import s from '../components/styles'
 const cambiarClave = ({ cambiarClave }) => {
 
     const context = useContext(GlobalContext);
-    const [email, setEmail] = useState('' || context.usuario.email);
-    const [password, setPassword] = useState('' || context.usuario.password);
+    const [email, setEmail] = useState(context.usuario.email);
+    const [password, setPassword] = useState('');
     const [nuevapassword, setNuevaPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
 
