@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Picker, Text, View, TouchableHighlight } from 'react-native';
+import { Picker, Text, View, TouchableHighlight, Image } from 'react-native';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import BotoneraSuperior from '../components/botoneraSuperior';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -52,6 +52,15 @@ export default function Home() {
     return (
         <ScrollView style={s.container} >
             <BotoneraSuperior />
+
+            <View style={s.contenedorImagen}>
+                <Image
+                    style={s.imagenHome}
+                    source={{
+                        uri: 'https://www.futbolsalou.com/content/imgsxml/panel_destacadocampos/imagen1965.png',
+                    }}
+                />
+            </View>
 
             <View style={s.botonera}>
                 <TouchableHighlight style={s.containerBotonHome} onPress={() => chequeoReserva(response)}>

@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Picker, StyleSheet, Text, View, TouchableHighlight, TouchableOpacity, Alert } from 'react-native';
+import React, { useState, useContext } from 'react';
+import { Text, View, TouchableHighlight, TouchableOpacity, Alert, Image, StyleSheet } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 import s from '../components/styles';
@@ -35,44 +35,52 @@ export default function MiReserva({ route }) {
                 console.log("Error: ", err)
             })
         navigation.navigate('Home');
-            
+
     }
 
     function cancelar() {
-        
-            Alert.alert(
-                "¿Está seguro que desea cancelar su reserva?",
-                "",
-                [
-                    {
-                        text: "Cancelar", 
-                        onPress: console.log("cancelado")
-                    },
-                    {
-                        text: "Confirmar", 
-                        onPress: cancelarReserva
-                    }
-                ],
-                { cancelable: false })
+
+        Alert.alert(
+            "¿Está seguro que desea cancelar su reserva?",
+            "",
+            [
+                {
+                    text: "Cancelar",
+                    onPress: console.log("cancelado")
+                },
+                {
+                    text: "Confirmar",
+                    onPress: cancelarReserva
+                }
+            ],
+            { cancelable: false })
     };
-    
-    
+
+
     return (
         <ScrollView style={s.container} >
             <BotoneraSuperior />
-            <Text style={s.subtitulo}>Mi reserva</Text>
-
-            <View style={s.reserva}>
-                <Text style={s.texto}>Cancha: {reserva.nroCancha}</Text>
-                <Text style={s.texto}>Dia: {reserva.dia.toString().substring(0, 10)}</Text>
-                <Text style={s.texto}>Hora: {reserva.hora}</Text>
+            <View style={s.contenedorSubtitulo}>
+                <Text style={s.subtituloAdmin} >Mi reserva</Text>
+            </View>
+            <View style={s.contenedorImagen}>
+                <Image
+                    style={s.imagenReserva}
+                    source={{
+                        uri: 'https://images.vexels.com/media/users/3/132234/isolated/preview/ac198c217df0bbc58195e48afd92de5e-jugador-de-futbol-tiro-pelota-by-vexels.png',
+                    }}
+                />
+            </View>
+            <View style={s.contenedorMenuLateral}>
+                <View style={s.contenedorListado}>
+                    <View>
+                        <Text style={s.itemList}>Usted reservó la cancha número {reserva.nroCancha} para
+                        el día {reserva.dia.toString().substring(0, 10)} a las {reserva.hora}:00hs</Text>
+                    </View>
+                </View>
             </View>
 
-            <TouchableHighlight style={s.containerBoton} onPress={() => navigation.navigate('Home')}>
-                <View style={s.boton}>
-                    <Text style={s.textoBoton}>Volver</Text>
-                </View>
-            </TouchableHighlight>
+
             <TouchableOpacity style={s.containerBoton} onPress={() => cancelar()}>
                 <View style={s.boton}>
                     <Text style={s.textoBoton}>Cancelar Reserva</Text>
@@ -83,4 +91,6 @@ export default function MiReserva({ route }) {
 
     );
 }
+
+
 

@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         marginRight: 20,
         marginTop: 10,
         marginBottom: 10,
-        backgroundColor: '#5AA877',
+        backgroundColor: '#4F77A4',
     },
 
     containerBoton: {
@@ -101,6 +101,11 @@ const styles = StyleSheet.create({
         alignItems: "center",
         paddingLeft: 20,
         flexDirection: 'row',
+    },
+
+    contenedorImagen:{
+        paddingTop: 50,
+        alignItems: 'center'
     },
 
     botonera: {
@@ -182,6 +187,18 @@ const styles = StyleSheet.create({
     iconoEditar: {
         color: "gray",
     },
+
+    imagenReserva: {
+        width: 150,
+        height: 150,
+    },
+    imagenHome: {
+        resizeMode:'contain',
+        marginTop:50,
+        width: 400,
+        height: 200,
+    },
+
 
     logo: {
         textAlign: 'center',

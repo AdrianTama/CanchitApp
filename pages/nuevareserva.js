@@ -114,8 +114,9 @@ export default function NuevaReserva() {
     return (
         <ScrollView style={s.container} >
             <BotoneraSuperior />
-            <Text style={s.subtitulo}>Nueva Reserva</Text>
-
+            <View style={s.contenedorSubtitulo}>
+                <Text style={s.subtituloAdmin} >Nueva reserva</Text>
+            </View>
             <Text style={s.texto}>Paso 1: Elegí el tipo de cancha</Text>
             <View style={s.contenedorPicker}>
                 <Picker
