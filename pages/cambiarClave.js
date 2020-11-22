@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, TouchableHighlight, Alert } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, StackActions, useIsFocused } from '@react-navigation/native';
 import { ScrollView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Octicons';
 import GlobalContext from '../components/context';
@@ -17,11 +17,21 @@ const cambiarClave = ({ cambiarClave }) => {
     const [password, setPassword] = useState('');
     const [nuevapassword, setNuevaPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
+    const popAction = StackActions.popToTop();
+    const isFocused = useIsFocused();
 
     const [puedeEnviar, setPuedeEnviar] = useState(false)
 
     const navigation = useNavigation();
     const ip = 'https://secret-shore-39623.herokuapp.com/';
+
+    useEffect(() => {
+
+        setPassword('');
+        setNuevaPassword('');
+        setConfirmPassword('');
+
+    }, [isFocused])
 
     // Validacion de boton enviar
     useEffect(() => {
@@ -58,8 +68,10 @@ const cambiarClave = ({ cambiarClave }) => {
                 Alert.alert("Error", "La contraseña actual es errónea");
             } else {
                 Alert.alert("Contraseña modificada con éxito");
-            }
-        } else {
+                navigation.dispatch(popAction);
+                navigation.navigate("Home");
+            } 
+        }else {
             Alert.alert(
                 "Error",
                 "¡Revisar los campos completados!",

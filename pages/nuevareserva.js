@@ -37,6 +37,14 @@ export default function NuevaReserva() {
     const [precio, setPrecio] = useState([]);
 
 
+    useEffect(() => {
+        setTipoElegido('');
+        setCanchaElegida('');
+        setDiaElegido('');
+        setHorarioElegido('');
+    }, [isFocused]);
+
+
     function reservar() {
         if (puedeEnviar == true) {
             navigation.navigate('Pago Reserva', {

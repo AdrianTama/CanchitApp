@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View, Text, Button } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useIsFocused } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import {
   createDrawerNavigator,
@@ -8,7 +8,7 @@ import {
   DrawerItemList,
   DrawerItem,
 } from '@react-navigation/drawer';
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import GlobalContext from './components/context'
 
 //Ingreso y egreso - Cliente/Admin
@@ -101,11 +101,47 @@ function HomeAdmin() {
 }
 
 function HomeCliente() {
+
+  const context = useContext(GlobalContext);
+  const ip = 'https://secret-shore-39623.herokuapp.com/';
+  const [response, setResponse] = useState("");
+  const isFocused = useIsFocused();
+
+  useEffect(() => {
+
+    buscarReserva(); 
+
+}, [isFocused])
+
+async function buscarReserva() {
+    const headers = new Headers();
+
+    headers.append("Content-type", "application/json")
+
+    const requestOptions = {
+        method: "GET",
+        headers: headers
+    }
+
+    await fetch(ip + 'api/reservas/miReserva/' + context.usuario.email, requestOptions)
+        .then((res) => res.json())
+        .then((json) => setResponse(json))
+        .catch(err => {
+            console.log("Error: ", err)
+        })
+        
+}
+
+
+
   return (
     <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />}>
       <Drawer.Screen name="Home" component={PagPrincCliente} />
-      <Drawer.Screen name="Nueva Reserva" component={Reserva} />
-      <Drawer.Screen name="Mi Reserva" component={MiReserva} />
+      {response === false ?
+            <Drawer.Screen name="Nueva Reserva" component={Reserva} />
+            :
+            <Drawer.Screen name="Mi Reserva" component={MiReserva} initialParams={{ params: response }} />
+          }
       <Drawer.Screen name="Mi perfil" component={MiPerfil} />
       <Drawer.Screen name="Salir" component={Salir} />
     </Drawer.Navigator>
