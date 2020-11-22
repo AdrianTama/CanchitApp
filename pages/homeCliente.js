@@ -16,7 +16,7 @@ export default function Home() {
 
     useEffect(() => {
 
-        setResponse(buscarReserva()) 
+        buscarReserva(); 
 
     }, [])
 
@@ -32,6 +32,7 @@ export default function Home() {
 
         let respuesta = await fetch(ip + 'api/reservas/miReserva/' + context.usuario.email, requestOptions)
             .then((res) => res.json())
+            .then((json) => setResponse(json))
             .catch(err => {
                 console.log("Error: ", err)
             })
@@ -40,11 +41,10 @@ export default function Home() {
     }
 
     function chequeoReserva(response) {
-        console.log(response)
         if (response != false) {
-            navigation.navigate("Mi Reserva")
+            navigation.navigate("Mi Reserva", {reserva: response});
         } else {
-            navigation.navigate("Nueva Reserva")
+            navigation.navigate("Nueva Reserva");
         }
     }
 
@@ -56,13 +56,12 @@ export default function Home() {
             <View style={s.botonera}>
                 <TouchableHighlight style={s.containerBotonHome} onPress={() => chequeoReserva(response)}>
                     <View style={s.boton}>
-                        <Text style={s.textoBoton}>Reservar Cancha</Text>
-                    </View>
-                </TouchableHighlight>
-
-                <TouchableHighlight style={s.containerBotonHome} onPress={() => navigation.navigate("Mi Reserva")}>
-                    <View style={s.boton}>
-                        <Text style={s.textoBoton}>Mi Reserva</Text>
+                    {response === false ?
+                    <Text style={s.textoBoton}>Reservar Cancha</Text>
+                    :
+                    <Text style={s.textoBoton}>Mi Reserva</Text>
+                    }
+                        
                     </View>
                 </TouchableHighlight>
 
