@@ -1,7 +1,7 @@
 import React , { useEffect, useState, useContext } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import {  Text, TextInput, View, TouchableHighlight, Alert } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Octicons';
 import GlobalContext from '../components/context';
 
@@ -17,6 +17,13 @@ export default function SignIn() {
 
     const navigation = useNavigation();
     const ip = 'https://secret-shore-39623.herokuapp.com/';
+    const isFocused = useIsFocused();
+
+
+    useEffect(() => {
+        setEmail('');
+        setContraseña('');
+    }, [isFocused]);
 
     useEffect(() => {
         setPuedeEnviar(email.length > 3 && contraseña.length >= 4 )

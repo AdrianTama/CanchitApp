@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Alert, Text, View, TouchableHighlight } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Octicons';
+import GlobalContext from '../../components/context';
 
 import s from '../../components/styles'
 
 export default function Row({ cancha }) {
+    const context = useContext(GlobalContext);
     const navigation = useNavigation();
     const ip = 'https://secret-shore-39623.herokuapp.com/';
 

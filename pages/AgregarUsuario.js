@@ -49,7 +49,8 @@ export default function AgregarUsuario (){
                     nombre: nombre,
                     apellido: apellido,
                     telefono: telefono,
-                    admin: false
+                    admin: false,
+                    montoADevolver: 0
                 })
             }
 

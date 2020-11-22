@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { ScrollView } from 'react-native';
 import Row from "./rowReserva";
 import GlobalContext from '../../components/context';

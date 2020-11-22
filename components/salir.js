@@ -10,7 +10,6 @@ export default Salir = () => {
     useEffect(() => {
         context.cambioDatos(' ', ' ');
         navigation.navigate('Sign In');
-        console.log(context);
     }, [])
 
     return null;

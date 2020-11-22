@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Picker, Text, Alert, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Octicons';
 import GlobalContext from '../components/context';
 
@@ -19,6 +19,7 @@ export default function NuevaReserva() {
 
     const context = useContext(GlobalContext);
     const navigation = useNavigation();
+    const isFocused = useIsFocused();
     const [puedeEnviar, setPuedeEnviar] = useState(false);
     const ip = 'https://secret-shore-39623.herokuapp.com/';
 
@@ -34,6 +35,14 @@ export default function NuevaReserva() {
     const [diasHorarios, setDiasHorarios] = useState([]);
     const [horarios, setHorarios] = useState([]);
     const [precio, setPrecio] = useState([]);
+
+
+    useEffect(() => {
+        setTipoElegido('');
+        setCanchaElegida('');
+        setDiaElegido('');
+        setHorarioElegido('');
+    }, [isFocused]);
 
 
     function reservar() {
@@ -76,7 +85,7 @@ export default function NuevaReserva() {
             .then((response) => response.json())
             .then((json) => setTipos(json))
             .catch((error) => console.error(error));
-    }, []);
+    }, [isFocused]);
 
     //ejecuta el fetch sólo cuando cambia el tipoElegido
     useEffect(() => {
@@ -113,8 +122,9 @@ export default function NuevaReserva() {
     return (
         <ScrollView style={s.container} >
             <BotoneraSuperior />
-            <Text style={s.subtitulo}>Nueva Reserva</Text>
-
+            <View style={s.contenedorSubtitulo}>
+                <Text style={s.subtituloAdmin} >Nueva reserva</Text>
+            </View>
             <Text style={s.texto}>Paso 1: Elegí el tipo de cancha</Text>
             <View style={s.contenedorPicker}>
                 <Picker

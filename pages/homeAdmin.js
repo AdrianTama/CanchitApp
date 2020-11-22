@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Picker, StyleSheet, Text, View, TouchableHighlight, Button } from 'react-native';
+import { Picker, StyleSheet, Text, View, TouchableHighlight, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import BotoneraSuperior from '../components/botoneraSuperior';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -13,7 +13,23 @@ export default function Home() {
     return (
         <ScrollView style={s.container} >
             <BotoneraSuperior />
+            <View style={s.contenedorImagen}>
+                <Image
+                    style={s.imagenHome}
+                    source={{
+                        uri: 'https://www.futbolsalou.com/content/imgsxml/panel_destacadocampos/imagen1965.png',
+                    }}
+                />
+            </View>
+
             <View style={s.botonera}>
+
+                <TouchableHighlight style={s.containerBotonHome} onPress={() => navigation.navigate("Días y Horarios de Atención")}>
+                    <View style={s.boton}>
+                        <Text style={s.textoBoton}>Días y Horarios de Atención</Text>
+                    </View>
+                </TouchableHighlight>
+
                 <TouchableHighlight style={s.containerBotonHome} onPress={() => navigation.navigate("Listado Canchas")}>
                     <View style={s.boton}>
                         <Text style={s.textoBoton}>Listado de canchas</Text>

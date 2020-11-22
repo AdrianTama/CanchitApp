@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, TextInput, Picker, Alert } from 'react-native';
-import { NavigationHelpersContext, useNavigation } from '@react-navigation/native';
+import { NavigationHelpersContext, useNavigation, useIsFocused } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Octicons';
 import GlobalContext from '../../components/context';
 
@@ -15,6 +15,7 @@ const AgregarCancha = () => {
     const [precio, setPrecio] = useState("");
     const [tipoElegido, setTipoElegido] = useState([]);
     const [tipos, setTipos] = useState([]);
+    const isFocused = useIsFocused();
 
     const [puedeEnviar, setPuedeEnviar] = useState(false)
     const navigation = useNavigation();
@@ -82,7 +83,7 @@ const AgregarCancha = () => {
             .then((response) => response.json())
             .then((json) => setTipos(json))
             .catch((error) => console.error(error));
-    }, []);
+    }, [isFocused]);
 
 
     return (

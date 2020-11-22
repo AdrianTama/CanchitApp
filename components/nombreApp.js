@@ -7,7 +7,7 @@ export default function NombreApp() {
 
     return (
         <View>
-            <Text style={s.logo}>CanchitApp</Text>
+            <Text style={s.logo}>CanchitApp </Text>
         </View>
     );
 }

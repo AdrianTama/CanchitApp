@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, View, Text } from 'react-native';
 import Row from "./rowCancha";
 import { useNavigation } from '@react-navigation/native';
 import GlobalContext from '../../components/context';
@@ -16,7 +16,7 @@ export default function ScrollViewCanchas() {
 
         const requestOptions = {
             method: "GET",
-            headers: {'Authorization': `Bearer ${context.token}`}
+            headers: { 'Authorization': `Bearer ${context.token}` }
         }
         fetch(ip + 'api/canchas', requestOptions)
             .then((response) => response.json())
