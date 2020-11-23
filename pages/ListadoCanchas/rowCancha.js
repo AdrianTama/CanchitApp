@@ -89,7 +89,6 @@ export default function Row({ cancha }) {
                     />
                 </TouchableHighlight>
             </View>
-
         </View>
     )
 }

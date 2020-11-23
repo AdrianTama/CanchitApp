@@ -1,4 +1,4 @@
-import React , {useEffect, useState, useContext} from 'react';
+import React , { useEffect, useState, useContext } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import {  Text, TextInput, View, TouchableHighlight, Alert } from 'react-native';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
@@ -25,11 +25,8 @@ export default function SignIn() {
         setContraseña('');
     }, [isFocused]);
 
-
     useEffect(() => {
-
         setPuedeEnviar(email.length > 3 && contraseña.length >= 4 )
-
     }, [email, contraseña])
 
     async function ingresar() {
@@ -53,23 +50,24 @@ export default function SignIn() {
                 })
             
                 function datosLogin(usuario, token) {
+<<<<<<< HEAD
                    
                      context.cambioDatos(usuario, token, context.reserva, context.objetoReserva);
+=======
+                     context.cambioDatos(usuario, token);
+>>>>>>> baby_groot
                 }
 
-             if(!response){
+            if(!response) {
                 Alert.alert("Error", "Credenciales inválidas.")
-            }else{
+            } else {
                 datosLogin(response.usuario, response.token);
                 navigation.navigate("Home");
-
             } 
-
             
-        }else{
+        } else {
             Alert.alert("Error", "Falta completar algún campo.")
         }
-        
     };
 
     function registrarme() {
