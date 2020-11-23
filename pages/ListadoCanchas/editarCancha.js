@@ -8,7 +8,7 @@ import GlobalContext from '../../components/context';
 import BotoneraSuperior from '../../components/botoneraSuperior';
 import s from '../../components/styles'
 
-export default Cancha = ({ route }) => {
+export default function Cancha({ route }) {
     const context = useContext(GlobalContext);
     const { cancha } = route.params
     const [numero] = useState(cancha.numero.toString());

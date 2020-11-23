@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, TextInput, TouchableHighlight, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { ScrollView } from 'react-native-gesture-handler';
+import GlobalContext from '../components/context';
 
 import BotoneraSuperior from '../components/nombreApp';
 import s from '../components/styles'
 
 //Falta mejorar mensajes de error en cada input
 //Ver si cuando se registra se tiene que loguear automáticamente
-
 export default function AgregarUsuario (){
-
+    const context = useContext(GlobalContext);
     const [email, setEmail] = useState("")
     const [nombre, setNombre] = useState("")
     const [apellido, setApellido] = useState("")
@@ -24,22 +24,14 @@ export default function AgregarUsuario (){
 
     // Validacion de boton enviar
     useEffect(() => {
-
         setPuedeEnviar(email.length > 3 && nombre.length > 1 && apellido.length > 1 && (telefono != 0 && telefono > 7) && contraseña.length >= 4 && confirmarContraseña === contraseña)
-
     }, [email, nombre, apellido, telefono, contraseña, confirmarContraseña])
 
-
-
     async function guardarUsuario() {
-
         if (puedeEnviar) {
-
             //Conformación de componentes para el fetch
             const headers = new Headers();
-
             headers.append("Content-type", "application/json")
-
             const requestOptions = {
                 method: "POST",
                 headers: headers,
@@ -53,7 +45,6 @@ export default function AgregarUsuario (){
                     montoADevolver: 0
                 })
             }
-
             //Almacenamos el response del fetch
             let response = await fetch(ip + 'api/usuarios/agregarUsuario', requestOptions)
                 .then((res) => res.json())
@@ -65,9 +56,12 @@ export default function AgregarUsuario (){
                 Alert.alert("Error", "El mail ya se encuentra registrado.")
             } else {
                 Alert.alert("Usted se registró con éxito.")
+                datosLogin(response.usuario, response.token);
                 navigation.navigate("Home")
             }
-
+            function datosLogin(usuario, token) {
+              context.cambioDatos(usuario, token, context.reserva, context.objetoReserva);
+            }
         } else {
             //Mensaje de error cuando falta algún campo o hay algún campo inválido
             Alert.alert(
@@ -79,7 +73,6 @@ export default function AgregarUsuario (){
                 }]
             )
         }
-
     }
 
     return (

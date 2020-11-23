@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import GlobalContext from './context';
 
-export default Salir = () => {
+export default function Salir() {
     const context = useContext(GlobalContext);
 
     const navigation = useNavigation();

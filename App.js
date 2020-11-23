@@ -25,7 +25,7 @@ import NuevaReserva from './pages/nuevareserva';
 import PagoReserva from './pages/pagoReserva';
 import MiReserva from './pages/mireserva';
 //Admin - Reservas
-import ListadoReservas from './pages/ListadoReservas/scrollViewReservas';
+import ListadoReservas from './pages/ListadoReservas/misReservas';
 import VerReserva from './pages/verReserva';
 import SeteoAtencion from './pages/seteoAtencion';
 //Admin - Canchas
@@ -67,7 +67,7 @@ function AdminReservas() {
   return (
     <Stack.Navigator initialRouteName="Listado Reservas">
       <Stack.Screen name="Listado Reservas" component={ListadoReservas} options={{ headerShown: false }} />
-      <Stack.Screen name="Modificar Reserva" component={VerReserva} />
+      <Stack.Screen name="Modificar Reserva" component={VerReserva} options={{ headerShown: false }} />
     </Stack.Navigator>
   )
 }

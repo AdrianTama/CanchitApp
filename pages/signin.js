@@ -49,10 +49,9 @@ export default function SignIn() {
                     console.log("Error: ", err)
                 })
             
-                function datosLogin(usuario, token) {
-                   
-                     context.cambioDatos(usuario, token, context.reserva, context.objetoReserva);
-                }
+            function datosLogin(usuario, token) {
+                  context.cambioDatos(usuario, token, context.reserva, context.objetoReserva);
+            }
 
             if(!response) {
                 Alert.alert("Error", "Credenciales inválidas.")

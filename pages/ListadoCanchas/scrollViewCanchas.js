@@ -10,7 +10,6 @@ export default function ScrollViewCanchas() {
     const context = useContext(GlobalContext);
     const ip = 'https://secret-shore-39623.herokuapp.com/';
     const [canchas, setCanchas] = useState([]);
-    const navigation = useNavigation();
 
     useEffect(() => {
 

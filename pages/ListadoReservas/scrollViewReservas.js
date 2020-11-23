@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { ScrollView } from 'react-native';
 import Row from "./rowReserva";
+import { useNavigation } from '@react-navigation/native';
 import GlobalContext from '../../components/context';
 
 import s from '../../components/styles';
@@ -10,6 +11,7 @@ export default function ScrollViewTurnos() {
     const context = useContext(GlobalContext);
     const ip = 'https://secret-shore-39623.herokuapp.com/';
     const [reservas, setReservas] = useState([]);
+    const navigation = useNavigation();
 
     useEffect(() => {
       const requestOptions = {
