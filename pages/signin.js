@@ -13,7 +13,7 @@ export default function SignIn() {
     const context = useContext(GlobalContext);
     const [email, setEmail] = useState('' || context.usuario);
     const [contraseña, setContraseña] = useState('' || context.usuario);
-    const [puedeEnviar, setPuedeEnviar] = useState(false)
+    const [puedeEnviar, setPuedeEnviar] = useState(false);
 
     const navigation = useNavigation();
     const ip = 'https://secret-shore-39623.herokuapp.com/';
@@ -66,6 +66,7 @@ export default function SignIn() {
     };
 
     function registrarme() {
+        setTimeout(() => setLoading(true), 6000);
         navigation.navigate("Registrarme");
     };
 

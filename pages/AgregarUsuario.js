@@ -3,6 +3,7 @@ import { Text, View, TextInput, TouchableHighlight, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { ScrollView } from 'react-native-gesture-handler';
 import GlobalContext from '../components/context';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 import BotoneraSuperior from '../components/nombreApp';
 import s from '../components/styles'
@@ -23,6 +24,7 @@ export default function AgregarUsuario() {
     const [errorContraseña, setErrorContraseña] = useState("");
     const [confirmarContraseña, setConfirmarContraseña] = useState("");
     const [errorConfirmarContraseña, setErrorConfirmarContraseña] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const [puedeEnviar, setPuedeEnviar] = useState(false)
     const navigation = useNavigation();
@@ -39,6 +41,13 @@ export default function AgregarUsuario() {
             confirmarContraseña != ""
         );
     }, [email, nombre, apellido, telefono, contraseña, confirmarContraseña]);
+  
+    const startLoading = () => {
+      setLoading(true);
+      setTimeout((loading) => {
+        setLoading(false);
+      }, 3000);
+    };
 
     async function guardarUsuario() {
         if (puedeEnviar) {
@@ -176,7 +185,10 @@ export default function AgregarUsuario() {
         <ScrollView style={s.contenedorRegistro}>
             <BotoneraSuperior />
             <View style={s.containerIngreso}>
-
+                <Spinner
+                    visible={loading}
+                    textContent={'Loading...'}
+                />
                 <TextInput
                     style={s.input}
                     placeholder="Email"
@@ -220,8 +232,7 @@ export default function AgregarUsuario() {
                 />
                 <Text style={s.validacionInput}>{errorConfirmarContraseña}</Text>
             </View>
-
-            <TouchableHighlight style={s.containerBoton} onPress={() => guardarUsuario()}>
+            <TouchableHighlight style={s.containerBoton} onPress={() => { guardarUsuario(), startLoading() }}>
                 <View style={s.boton}>
                     <Text style={s.textoBoton}>Confirmar</Text>
                 </View>
@@ -232,7 +243,6 @@ export default function AgregarUsuario() {
                     <Text style={s.textoBoton}>Cancelar</Text>
                 </View>
             </TouchableHighlight>
-
         </ScrollView>
     )
 }
