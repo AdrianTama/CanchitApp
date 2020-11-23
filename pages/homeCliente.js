@@ -9,17 +9,14 @@ import s from '../components/styles'
 
 export default function Home() {
 
-    const ip = 'https://secret-shore-39623.herokuapp.com/';
     const navigation = useNavigation();
     const context = useContext(GlobalContext);
-    const [response, setResponse] = useState("");
-    const isFocused = useIsFocused();
+    const [response, setResponse] = useState('' || context.objetoReserva);
 
 
     function chequeoReserva() {
-        setResponse(context.objetoReserva)
         if (response != false) {
-            navigation.navigate("Mi Reserva", {reserva: response});
+            navigation.navigate("Mi Reserva");
         } else {
             navigation.navigate("Nueva Reserva");
         }
@@ -42,7 +39,7 @@ export default function Home() {
             <View style={s.botonera}>
                 <TouchableHighlight style={s.containerBotonHome} onPress={() => chequeoReserva()}>
                     <View style={s.boton}>
-                    {response === false ?
+                    {context.objetoReserva === false ?
                     <Text style={s.textoBoton}>Reservar Cancha</Text>
                     :
                     <Text style={s.textoBoton}>Mi Reserva</Text>

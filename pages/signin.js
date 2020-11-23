@@ -54,7 +54,7 @@ export default function SignIn() {
             
                 function datosLogin(usuario, token) {
                    
-                     context.cambioDatos(usuario, token);
+                     context.cambioDatos(usuario, token, context.reserva, context.objetoReserva);
                 }
 
              if(!response){

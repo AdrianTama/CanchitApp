@@ -7,12 +7,14 @@ import BotoneraSuperior from '../components/botoneraSuperior';
 import { ScrollView } from 'react-native-gesture-handler';
 import GlobalContext from '../components/context';
 
-export default function MiReserva({ route }) {
-    const { reserva } = route.params;
+export default function MiReserva() {
     const navigation = useNavigation();
     const context = useContext(GlobalContext);
     const [respuesta, setRespuesta] = useState('');
     const ip = 'https://secret-shore-39623.herokuapp.com/';
+    const [nroCancha, setNroCancha] = useState('' || context.objetoReserva.nroCancha);
+    const [dia, setDia] = useState('' || context.objetoReserva.dia);
+    const [hora, setHora] = useState('' || context.objetoReserva.hora);
 
     async function cancelarReserva() {
 
@@ -25,7 +27,7 @@ export default function MiReserva({ route }) {
             headers: headers,
             body: JSON.stringify({
                 usuario: context.usuario,
-                reserva: reserva,
+                reserva: context.objetoReserva,
             })
         }
 
@@ -76,8 +78,8 @@ export default function MiReserva({ route }) {
             <View style={s.contenedorMenuLateral}>
                 <View style={s.contenedorListado}>
                     <View>
-                        <Text style={s.itemList}>Usted reservó la cancha número {reserva.nroCancha} para
-                        el día {reserva.dia.toString().substring(0, 10)} a las {reserva.hora}:00hs</Text>
+                        <Text style={s.itemList}>Usted reservó la cancha número {nroCancha} para
+                        el día {dia.toString().substring(0,10)} a las {hora}:00hs</Text>
                     </View>
                 </View>
             </View>
