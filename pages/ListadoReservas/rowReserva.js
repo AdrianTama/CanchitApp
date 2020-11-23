@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Alert, Text, View, TouchableHighlight } from 'react-native';
-import Icon from 'react-native-vector-icons/Octicons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import GlobalContext from '../../components/context';
 
@@ -35,9 +35,6 @@ export default function Row({ reserva }) {
         const requestOptions = {
             method: "PUT",
             headers: headers,
-            body: JSON.stringify({
-                id: id,
-            })
         }
 
         let suspencion = await fetch(ip + 'api/reservas/suspender/' + id, requestOptions)
@@ -46,10 +43,10 @@ export default function Row({ reserva }) {
                 console.log("Error: ", err)
             })
 
-        if (suspencion === true) {
-            Alert.alert("La reserva se suspendió")
-        } else {
+        if (suspencion.result.nModified === 0) {
             Alert.alert("La reserva no se pudo suspender")
+        } else {
+            Alert.alert("La reserva se suspendió")
         }
 
     }
@@ -68,7 +65,7 @@ export default function Row({ reserva }) {
       <View style={s.botoneraDerecha}>
           <TouchableHighlight underlayColor='rgba(154, 154, 154, 0,2'>
               <Icon
-                  name='trashcan'
+                  name='cancel'
                   size={30}
                   color='#000'
                   style={s.iconoEditar}
