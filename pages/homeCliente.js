@@ -11,11 +11,11 @@ export default function Home() {
 
     const navigation = useNavigation();
     const context = useContext(GlobalContext);
-    const [response, setResponse] = useState('' || context.objetoReserva);
+    
 
 
     function chequeoReserva() {
-        if (response != false) {
+        if (context.objetoReserva != false) {
             navigation.navigate("Mi Reserva");
         } else {
             navigation.navigate("Nueva Reserva");

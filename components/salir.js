@@ -8,7 +8,7 @@ export default Salir = () => {
     const navigation = useNavigation();
 
     useEffect(() => {
-        context.cambioDatos(' ', ' ');
+        context.cambioDatos('', '','','');
         navigation.navigate('Sign In');
     }, [])
 
