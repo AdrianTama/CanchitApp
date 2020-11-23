@@ -50,12 +50,8 @@ export default function SignIn() {
                 })
             
                 function datosLogin(usuario, token) {
-<<<<<<< HEAD
                    
                      context.cambioDatos(usuario, token, context.reserva, context.objetoReserva);
-=======
-                     context.cambioDatos(usuario, token);
->>>>>>> baby_groot
                 }
 
             if(!response) {
