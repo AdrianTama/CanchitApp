@@ -66,7 +66,7 @@ export default function SignIn() {
     };
 
     function registrarme() {
-        setTimeout(() => setLoading(true), 6000);
+        //setTimeout(() => setLoading(true), 6000);
         navigation.navigate("Registrarme");
     };
 

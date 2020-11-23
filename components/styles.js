@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
 
   containerIngreso: {
     paddingTop: 15,
-    marginTop: 50,
+    marginTop: 30,
   },
 
   contenedorRow: {
@@ -258,8 +258,8 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: "gray",
     minWidth: 100,
-    marginTop: 20,
-    marginBottom: 20,
+    marginTop: 15,
+    marginBottom: 5,
     marginHorizontal: 20,
     paddingHorizontal: 10,
     paddingVertical: 5,
