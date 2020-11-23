@@ -30,13 +30,14 @@ const AgregarCancha = () => {
     async function guardarCancha() {
 
         if (puedeEnviar) {
-            const headers = new Headers();
-            headers.append("Content-type", "application/json")
             //Conformación de componentes para el fetch
             const requestOptions = {
                 method: "POST",
-                // headers: {'Authorization': `Bearer ${context.token}`},
-                headers: headers,
+                headers: new Headers({
+                    'Authorization': `Bearer ${context.token}`,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                  }),
                 body: JSON.stringify({
                     descripcion: tipoElegido,
                     numero: numero,
@@ -77,7 +78,11 @@ const AgregarCancha = () => {
         //adaptar con ip de la compu que ejecute: http://ip:3000/api...
         const requestOptions = {
             method: "GET",
-            // headers: {'Authorization': `Bearer ${context.token}`},
+            headers: new Headers({
+                'Authorization': `Bearer ${context.token}`,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              }),
         }
         fetch(ip + 'api/tipocancha/',requestOptions)
             .then((response) => response.json())

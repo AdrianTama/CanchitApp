@@ -18,13 +18,13 @@ export default function MiReserva() {
 
     async function cancelarReserva() {
 
-        const headers = new Headers();
-
-        headers.append("Content-type", "application/json")
-
         const requestOptions = {
             method: "POST",
-            headers: headers,
+            headers: new Headers({
+                'Authorization': `Bearer ${context.token}`,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              }),
             body: JSON.stringify({
                 usuario: context.usuario,
                 reserva: context.objetoReserva,

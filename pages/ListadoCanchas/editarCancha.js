@@ -32,13 +32,14 @@ export default Cancha = ({ route }) => {
         if (puedeEnviar) {
 
             //Conformación de componentes para el fetch
-            const headers = new Headers();
-            headers.append("Content-type", "application/json")
 
             const requestOptions = {
                 method: "PUT",
-                headers: headers,
-                // headers: {'Authorization': `Bearer ${context.token}`},
+                headers: new Headers({
+                    'Authorization': `Bearer ${context.token}`,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                  }),
                 body: JSON.stringify({
                     id: cancha._id,
                     descripcion: tipoElegido,

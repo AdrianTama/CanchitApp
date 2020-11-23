@@ -68,6 +68,18 @@ export default function NuevaReserva() {
 
     };
 
+    useEffect(()=>{
+        const requestOptions = {
+            method: "GET",
+            headers: new Headers({
+                'Authorization': `Bearer ${context.token}`,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              }),
+        }
+    }, [isFocused]);
+    
+
     useEffect(() => {
         if (tipoElegido != 0 && canchaElegida != 0 && diaElegido.dia != 0 && horarioElegido != 0) {
             setPuedeEnviar(true);
@@ -76,10 +88,6 @@ export default function NuevaReserva() {
 
     //ejecuta el fetch cuando se carga la page
     useEffect(() => {
-        const requestOptions = {
-            method: "GET",
-            headers: {'Authorization': `Bearer ${context.token}`},
-        }
         //adaptar con ip de la compu que ejecute: http://ip:3000/api...
         fetch(ip + 'api/tipocancha/', requestOptions)
             .then((response) => response.json())
@@ -90,7 +98,7 @@ export default function NuevaReserva() {
     //ejecuta el fetch sólo cuando cambia el tipoElegido
     useEffect(() => {
         if (tipoElegido !== undefined) {
-            fetch(ip + 'api/canchas/' + tipoElegido)
+            fetch(ip + 'api/canchas/' + tipoElegido, requestOptions)
                 .then((response) => response.json())
                 .then((json) => setCanchas(json))
                 .catch((error) => console.error(error));
@@ -101,7 +109,7 @@ export default function NuevaReserva() {
     useEffect(() => {
         if (canchaElegida !== undefined) {
             setPrecio(canchaElegida.precio);
-            fetch(ip + 'api/reservas/buscar/' + canchaElegida.numero)
+            fetch(ip + 'api/reservas/buscar/' + canchaElegida.numero, requestOptions)
                 .then((response) => response.json())
                 .then((json) => setDiasHorarios(json))
                 .catch((error) => {

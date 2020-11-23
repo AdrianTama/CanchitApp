@@ -40,13 +40,14 @@ const Perfil = ({guardarUsuario}) => {
         if (puedeEnviar) {
 
             //Conformación de componentes para el fetch
-            const headers = new Headers();
-
-            headers.append("Content-type", "application/json")
 
             const requestOptions = {
                 method: "PUT",
-                headers: headers,
+                headers: new Headers({
+                    'Authorization': `Bearer ${context.token}`,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                  }),
                 body: JSON.stringify({
                     email: email,
                     nombre: nombre,
