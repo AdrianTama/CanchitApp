@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Text, View, TextInput, TouchableHighlight, Alert } from 'react-native';
+import { ActivityIndicator, Text, View, TextInput, TouchableHighlight, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { ScrollView } from 'react-native-gesture-handler';
 import GlobalContext from '../components/context';
@@ -24,9 +24,16 @@ export default function AgregarUsuario (){
 
     // Validacion de boton enviar
     useEffect(() => {
-        setPuedeEnviar(email.length > 3 && nombre.length > 1 && apellido.length > 1 && (telefono != 0 && telefono > 7) && contraseña.length >= 4 && confirmarContraseña === contraseña)
-    }, [email, nombre, apellido, telefono, contraseña, confirmarContraseña])
-
+      setPuedeEnviar(
+        email.length > 3 &&
+          (nombre.length > 1) & (apellido.length > 1) &&
+          telefono != 0 &&
+          telefono > 7 &&
+          contraseña.length >= 4 &&
+          confirmarContraseña === contraseña
+      );
+    }, [email, nombre, apellido, telefono, contraseña, confirmarContraseña]);
+  
     async function guardarUsuario() {
         if (puedeEnviar) {
             //Conformación de componentes para el fetch
@@ -51,13 +58,14 @@ export default function AgregarUsuario (){
                 .catch(err => {
                     console.log("Error: ", err)
                 })
-            //Dependiendo el response, mostramos un msj    
-            if (response.email === undefined) {
+                //Dependiendo el response, mostramos un msj   
+            const usuarioPersistido = response.usuarioPersistido;
+            const token = response.token;
+            if (!usuarioPersistido.email) {
                 Alert.alert("Error", "El mail ya se encuentra registrado.")
             } else {
                 Alert.alert("Usted se registró con éxito.")
-                console.log("RESPUESTAAAAA->", response);
-                datosLogin(response.usuario, response.token);
+                datosLogin(usuarioPersistido, token);
                 navigation.navigate("Home")
             }
             function datosLogin(usuario, token) {
@@ -78,6 +86,7 @@ export default function AgregarUsuario (){
 
     return (
         <ScrollView style={s.contenedorRegistro}>
+            <ActivityIndicator />
             <BotoneraSuperior />
             <View style={s.containerIngreso}>
 
