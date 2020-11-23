@@ -16,7 +16,7 @@ export default function ScrollViewTurnos() {
           method: "GET",
           headers: { 'Authorization': `Bearer ${context.token}` }
       }
-      fetch(ip + 'api/reservas', requestOptions)
+      fetch(ip + 'api/reservas/hoy', requestOptions)
           .then((response) => response.json())
           .then((json) => setReservas(json))
           .catch((error) => console.error(error));

@@ -46,13 +46,13 @@ export default function Row({ reserva }) {
             })
         }
 
-        let eliminacion = await fetch(ip + 'api/reservas/' + id, requestOptions)
+        let suspencion = await fetch(ip + 'api/reservas/suspender/' + id, requestOptions)
             .then((res) => res.json())
             .catch(err => {
                 console.log("Error: ", err)
             })
 
-        if (eliminacion === true) {
+        if (suspencion === true) {
             Alert.alert("La reserva se suspendió")
         } else {
             Alert.alert("La reserva no se pudo suspender")
