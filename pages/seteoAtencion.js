@@ -44,7 +44,11 @@ export default function SeteoAtencion() {
 
         const requestOptions = {
             method: "GET",
-            // headers: {'Authorization': `Bearer ${context.token}`},
+            headers: new Headers({
+                'Authorization': `Bearer ${context.token}`,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              }),
         }
 
         fetch(ip + 'api/horariosAtencion/', requestOptions)

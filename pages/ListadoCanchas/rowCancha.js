@@ -34,13 +34,13 @@ export default function Row({ cancha }) {
     async function eliminar() {
         const id = cancha._id;
 
-        const headers = new Headers();
-
-        headers.append("Content-type", "application/json")
-
         const requestOptions = {
             method: "DELETE",
-            headers: headers,
+            headers: new Headers({
+                'Authorization': `Bearer ${context.token}`,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              }),
             body: JSON.stringify({
                 id: id,
             })
