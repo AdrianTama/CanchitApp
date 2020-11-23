@@ -25,8 +25,7 @@ export default function AgregarUsuario() {
   useEffect(() => {
     setPuedeEnviar(
       email.length > 3 &&
-        nombre.length > 1 &&
-        apellido.length > 1 &&
+        (nombre.length > 1) & (apellido.length > 1) &&
         telefono != 0 &&
         telefono > 7 &&
         contraseña.length >= 4 &&
