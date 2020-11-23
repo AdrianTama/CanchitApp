@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Text, View, TextInput, Picker, Alert, Switch } from 'react-native';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Octicons';
+import GlobalContext from '../components/context';
 
 import BotoneraSuperior from '../components/botoneraSuperior';
 import s from '../components/styles';
@@ -17,6 +18,7 @@ export default function SeteoAtencion() {
     const navigation = useNavigation();
     const ip = 'https://secret-shore-39623.herokuapp.com/';
     const isFocused = useIsFocused();
+    const context = useContext(GlobalContext);
 
     const [lunes, setLunes] = useState(true);
     const toggleSwitchLunes = () => setLunes(previousState => !previousState);
@@ -110,13 +112,14 @@ export default function SeteoAtencion() {
         if (puedeEnviar) {
 
             //Fetch para el horario
-            const headers = new Headers();
-            headers.append("Content-type", "application/json")
             //Conformación de componentes para el fetch
             const requestOptionsHora = {
                 method: "PUT",
-                // headers: {'Authorization': `Bearer ${context.token}`},
-                headers: headers,
+                headers: new Headers({
+                    'Authorization': `Bearer ${context.token}`,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                  }),
                 body: JSON.stringify({
                     horarioDeInicio: horaIni,
                     horarioDeCierre: horaFin,
@@ -134,8 +137,11 @@ export default function SeteoAtencion() {
             //Conformación de componentes para el fetch
             const requestOptionsDia = {
                 method: "PUT",
-                // headers: {'Authorization': `Bearer ${context.token}`},
-                headers: headers,
+                headers: new Headers({
+                    'Authorization': `Bearer ${context.token}`,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                  }),
                 body: JSON.stringify({
                     dias: diasAtencion
                 })

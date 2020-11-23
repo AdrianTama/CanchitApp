@@ -109,13 +109,14 @@ function HomeCliente() {
   }, [context])
 
   async function buscarReserva() {
-    const headers = new Headers();
-
-    headers.append("Content-type", "application/json")
 
     const requestOptions = {
       method: "GET",
-      headers: headers
+      headers: new Headers({
+        'Authorization': `Bearer ${context.token}`,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }),
     }
 
     await fetch(ip + 'api/reservas/miReserva/' + context.usuario.email, requestOptions)
