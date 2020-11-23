@@ -13,8 +13,9 @@ const styles = StyleSheet.create({
     },
 
     contenedorRegistro: {
+        flex:1,
         paddingTop: 20,
-        paddingBottom:20,
+        paddingBottom: 20,
     },
 
     contenedorMenuLateral: {
@@ -96,14 +97,14 @@ const styles = StyleSheet.create({
     },
 
     contenedorSwitch: {
-        paddingTop:9,
+        paddingTop: 9,
         flex: 1,
         alignItems: "center",
         paddingLeft: 20,
         flexDirection: 'row',
     },
 
-    contenedorImagen:{
+    contenedorImagen: {
         paddingTop: 50,
         alignItems: 'center'
     },
@@ -193,8 +194,8 @@ const styles = StyleSheet.create({
         height: 150,
     },
     imagenHome: {
-        resizeMode:'contain',
-        marginTop:50,
+        resizeMode: 'contain',
+        marginTop: 50,
         width: 400,
         height: 200,
     },
@@ -253,11 +254,15 @@ const styles = StyleSheet.create({
         borderColor: 'gray',
         minWidth: 100,
         marginTop: 20,
-        marginBottom: 20,
+        marginBottom: 5,
         marginHorizontal: 20,
         paddingHorizontal: 10,
-        paddingVertical: 5,
+    },
 
+    validacionInput: {
+        color: 'red',
+        fontSize: 10,
+        paddingHorizontal:20
     },
 
     itemList: {

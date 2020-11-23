@@ -106,6 +106,7 @@ export default function NuevaReserva() {
                 placeholder="Número"
                 onChangeText={(texto) => setTarjeta(texto)}
                 keyboardType="numeric"
+                maxLength={16}
             />
             <Text style={s.dato}>Vencimiento</Text>
             <TextInput
@@ -120,6 +121,7 @@ export default function NuevaReserva() {
                 placeholder="Código de Seguridad"
                 onChangeText={(texto) => setCvv(texto)}
                 keyboardType="numeric"
+                maxLength={3}
             />
             <Text style={s.dato}>Precio</Text>
             <TextInput

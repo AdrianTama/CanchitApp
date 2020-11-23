@@ -9,14 +9,20 @@ import s from '../components/styles'
 
 //Falta mejorar mensajes de error en cada input
 //Ver si cuando se registra se tiene que loguear automáticamente
-export default function AgregarUsuario (){
+export default function AgregarUsuario() {
     const context = useContext(GlobalContext);
-    const [email, setEmail] = useState("")
-    const [nombre, setNombre] = useState("")
-    const [apellido, setApellido] = useState("")
-    const [telefono, setTelefono] = useState("")
-    const [contraseña, setContraseña] = useState("")
-    const [confirmarContraseña, setConfirmarContraseña] = useState("")
+    const [email, setEmail] = useState("");
+    const [errorEmail, setErrorEmail] = useState("");
+    const [nombre, setNombre] = useState("");
+    const [errorNombre, setErrorNombre] = useState("");
+    const [apellido, setApellido] = useState("");
+    const [errorApellido, setErrorApellido] = useState("");
+    const [telefono, setTelefono] = useState("");
+    const [errorTelefono, setErrorTelefono] = useState("");
+    const [contraseña, setContraseña] = useState("");
+    const [errorContraseña, setErrorContraseña] = useState("");
+    const [confirmarContraseña, setConfirmarContraseña] = useState("");
+    const [errorConfirmarContraseña, setErrorConfirmarContraseña] = useState("");
 
     const [puedeEnviar, setPuedeEnviar] = useState(false)
     const navigation = useNavigation();
@@ -24,16 +30,16 @@ export default function AgregarUsuario (){
 
     // Validacion de boton enviar
     useEffect(() => {
-      setPuedeEnviar(
-        email.length > 3 &&
-          (nombre.length > 1) & (apellido.length > 1) &&
-          telefono != 0 &&
-          telefono > 7 &&
-          contraseña.length >= 4 &&
-          confirmarContraseña === contraseña
-      );
+        setPuedeEnviar(
+            email != "" &&
+            nombre != "" & 
+            apellido != "" &&
+            telefono != "" &&
+            contraseña != "" && 
+            confirmarContraseña != ""
+        );
     }, [email, nombre, apellido, telefono, contraseña, confirmarContraseña]);
-  
+
     async function guardarUsuario() {
         if (puedeEnviar) {
             //Conformación de componentes para el fetch
@@ -58,7 +64,7 @@ export default function AgregarUsuario (){
                 .catch(err => {
                     console.log("Error: ", err)
                 })
-                //Dependiendo el response, mostramos un msj   
+            //Dependiendo el response, mostramos un msj   
             const usuarioPersistido = response.usuarioPersistido;
             const token = response.token;
             if (!usuarioPersistido.email) {
@@ -69,7 +75,7 @@ export default function AgregarUsuario (){
                 navigation.navigate("Home")
             }
             function datosLogin(usuario, token) {
-              context.cambioDatos(usuario, token, context.reserva, context.objetoReserva);
+                context.cambioDatos(usuario, token, context.reserva, context.objetoReserva);
             }
         } else {
             //Mensaje de error cuando falta algún campo o hay algún campo inválido
@@ -84,6 +90,88 @@ export default function AgregarUsuario (){
         }
     }
 
+    function validar(dato, tipo) {
+
+        const regAlfabetico = /^[a-zA-Z]+$/
+        const regMail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
+        switch (tipo) {
+            case 'email':
+                if (dato == "") {
+                    setErrorEmail("El campo email no puede quedar vacío.");
+                    setEmail("");
+                } else if (regMail.test(dato)) {
+                    setErrorEmail("")
+                    setEmail(dato);
+                } else {
+                    setErrorEmail("El formato del email es inválido.");
+                    setEmail("");
+                }
+                break;
+            case 'nombre':
+                if (dato == "") {
+                    setErrorNombre("El campo nombre no puede quedar vacío.");
+                    setNombre("");
+                } else if (regAlfabetico.test(dato)) {
+                    setErrorNombre("")
+                    setNombre(dato);
+                } else {
+                    setErrorNombre("El formato del campo nombre debe ser alfabético.");
+                    setNombre("");
+                }
+                break;
+            case 'apellido':
+                if (dato == "") {
+                    setErrorApellido("El campo apellido nombre no puede quedar vacío.");
+                    setApellido("");
+                }
+                if (regAlfabetico.test(dato)) {
+                    setErrorApellido("");
+                    setApellido(dato);
+                } else {
+                    setErrorApellido("El formato del campo apellido debe ser alfabético.");
+                    setApellido("");
+                }
+                break;
+            case 'contraseña':
+                if (dato == "") {
+                    setErrorContraseña("El campo contraseña no puede quedar vacío.")
+                    setContraseña("");
+                } else if (dato.length < 4 || dato.length > 8) {
+                    setErrorContraseña("La contraseña debe tener un mínimo de 4 carateres y un máximo de 8 caracteres.");
+                    setContraseña("");
+                } else {
+                    setErrorContraseña("");
+                    setContraseña(dato);
+                }
+                break;
+            case 'confirmacion':
+                if (dato == "") {
+                    setErrorConfirmarContraseña("El campo de confirmación de contraseña no puede quedar vacío.")
+                    setConfirmarContraseña("");
+                } else if (dato !== contraseña) {
+                    setErrorConfirmarContraseña("La contraseña no coincide con la ingresada en el campo anterior.")
+                    setConfirmarContraseña("");
+                } else {
+                    setErrorConfirmarContraseña("");
+                    setConfirmarContraseña(dato);
+                }
+                break;
+            case 'telefono':
+                if (dato == "") {
+                    setErrorTelefono("El campo teléfono no puede quedar vacío.")
+                    setTelefono("");
+                } else if (dato < 100000) {
+                    setErrorTelefono("Debe ingresar un número de teléfono válido")
+                    setTelefono("");
+                } else {
+                    setErrorTelefono("");
+                    setTelefono(dato);
+                }
+                break;
+        }
+
+    }
+
     return (
         <ScrollView style={s.contenedorRegistro}>
             <BotoneraSuperior />
@@ -91,45 +179,48 @@ export default function AgregarUsuario (){
 
                 <TextInput
                     style={s.input}
-                    value={email}
                     placeholder="Email"
-                    onChangeText={(texto) => setEmail(texto)}
+                    onChangeText={(text) => validar(text, 'email')}
                     keyboardType="email-address"
                 />
+                <Text style={s.validacionInput}>{errorEmail}</Text>
                 <TextInput
                     style={s.input}
-                    value={nombre}
                     placeholder="Nombre"
-                    onChangeText={(texto) => setNombre(texto)}
+                    onChangeText={(text) => validar(text, 'nombre')}
                 />
+                <Text style={s.validacionInput}>{errorNombre}</Text>
                 <TextInput
                     style={s.input}
-                    value={apellido}
                     placeholder="Apellido"
-                    onChangeText={(texto) => setApellido(texto)}
+                    onChangeText={(text) => validar(text, 'apellido')}
                 />
+                <Text style={s.validacionInput}>{errorApellido}</Text>
                 <TextInput
                     style={s.input}
-                    value={telefono}
                     placeholder="Teléfono"
-                    onChangeText={(texto) => setTelefono(texto)}
+                    onChangeText={(text) => validar(text, 'telefono')}
                     keyboardType="phone-pad"
                 />
+                <Text style={s.validacionInput}>{errorTelefono}</Text>
                 <TextInput
                     style={s.input}
-                    value={contraseña}
                     placeholder="Contraseña"
+                    maxLength={8}
                     secureTextEntry={true}
-                    onChangeText={(texto) => setContraseña(texto)}
+                    onChangeText={(text) => validar(text, 'contraseña')}
                 />
+                <Text style={s.validacionInput}>{errorContraseña}</Text>
                 <TextInput
                     style={s.input}
-                    value={confirmarContraseña}
                     placeholder="Confirmar contraseña"
+                    maxLength={8}
                     secureTextEntry={true}
-                    onChangeText={(texto) => setConfirmarContraseña(texto)}
+                    onChangeText={(text) => validar(text, 'confirmacion')}
                 />
+                <Text style={s.validacionInput}>{errorConfirmarContraseña}</Text>
             </View>
+
             <TouchableHighlight style={s.containerBoton} onPress={() => guardarUsuario()}>
                 <View style={s.boton}>
                     <Text style={s.textoBoton}>Confirmar</Text>
