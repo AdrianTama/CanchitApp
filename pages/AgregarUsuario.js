@@ -32,7 +32,7 @@ export default function AgregarUsuario (){
 
 
     async function guardarUsuario() {
-
+            let response= "";
         if (puedeEnviar) {
 
             //Conformación de componentes para el fetch
@@ -54,15 +54,19 @@ export default function AgregarUsuario (){
                 })
             }
 
+            if(validarEmail(email)){
             //Almacenamos el response del fetch
-            let response = await fetch(ip + 'api/usuarios/agregarUsuario', requestOptions)
+            response = await fetch(ip + 'api/usuarios/agregarUsuario', requestOptions)
                 .then((res) => res.json())
                 .catch(err => {
                     console.log("Error: ", err)
                 })
-            //Dependiendo el response, mostramos un msj    
+            }
+            //Dependiendo el response, mostramos un msj   
+
+
             if (response.email === undefined) {
-                Alert.alert("Error", "El mail ya se encuentra registrado.")
+                Alert.alert("Error", "El mail ya se encuentra registrado o es invalido.")
             } else {
                 Alert.alert("Usted se registró con éxito.")
                 navigation.navigate("Home")
@@ -80,7 +84,15 @@ export default function AgregarUsuario (){
             )
         }
 
+     function validarEmail(email) {
+            const expReg = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+            let esValido = expReg.test(email);
+            console.log(esValido)
+            console.log(email)
+            return esValido;
+        }
     }
+
 
     return (
         <ScrollView style={s.contenedorRegistro}>
