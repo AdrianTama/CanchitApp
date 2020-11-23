@@ -125,6 +125,9 @@ function HomeCliente() {
         console.log("Error: ", err)
       })
 
+
+      context.cambioDatos(context.usuario, context.token, context.reserva, response);
+
   }
 
   return (
@@ -133,7 +136,7 @@ function HomeCliente() {
       {response === false ?
         <Drawer.Screen name="Nueva Reserva" component={Reserva} />
         :
-        <Drawer.Screen name="Mi Reserva" component={MiReserva(response)} initialParams={{ params: response }} />
+        <Drawer.Screen name="Mi Reserva" component={MiReserva} />
       }
       <Drawer.Screen name="Mi perfil" component={MiPerfil} />
       <Drawer.Screen name="Salir" component={Salir} />
