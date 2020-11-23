@@ -59,8 +59,7 @@ export default function Row({ reserva }) {
           <View>
               <Text style={s.itemList}>Número de cancha: {reserva.nroCancha}</Text>
               <Text style={s.itemList}>Día: {reserva.dia.toString().substring(0,10)}</Text>
-              <Text style={s.itemList}>Hora: {reserva.hora}</Text>
-              <Text style={s.itemList}>Suspendida: {reserva.suspendida.toString()}</Text>
+              <Text style={s.itemList}>Hora: {`${reserva.hora}:00hs`}</Text>
               <Text style={s.itemList}>Email: {reserva.email}</Text>
           </View>
       </View>
