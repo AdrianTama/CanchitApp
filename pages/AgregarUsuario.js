@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { ActivityIndicator, Text, View, TextInput, TouchableHighlight, Alert } from 'react-native';
+import { Text, View, TextInput, TouchableHighlight, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { ScrollView } from 'react-native-gesture-handler';
 import GlobalContext from '../components/context';
@@ -86,7 +86,6 @@ export default function AgregarUsuario (){
 
     return (
         <ScrollView style={s.contenedorRegistro}>
-            <ActivityIndicator />
             <BotoneraSuperior />
             <View style={s.containerIngreso}>
 
@@ -131,7 +130,6 @@ export default function AgregarUsuario (){
                     onChangeText={(texto) => setConfirmarContraseña(texto)}
                 />
             </View>
-
             <TouchableHighlight style={s.containerBoton} onPress={() => guardarUsuario()}>
                 <View style={s.boton}>
                     <Text style={s.textoBoton}>Confirmar</Text>
