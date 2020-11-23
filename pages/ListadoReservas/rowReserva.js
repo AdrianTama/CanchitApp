@@ -11,14 +11,10 @@ export default function Row({ reserva }) {
     const navigation = useNavigation();
     const ip = 'https://secret-shore-39623.herokuapp.com/';
 
-    function verReserva(){
-        navigation.navigate('Ver Reserva', { reserva })
-    }
-
     function confirmarSuspender() {
     Alert.alert(
-        "¿Confirmar eliminar reserva? ",
-        "¿Está seguro de que quiere eliminar la reserva número " + reserva.numero + "?",
+        "¿Confirmar suspender reserva? ",
+        "¿Está seguro de que quiere suspender la reserva?",
         [
             {
                 text: "Cancelar",
@@ -28,14 +24,12 @@ export default function Row({ reserva }) {
                 text: "Confirmar", onPress: suspender
             }
         ],
-        { suspendida: false })
+        { cancelable: false })
     }
 
     async function suspender() {
         const id = reserva._id;
-
         const headers = new Headers();
-
         headers.append("Content-type", "application/json")
 
         const requestOptions = {
@@ -67,7 +61,7 @@ export default function Row({ reserva }) {
               <Text style={s.itemList}>Número de cancha: {reserva.nroCancha}</Text>
               <Text style={s.itemList}>Día: {reserva.dia}</Text>
               <Text style={s.itemList}>Hora: {reserva.hora}</Text>
-              <Text style={s.itemList}>Suspendida: {reserva.suspendida}</Text>
+              <Text style={s.itemList}>Suspendida: {reserva.suspendida.toString()}</Text>
               <Text style={s.itemList}>Email: {reserva.email}</Text>
           </View>
       </View>
@@ -79,15 +73,6 @@ export default function Row({ reserva }) {
                   color='#000'
                   style={s.iconoEditar}
                   onPress={confirmarSuspender}
-              />
-          </TouchableHighlight>
-          <TouchableHighlight underlayColor = '#008b8b'>
-              <Icon
-                  name='pencil'
-                  size={30}
-                  color='#000'
-                  style={s.iconoEditar}
-                  onPress={verReserva}
               />
           </TouchableHighlight>
       </View>
