@@ -29,12 +29,14 @@ export default function Row({ reserva }) {
 
     async function suspender() {
         const id = reserva._id;
-        const headers = new Headers();
-        headers.append("Content-type", "application/json")
 
         const requestOptions = {
             method: "PUT",
-            headers: headers,
+            headers: new Headers({
+                'Authorization': `Bearer ${context.token}`,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              }),
         }
 
         let suspencion = await fetch(ip + 'api/reservas/suspender/' + id, requestOptions)
