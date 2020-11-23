@@ -1,6 +1,6 @@
 import React from 'react';
-import { Picker, Text, View, TouchableHighlight, TouchableOpacity } from 'react-native';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { View, TouchableHighlight, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import s from '../components/styles';
 import BotoneraSuperior from '../components/botoneraSuperior';
@@ -33,8 +33,6 @@ export default function VerReserva({route}) {
                 </View>
             </TouchableOpacity>
         </ScrollView>
-
-
     );
 }
 
