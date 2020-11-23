@@ -4,7 +4,6 @@ import {  Text, TextInput, View, TouchableHighlight, Alert } from 'react-native'
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Octicons';
 import GlobalContext from '../components/context';
-import Loading from '../components/loading';
 
 import BotoneraSuperior from '../components/nombreApp';
 import s from '../components/styles';
@@ -15,7 +14,6 @@ export default function SignIn() {
     const [email, setEmail] = useState('' || context.usuario);
     const [contraseña, setContraseña] = useState('' || context.usuario);
     const [puedeEnviar, setPuedeEnviar] = useState(false);
-    const [loading, setLoading] = useState(false);
 
     const navigation = useNavigation();
     const ip = 'https://secret-shore-39623.herokuapp.com/';
@@ -115,7 +113,7 @@ export default function SignIn() {
 
                 <TouchableHighlight style={s.containerBoton} onPress={registrarme}>
                     <View>
-                        <Text style={s.link}>Registrarme</Text> 
+                        <Text style={s.link}>Registrarme</Text>
                     </View>
                 </TouchableHighlight>
             </View>
