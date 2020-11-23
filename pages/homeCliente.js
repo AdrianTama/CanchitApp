@@ -15,32 +15,9 @@ export default function Home() {
     const [response, setResponse] = useState("");
     const isFocused = useIsFocused();
 
-    useEffect(() => {
 
-        buscarReserva(); 
-
-    }, [isFocused])
-
-    async function buscarReserva() {
-        const headers = new Headers();
-
-        headers.append("Content-type", "application/json")
-
-        const requestOptions = {
-            method: "GET",
-            headers: headers
-        }
-
-        await fetch(ip + 'api/reservas/miReserva/' + context.usuario.email, requestOptions)
-            .then((res) => res.json())
-            .then((json) => setResponse(json))
-            .catch(err => {
-                console.log("Error: ", err)
-            })
-            
-    }
-
-    function chequeoReserva(response) {
+    function chequeoReserva() {
+        setResponse(context.objetoReserva)
         if (response != false) {
             navigation.navigate("Mi Reserva", {reserva: response});
         } else {
@@ -63,7 +40,7 @@ export default function Home() {
             </View>
 
             <View style={s.botonera}>
-                <TouchableHighlight style={s.containerBotonHome} onPress={() => chequeoReserva(response)}>
+                <TouchableHighlight style={s.containerBotonHome} onPress={() => chequeoReserva()}>
                     <View style={s.boton}>
                     {response === false ?
                     <Text style={s.textoBoton}>Reservar Cancha</Text>
