@@ -14,7 +14,7 @@ import GlobalContext from '../components/context';
 //debemos finalizar la codificación de la conexión a la API.
 //Actualmente no reconoce bien el id con lo cual no funciona.
 
-const Perfil = ({guardarUsuario}) => {
+const Perfil = ({ guardarUsuario }) => {
 
     const context = useContext(GlobalContext);
     const [email] = useState(context.usuario.email)
@@ -28,14 +28,14 @@ const Perfil = ({guardarUsuario}) => {
 
     const [puedeEnviar, setPuedeEnviar] = useState(false)
     const ip = 'https://secret-shore-39623.herokuapp.com/';
-    const navigation = useNavigation(); 
-    
+    const navigation = useNavigation();
+
 
     // Validacion de boton enviar
-    useEffect( () => {
+    useEffect(() => {
 
-        setPuedeEnviar(email.length > 3 && nombre.length > 1 && apellido.length > 1 && telefono != 0  && telefono.length >= 8 )
-        
+        setPuedeEnviar(email.length > 3 && nombre.length > 1 && apellido.length > 1 && telefono != 0 && telefono.length >= 8)
+
     }, [email, nombre, apellido, telefono])
 
     async function guardarUsuario() {
@@ -50,7 +50,7 @@ const Perfil = ({guardarUsuario}) => {
                     'Authorization': `Bearer ${context.token}`,
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
-                  }),
+                }),
                 body: JSON.stringify({
                     email: email,
                     nombre: nombre,
@@ -124,66 +124,66 @@ const Perfil = ({guardarUsuario}) => {
 
     return (
         <ScrollView style={s.container}>
-            <BotoneraSuperior/>
+            <BotoneraSuperior />
             <View style={s.contenedorSubtitulo}>
                 <Text style={s.subtituloAdmin} >Mi perfil</Text>
             </View>
-            <View style = {s.contenedorRegistro}>
-            <Text style={s.dato}>Email</Text>
-            <TextInput
-                style={s.input}
-                editable={false}
-                value={email}
-            />
-            <Text style={s.dato}>Nombre</Text>
-            <TextInput
-                style={s.input}
-                placeholder="Nombre"
-                value= {nombre}
-                onChangeText={(text) => validar(text, 'nombre')}                
-            />
-            <Text style={s.validacionInput}>{errorNombre}</Text>
-            <Text style={s.dato}>Apellido</Text>
-            <TextInput
-                style={s.input}
-                placeholder="Apellido"
-                value= {apellido}
-                onChangeText={(text) => validar(text, 'apellido')}            
-            />
-            <Text style={s.validacionInput}>{errorApellido}</Text>
-            <Text style={s.dato}>Teléfono</Text>
-            <TextInput
-                style={s.input}
-                placeholder="Teléfono"
-                value= {telefono}
-                onChangeText={(text) => setTelefono(text)}
-                keyboardType="numeric"
-            />
-            <Text style={s.validacionInput}>{errorTelefono}</Text>
-            
+            <View style={s.contenedorRegistro}>
+                <Text style={s.dato}>Email</Text>
+                <TextInput
+                    style={s.input}
+                    editable={false}
+                    value={email}
+                />
+                <Text style={s.dato}>Nombre</Text>
+                <TextInput
+                    style={s.input}
+                    placeholder="Nombre"
+                    value={nombre}
+                    onChangeText={(text) => validar(text, 'nombre')}
+                />
+                <Text style={s.validacionInput}>{errorNombre}</Text>
+                <Text style={s.dato}>Apellido</Text>
+                <TextInput
+                    style={s.input}
+                    placeholder="Apellido"
+                    value={apellido}
+                    onChangeText={(text) => validar(text, 'apellido')}
+                />
+                <Text style={s.validacionInput}>{errorApellido}</Text>
+                <Text style={s.dato}>Teléfono</Text>
+                <TextInput
+                    style={s.input}
+                    placeholder="Teléfono"
+                    value={telefono}
+                    onChangeText={(text) => setTelefono(text)}
+                    keyboardType="numeric"
+                />
+                <Text style={s.validacionInput}>{errorTelefono}</Text>
 
-            <View style={s.botoneraInferior}>
-                <Icon 
-                name='x' 
-                size={40} 
-                color='#000' 
-                style= {s.iconoDerecho}
-                onPress={() => navigation.goBack()}
-                />
-                <Icon 
-                name='check' 
-                size={40} 
-                color='#000' 
-                style= {s.iconoIzquierdo}
-                onPress={() => guardarUsuario()}
-                />
-            </View>
-            
-            <TouchableHighlight style={s.containerBoton} onPress={() => navigation.navigate("Cambiar Contraseña")}>
-                <View>
-                    <Text style={s.link}>Cambiar contraseña</Text>
+
+                <View style={s.botoneraInferior}>
+                    <Icon
+                        name='x'
+                        size={40}
+                        color='#000'
+                        style={s.iconoDerecho}
+                        onPress={() => navigation.goBack()}
+                    />
+                    <Icon
+                        name='check'
+                        size={40}
+                        color='#000'
+                        style={s.iconoIzquierdo}
+                        onPress={() => guardarUsuario()}
+                    />
                 </View>
-            </TouchableHighlight>
+
+                <TouchableHighlight style={s.containerBoton} onPress={() => navigation.navigate("Cambiar Contraseña")}>
+                    <View>
+                        <Text style={s.link}>Cambiar contraseña</Text>
+                    </View>
+                </TouchableHighlight>
             </View>
 
         </ScrollView>

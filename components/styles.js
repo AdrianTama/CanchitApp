@@ -229,8 +229,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     textAlign: "center",
     marginBottom: 30,
-    paddingTop: 20,
+    paddingTop: 50,
     paddingBottom: 20,
+    borderEndWidth:1
   },
 
   subtituloAdmin: {

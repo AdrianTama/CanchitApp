@@ -24,7 +24,7 @@ export default function MiReserva() {
                 'Authorization': `Bearer ${context.token}`,
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
-              }),
+            }),
             body: JSON.stringify({
                 usuario: context.usuario,
                 reserva: context.objetoReserva,
@@ -38,6 +38,7 @@ export default function MiReserva() {
                 console.log("Error: ", err)
             })
         context.cambioDatos(context.usuario, context.token, 'reserva cancelada', context.objetoReserva);
+        Alert.alert("Reserva cancelada.")
         navigation.navigate('Home');
 
     }
@@ -79,7 +80,7 @@ export default function MiReserva() {
                 <View style={s.contenedorListado}>
                     <View>
                         <Text style={s.itemList}>Usted reservó la cancha número {nroCancha} para
-                        el día {dia.toString().substring(0,10)} a las {hora}:00hs</Text>
+                        el día {dia.toString().substring(0, 10)} a las {hora}:00hs</Text>
                     </View>
                 </View>
             </View>

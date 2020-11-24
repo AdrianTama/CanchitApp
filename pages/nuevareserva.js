@@ -4,15 +4,10 @@ import { useNavigation, useIsFocused } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/Octicons";
 import GlobalContext from "../components/context";
 
-//creé un componente con el stylesheet para llamarlo cada vez que lo necesitamos así no repetimos código en cada componente
 import s from "../components/styles";
 import BotoneraSuperior from "../components/botoneraSuperior";
 import { ScrollView } from "react-native-gesture-handler";
 
-//Ver si dividimos los picker en distintos componentes
-//¿Cómo comunicamos los componentes con los ítems que va seleccionando el usuario?
-//Tiene que renderizar cada vez que el usuario selecciona un ítem para que cargue los turnos disponibles
-//Falta ver la generacion de días y horarios para los picker que quedan
 export default function NuevaReserva() {
   const context = useContext(GlobalContext);
   const navigation = useNavigation();
@@ -21,10 +16,10 @@ export default function NuevaReserva() {
   const ip = "https://secret-shore-39623.herokuapp.com/";
 
   //Variables para la selección que conforma la reserva a enviar
-  const [tipoElegido, setTipoElegido] = useState([]);
-  const [canchaElegida, setCanchaElegida] = useState([]);
-  const [diaElegido, setDiaElegido] = useState([]);
-  const [horarioElegido, setHorarioElegido] = useState([]);
+  const [tipoElegido, setTipoElegido] = useState('0');
+  const [canchaElegida, setCanchaElegida] = useState('0');
+  const [diaElegido, setDiaElegido] = useState('0');
+  const [horarioElegido, setHorarioElegido] = useState('0');
 
   //Variables para los picker
   const [tipos, setTipos] = useState([]);
@@ -81,7 +76,6 @@ export default function NuevaReserva() {
 
   //ejecuta el fetch cuando se carga la page
   useEffect(() => {
-    //adaptar con ip de la compu que ejecute: http://ip:3000/api...
     fetch(ip + "api/tipocancha/", requestOptions)
       .then((response) => response.json())
       .then((json) => setTipos(json))
@@ -160,7 +154,11 @@ export default function NuevaReserva() {
         </Picker>
       </View>
 
-      <Text style={s.texto}>Precio: ${precio}</Text>
+      {
+        canchaElegida === '0' ?
+          null :
+          <Text style={s.texto}>Precio: ${precio}</Text>
+      }
 
       <Text style={s.texto}>Paso 3: Elegí el día</Text>
       <View style={s.contenedorPicker}>
