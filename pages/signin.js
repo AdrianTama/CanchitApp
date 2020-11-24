@@ -4,6 +4,7 @@ import {  Text, TextInput, View, TouchableHighlight, Alert } from 'react-native'
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Octicons';
 import GlobalContext from '../components/context';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 import BotoneraSuperior from '../components/nombreApp';
 import s from '../components/styles';
@@ -14,6 +15,7 @@ export default function SignIn() {
     const [email, setEmail] = useState('' || context.usuario);
     const [contraseña, setContraseña] = useState('' || context.usuario);
     const [puedeEnviar, setPuedeEnviar] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const navigation = useNavigation();
     const ip = 'https://secret-shore-39623.herokuapp.com/';
@@ -28,6 +30,13 @@ export default function SignIn() {
     useEffect(() => {
         setPuedeEnviar(email.length > 3 && contraseña.length >= 4 )
     }, [email, contraseña])
+
+    const startLoading = () => {
+        setLoading(true);
+        setTimeout(() => {
+          setLoading(false);
+        }, 3000);
+      };
 
     async function ingresar() {
         if(puedeEnviar){
@@ -54,14 +63,20 @@ export default function SignIn() {
             }
 
             if(!response) {
-                Alert.alert("Error", "Credenciales inválidas.")
+                setTimeout(() => {
+                    Alert.alert("Error", "Credenciales inválidas.")
+                  }, 3000);    
             } else {
                 datosLogin(response.usuario, response.token);
-                navigation.navigate("Home");
+                setTimeout(() => {
+                    navigation.navigate("Home");
+                }, 2400);
             } 
             
         } else {
-            Alert.alert("Error", "Falta completar algún campo.")
+            setTimeout(() => {
+                Alert.alert("Error", "Falta completar algún campo.")
+            }, 3000); 
         }
     };
 
@@ -73,6 +88,10 @@ export default function SignIn() {
         <ScrollView style={s.contenedorSignin} >
             <BotoneraSuperior />
             <View style={s.containerIngreso}>
+            <Spinner
+                    visible={loading}
+                    textContent={'Loading...'}
+                />
                 <StatusBar style="auto" />
                 <View style={s.contenedorRow}>
                     <Icon
@@ -104,7 +123,7 @@ export default function SignIn() {
                     />
                 </View>
 
-                <TouchableHighlight style={s.containerBoton} onPress={ingresar}>
+                <TouchableHighlight style={s.containerBoton} onPress={() => {ingresar(), startLoading() }}>
                     <View style={s.boton}>
                         <Text style={s.textoBoton}>Ingresar</Text>
                     </View>
