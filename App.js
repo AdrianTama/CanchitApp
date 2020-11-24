@@ -32,8 +32,7 @@ import SeteoAtencion from './pages/seteoAtencion';
 import ListadoCanchas from './pages/ListadoCanchas/misCanchas';
 import AgregarCancha from "./pages/ListadoCanchas/agregarCancha";
 import EditarCancha from './pages/ListadoCanchas/editarCancha';
-//Loading
-import Loading from './components/loading'
+
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();

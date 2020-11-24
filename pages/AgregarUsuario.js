@@ -44,7 +44,7 @@ export default function AgregarUsuario() {
   
     const startLoading = () => {
       setLoading(true);
-      setTimeout((loading) => {
+      setTimeout(() => {
         setLoading(false);
       }, 3000);
     };
@@ -76,26 +76,32 @@ export default function AgregarUsuario() {
             //Dependiendo el response, mostramos un msj   
             const usuarioPersistido = response.usuarioPersistido;
             const token = response.token;
-            if (!usuarioPersistido.email) {
-                Alert.alert("Error", "El mail ya se encuentra registrado.")
+            if (!usuarioPersistido) {
+                setTimeout(() => {
+                    Alert.alert("Error", "El mail ya se encuentra registrado.")
+                  }, 3010); 
             } else {
-                Alert.alert("Usted se registró con éxito.")
                 datosLogin(usuarioPersistido, token);
-                navigation.navigate("Home")
+                setTimeout(() => {
+                    Alert.alert("Usted se registró con éxito.")
+                    navigation.navigate("Home")
+                  }, 3010);
             }
             function datosLogin(usuario, token) {
                 context.cambioDatos(usuario, token, context.reserva, context.objetoReserva);
             }
         } else {
             //Mensaje de error cuando falta algún campo o hay algún campo inválido
-            Alert.alert(
-                "Error",
-                "¡Revisar los campos completados!",
-                [{
-                    text: "Cancelar",
-                    onPress: console.log('Yes Pressed'),
-                }]
-            )
+            setTimeout(() => {
+                Alert.alert(
+                    "Error",
+                    "¡Revisar los campos completados!",
+                    [{
+                        text: "Cancelar",
+                        onPress: console.log('Yes Pressed'),
+                    }]
+                )
+              }, 3010); 
         }
     }
     function imprimirMsj(campo){
