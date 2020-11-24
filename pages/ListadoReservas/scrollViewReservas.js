@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, Text } from 'react-native';
 import Row from "./rowReserva";
 import { useNavigation } from '@react-navigation/native';
 import GlobalContext from '../../components/context';
@@ -26,9 +26,11 @@ export default function ScrollViewTurnos() {
 
     return (
         <ScrollView style={s.container}>
-          {reservas.map((reserva) => (<Row key={reserva._id} reserva={reserva} />)) }
+          {(reservas[0] != undefined) ?
+            (reservas.map((reserva) => (<Row key={reserva._id} reserva={reserva} />))) 
+            : (<Text>No hay reservas</Text>)
+          }
         </ScrollView>
     )
-
 }
 

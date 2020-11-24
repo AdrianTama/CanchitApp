@@ -29,11 +29,10 @@ export default function ScrollViewCanchas() {
 
     return (
         <ScrollView style={s.container}>
-            {
-                canchas.map((cancha) => (
-                    <Row key={cancha._id} cancha={cancha} />
-                ))
-            }
+          {(canchas[0] != undefined) ?
+            (canchas.map((cancha) => (<Row key={cancha._id} cancha={cancha} />))) 
+            : (<Text>No hay reservas</Text>)
+          }
         </ScrollView>
     )
 
