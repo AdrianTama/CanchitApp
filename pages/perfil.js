@@ -18,10 +18,13 @@ const Perfil = ({guardarUsuario}) => {
 
     const context = useContext(GlobalContext);
     const [email] = useState(context.usuario.email)
-    const [nombre, setNombre] = useState(context.usuario.nombre)
-    const [apellido, setApellido] = useState(context.usuario.apellido)
-    const [telefono, setTelefono] = useState(context.usuario.telefono)
-    const [id, setId] = useState(context.usuario._id)
+    const [nombre, setNombre] = useState(context.usuario.nombre);
+    const [errorNombre, setErrorNombre] = useState('');
+    const [apellido, setApellido] = useState(context.usuario.apellido);
+    const [errorApellido, setErrorApellido] = useState('');
+    const [telefono, setTelefono] = useState(context.usuario.telefono);
+    const [errorTelefono, setErrorTelefono] = useState('');
+    const [id, setId] = useState(context.usuario._id);
 
     const [puedeEnviar, setPuedeEnviar] = useState(false)
     const ip = 'https://secret-shore-39623.herokuapp.com/';
@@ -86,6 +89,39 @@ const Perfil = ({guardarUsuario}) => {
     }
 
 
+    function validar(dato, tipo) {
+
+        const regAlfabetico = /^[a-zA-Z ]+$/
+        const regNumerico = /^[0-9]+$/
+        switch (tipo) {
+            case 'nombre':
+                if (dato == "") {
+                    setErrorNombre("El campo nombre no puede quedar vacío.");
+                    setNombre("");
+                } else if (regAlfabetico.test(dato)) {
+                    setErrorNombre("")
+                    setNombre(dato);
+                } else {
+                    setErrorNombre("El formato del campo nombre debe ser alfabético.");
+                }
+                break;
+            case 'apellido':
+                if (dato == "") {
+                    setErrorApellido("El campo apellido nombre no puede quedar vacío.");
+                    setApellido("");
+                }
+                if (regAlfabetico.test(dato)) {
+                    setErrorApellido("");
+                    setApellido(dato);
+                } else {
+                    setErrorApellido("El formato del campo apellido debe ser alfabético.");
+                }
+                break;
+        }
+
+    }
+
+
     return (
         <ScrollView style={s.container}>
             <BotoneraSuperior/>
@@ -102,25 +138,28 @@ const Perfil = ({guardarUsuario}) => {
             <Text style={s.dato}>Nombre</Text>
             <TextInput
                 style={s.input}
-                value={nombre}
                 placeholder="Nombre"
-                onChangeText={(texto) => setNombre(texto)}                
+                value= {nombre}
+                onChangeText={(text) => validar(text, 'nombre')}                
             />
+            <Text style={s.validacionInput}>{errorNombre}</Text>
             <Text style={s.dato}>Apellido</Text>
             <TextInput
                 style={s.input}
-                value={apellido}
                 placeholder="Apellido"
-                onChangeText={(texto) => setApellido(texto)}            
+                value= {apellido}
+                onChangeText={(text) => validar(text, 'apellido')}            
             />
+            <Text style={s.validacionInput}>{errorApellido}</Text>
             <Text style={s.dato}>Teléfono</Text>
             <TextInput
                 style={s.input}
-                value={telefono}
                 placeholder="Teléfono"
-                onChangeText={(texto) => setTelefono(texto)}
+                value= {telefono}
+                onChangeText={(text) => setTelefono(text)}
                 keyboardType="numeric"
             />
+            <Text style={s.validacionInput}>{errorTelefono}</Text>
             
 
             <View style={s.botoneraInferior}>

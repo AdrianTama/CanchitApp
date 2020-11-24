@@ -15,8 +15,11 @@ const cambiarClave = ({ cambiarClave }) => {
     const context = useContext(GlobalContext);
     const [email, setEmail] = useState(context.usuario.email);
     const [password, setPassword] = useState('');
-    const [nuevapassword, setNuevaPassword] = useState("")
-    const [confirmPassword, setConfirmPassword] = useState("")
+    const [nuevapassword, setNuevaPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [errorPassword, setErrorPassword] = useState("");
+    const [errorNuevaPassword, setErrorNuevaPassword] = useState("");
+    const [errorConfirmPassword, setErrorConfirmPassword] = useState("");
     const popAction = StackActions.popToTop();
     const isFocused = useIsFocused();
 
@@ -84,6 +87,49 @@ const cambiarClave = ({ cambiarClave }) => {
         }
     }
 
+    function validar(dato, tipo) {
+
+        switch (tipo) {
+            case 'Contraseña Actual':
+                if (dato == "") {
+                    setErrorPassword("El campo contraseña no puede quedar vacío.");
+                    setPassword("");
+                } else if (dato.length < 4 || dato.length > 8) {
+                    setErrorPassword("La contraseña debe tener un mínimo de 4 carateres y un máximo de 8 caracteres.");
+                    setPassword("");
+                } else {
+                    setErrorPassword("");
+                    setPassword(dato);
+                }
+                break;
+            case 'Contraseña Nueva':
+                if (dato == "") {
+                    setErrorNuevaPassword("El campo contraseña no puede quedar vacío.")
+                    setNuevaPassword("");
+                } else if (dato.length < 4 || dato.length > 8) {
+                    setErrorNuevaPassword("La contraseña debe tener un mínimo de 4 carateres y un máximo de 8 caracteres.");
+                    setNuevaPassword("");
+                } else {
+                    setErrorNuevaPassword("");
+                    setNuevaPassword(dato);
+                }
+                break;
+            case 'Confirmar Contraseña':
+                if (dato == "") {
+                    setErrorConfirmPassword("El campo de confirmación de contraseña no puede quedar vacío.")
+                    setConfirmPassword("");
+                } else if (dato !== nuevapassword) {
+                    setErrorConfirmPassword("La contraseña no coincide con la ingresada en el campo anterior.")
+                    setConfirmPassword("");
+                } else {
+                    setErrorConfirmPassword("");
+                    setConfirmPassword(dato);
+                }
+                break;
+        }
+
+    }
+
 
     return (
         <ScrollView style={s.container}>
@@ -95,25 +141,28 @@ const cambiarClave = ({ cambiarClave }) => {
 
                 <TextInput
                     style={s.input}
-                    value={password}
                     placeholder="Contraseña actual"
                     secureTextEntry={true}
-                    onChangeText={(texto) => setPassword(texto)}
+                    onChangeText={(text) => validar(text, 'Contraseña Actual')}
+                    maxLength={8}
                 />
+                <Text style={s.validacionInput}>{errorPassword}</Text>
                 <TextInput
                     style={s.input}
-                    value={nuevapassword}
                     placeholder="Nueva contraseña"
                     secureTextEntry={true}
-                    onChangeText={(texto) => setNuevaPassword(texto)}
+                    onChangeText={(text) => validar(text, 'Contraseña Nueva')}
+                    maxLength={8}
                 />
+                <Text style={s.validacionInput}>{errorNuevaPassword}</Text>
                 <TextInput
                     style={s.input}
-                    value={confirmPassword}
                     placeholder="Confirmar nueva contraseña"
                     secureTextEntry={true}
-                    onChangeText={(texto) => setConfirmPassword(texto)}
+                    onChangeText={(text) => validar(text, 'Confirmar Contraseña')}
+                    maxLength={8}
                 />
+                <Text style={s.validacionInput}>{errorConfirmPassword}</Text>
             </View>
 
 
