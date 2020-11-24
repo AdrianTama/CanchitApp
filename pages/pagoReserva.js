@@ -11,7 +11,6 @@ import context from '../components/context';
 
 
 export default function NuevaReserva() {
-
     const [tarjeta, setTarjeta] = useState([]);
     const [errorTarjeta, setErrorTarjeta] = useState([])
     const [vto, setVto] = useState([]);
@@ -29,9 +28,7 @@ export default function NuevaReserva() {
 
     // Validacion de boton enviar
     useEffect(() => {
-
         setPuedeEnviar(tarjeta != '' && vto != '' && cvv != '')
-
     }, [tarjeta, vto, cvv])
 
     function pagar() {
@@ -93,7 +90,7 @@ export default function NuevaReserva() {
         } else {
             context.cambioDatos(context.usuario, context.token, 'nueva reserva', context.objetoReserva);
             navigation.dispatch(popAction);
-            navigation.navigate("Home");
+            navigation.navigate("Mi Reserva");
         }
 
     }
