@@ -28,7 +28,7 @@ export default function ScrollViewTurnos() {
         <ScrollView style={s.container}>
           {(reservas[0] != undefined) ?
             (reservas.map((reserva) => (<Row key={reserva._id} reserva={reserva} />))) 
-            : (<Text>No hay reservas</Text>)
+            : (<Text style={s.vacio}>No hay reservas</Text>)
           }
         </ScrollView>
     )

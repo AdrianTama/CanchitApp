@@ -13,7 +13,7 @@ export default function Row({ reserva }) {
 
     function confirmarSuspender() {
     Alert.alert(
-        "¿Confirmar suspender reserva? ",
+        "Confirmar suspensión de reserva ",
         "¿Está seguro de que quiere suspender la reserva?",
         [
             {

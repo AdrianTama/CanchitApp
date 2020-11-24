@@ -40,9 +40,9 @@ export default function Home() {
                 <TouchableOpacity style={s.containerBotonHome} onPress={() => chequeoReserva()}>
                     <View style={s.boton}>
                     {context.objetoReserva === false ?
-                    <Text style={s.textoBoton}>Reservar Cancha</Text>
+                    <Text style={s.textoBoton}>Nueva reserva</Text>
                     :
-                    <Text style={s.textoBoton}>Mi Reserva</Text>
+                    <Text style={s.textoBoton}>Mi reserva</Text>
                     }
                         
                     </View>

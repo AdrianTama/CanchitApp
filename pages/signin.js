@@ -35,7 +35,7 @@ export default function SignIn() {
         setLoading(true);
         setTimeout(() => {
           setLoading(false);
-        }, 3000);
+        }, 2500);
       };
 
     async function ingresar() {
@@ -65,12 +65,12 @@ export default function SignIn() {
             if(!response) {
                 setTimeout(() => {
                     Alert.alert("Error", "Credenciales inválidas.")
-                  }, 3000);    
+                  }, 2500);    
             } else {
                 datosLogin(response.usuario, response.token);
                 setTimeout(() => {
                     navigation.navigate("Home");
-                }, 2400);
+                }, 2500);
             } 
             
         } else {
@@ -105,6 +105,7 @@ export default function SignIn() {
                         onChangeText={text => setEmail(text)}
                         value={email}
                         placeholder='Ingresa tu usuario'
+                        keyboardType="email-address"
                     />
                 </View>
                 <View style={s.contenedorRow}>

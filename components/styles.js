@@ -304,6 +304,15 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginBottom: 30,
   },
+
+  vacio:{
+    justifyContent: 'center',
+    alignItems:'center',
+    paddingTop:100,
+    textAlign: 'center',
+    color: 'gray',
+    fontSize:15,
+  }
 });
 
 export default styles;

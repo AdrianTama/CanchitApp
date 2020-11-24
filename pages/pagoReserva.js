@@ -90,7 +90,7 @@ export default function NuevaReserva() {
         } else {
             context.cambioDatos(context.usuario, context.token, 'nueva reserva', context.objetoReserva);
             navigation.dispatch(popAction);
-            navigation.navigate("Mi Reserva");
+            navigation.navigate("Home");
         }
 
     }

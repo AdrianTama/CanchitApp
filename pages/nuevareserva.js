@@ -179,6 +179,7 @@ export default function NuevaReserva() {
       </View>
 
       <Text style={s.texto}>Paso 4: Elegí el horario</Text>
+      
       <View style={s.contenedorPicker}>
         <Picker
           selectedValue={horarioElegido}

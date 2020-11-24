@@ -16,6 +16,7 @@ export default function MiReserva() {
     const [dia, setDia] = useState('' || context.objetoReserva.dia);
     const [hora, setHora] = useState('' || context.objetoReserva.hora);
 
+
     async function cancelarReserva() {
 
         const requestOptions = {
@@ -87,7 +88,7 @@ export default function MiReserva() {
 
             <TouchableOpacity style={s.containerBoton} onPress={() => cancelar()}>
                 <View style={s.boton}>
-                    <Text style={s.textoBoton}>Cancelar Reserva</Text>
+                    <Text style={s.textoBoton}>Cancelar reserva</Text>
                 </View>
             </TouchableOpacity>
         </ScrollView>

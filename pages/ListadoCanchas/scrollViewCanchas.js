@@ -31,7 +31,7 @@ export default function ScrollViewCanchas() {
         <ScrollView style={s.container}>
           {(canchas[0] != undefined) ?
             (canchas.map((cancha) => (<Row key={cancha._id} cancha={cancha} />))) 
-            : (<Text>No hay canchas</Text>)
+            : (<Text style={s.vacio}>No hay canchas</Text>)
           }
         </ScrollView>
     )
