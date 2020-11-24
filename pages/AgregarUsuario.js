@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Text, View, TextInput, TouchableHighlight, Alert } from 'react-native';
+import { Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { ScrollView } from 'react-native-gesture-handler';
 import GlobalContext from '../components/context';
@@ -240,17 +240,17 @@ export default function AgregarUsuario() {
                 />
                 <Text style={s.validacionInput}>{errorConfirmarContraseña}</Text>
             </View>
-            <TouchableHighlight style={s.containerBoton} onPress={() => { guardarUsuario(), startLoading() }}>
+            <TouchableOpacity style={s.containerBoton} onPress={() => { guardarUsuario(), startLoading() }}>
                 <View style={s.boton}>
                     <Text style={s.textoBoton}>Confirmar</Text>
                 </View>
-            </TouchableHighlight>
+            </TouchableOpacity>
 
-            <TouchableHighlight style={s.containerBoton} onPress={() => navigation.goBack()}>
+            <TouchableOpacity style={s.containerBoton} onPress={() => navigation.goBack()}>
                 <View style={s.boton}>
                     <Text style={s.textoBoton}>Cancelar</Text>
                 </View>
-            </TouchableHighlight>
+            </TouchableOpacity>
         </ScrollView>
     )
 }

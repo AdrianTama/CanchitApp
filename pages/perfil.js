@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Alert, Text, View, TextInput, Button, TouchableHighlight } from 'react-native';
+import { Alert, Text, View, TextInput, Button, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { ScrollView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Octicons';
@@ -179,11 +179,11 @@ const Perfil = ({ guardarUsuario }) => {
                     />
                 </View>
 
-                <TouchableHighlight style={s.containerBoton} onPress={() => navigation.navigate("Cambiar Contraseña")}>
+                <TouchableOpacity style={s.containerBoton} onPress={() => navigation.navigate("Cambiar Contraseña")}>
                     <View>
                         <Text style={s.link}>Cambiar contraseña</Text>
                     </View>
-                </TouchableHighlight>
+                </TouchableOpacity>
             </View>
 
         </ScrollView>

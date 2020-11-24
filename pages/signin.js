@@ -1,6 +1,6 @@
 import React , { useEffect, useState, useContext } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import {  Text, TextInput, View, TouchableHighlight, Alert } from 'react-native';
+import {  Text, TextInput, View, TouchableOpacity, Alert } from 'react-native';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Octicons';
 import GlobalContext from '../components/context';
@@ -123,17 +123,17 @@ export default function SignIn() {
                     />
                 </View>
 
-                <TouchableHighlight style={s.containerBoton} onPress={() => {ingresar(), startLoading() }}>
+                <TouchableOpacity style={s.containerBoton} onPress={() => {ingresar(), startLoading() }}>
                     <View style={s.boton}>
                         <Text style={s.textoBoton}>Ingresar</Text>
                     </View>
-                </TouchableHighlight>
+                </TouchableOpacity>
 
-                <TouchableHighlight style={s.containerBoton} onPress={registrarme}>
+                <TouchableOpacity style={s.containerBoton} onPress={registrarme}>
                     <View>
                         <Text style={s.link}>Registrarme</Text>
                     </View>
-                </TouchableHighlight>
+                </TouchableOpacity>
             </View>
         </ScrollView>
     );

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Alert, Text, View, TouchableHighlight } from 'react-native';
+import { Alert, Text, View, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import GlobalContext from '../../components/context';
@@ -64,7 +64,7 @@ export default function Row({ reserva }) {
           </View>
       </View>
       <View style={s.botoneraDerecha}>
-          <TouchableHighlight underlayColor='rgba(154, 154, 154, 0,2'>
+          <TouchableOpacity underlayColor='rgba(154, 154, 154, 0,2'>
               <Icon
                   name='cancel'
                   size={30}
@@ -72,7 +72,7 @@ export default function Row({ reserva }) {
                   style={s.iconoEditar}
                   onPress={confirmarSuspender}
               />
-          </TouchableHighlight>
+          </TouchableOpacity>
       </View>
   </View>
     )

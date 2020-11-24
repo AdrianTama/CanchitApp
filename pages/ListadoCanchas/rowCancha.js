@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import { Alert, Text, View, TouchableHighlight } from 'react-native';
+import { Alert, Text, View, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Octicons';
 import GlobalContext from '../../components/context';
@@ -70,7 +70,7 @@ export default function Row({ cancha }) {
                 </View>
             </View>
             <View style={s.botoneraDerecha}>
-                <TouchableHighlight underlayColor='rgba(154, 154, 154, 0,2'>
+                <TouchableOpacity underlayColor='rgba(154, 154, 154, 0,2'>
                     <Icon
                         name='trashcan'
                         size={30}
@@ -78,8 +78,8 @@ export default function Row({ cancha }) {
                         style={s.iconoEditar}
                         onPress={confirmarEliminar}
                     />
-                </TouchableHighlight>
-                <TouchableHighlight underlayColor = '#008b8b'>
+                </TouchableOpacity>
+                <TouchableOpacity underlayColor = '#008b8b'>
                     <Icon
                         name='pencil'
                         size={30}
@@ -87,7 +87,7 @@ export default function Row({ cancha }) {
                         style={s.iconoEditar}
                         onPress={editar}
                     />
-                </TouchableHighlight>
+                </TouchableOpacity>
             </View>
         </View>
     )

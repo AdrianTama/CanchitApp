@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableHighlight, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import s from '../components/styles';
@@ -22,11 +22,11 @@ export default function VerReserva({route}) {
                 <Text style={s.texto}>Hora: {reserva.hora}:00hs </Text>
             </View>
 
-            <TouchableHighlight style={s.containerBoton} onPress={() => navigation.navigate('Home')}>
+            <TouchableOpacity style={s.containerBoton} onPress={() => navigation.navigate('Home')}>
                 <View style={s.boton}>
                     <Text style={s.textoBoton}>Volver</Text>
                 </View>
-            </TouchableHighlight>
+            </TouchableOpacity>
             <TouchableOpacity style={s.containerBoton} onPress={() => navigation.navigate('Home')}>
                 <View style={s.boton}>
                     <Text style={s.textoBoton}>Cancelar Reserva</Text>

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Text, View, TouchableHighlight, TouchableOpacity, Alert, Image, StyleSheet } from 'react-native';
+import { Text, View, TouchableOpacity, Alert, Image, StyleSheet } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 import s from '../components/styles';

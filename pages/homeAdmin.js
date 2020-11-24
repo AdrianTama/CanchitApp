@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Picker, StyleSheet, Text, View, TouchableHighlight, Image } from 'react-native';
+import { Picker, StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import BotoneraSuperior from '../components/botoneraSuperior';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -24,22 +24,22 @@ export default function Home() {
 
             <View style={s.botonera}>
 
-                <TouchableHighlight style={s.containerBotonHome} onPress={() => navigation.navigate("Días y Horarios de Atención")}>
+                <TouchableOpacity style={s.containerBotonHome} onPress={() => navigation.navigate("Días y Horarios de Atención")}>
                     <View style={s.boton}>
                         <Text style={s.textoBoton}>Días y Horarios de Atención</Text>
                     </View>
-                </TouchableHighlight>
+                </TouchableOpacity>
 
-                <TouchableHighlight style={s.containerBotonHome} onPress={() => navigation.navigate("Listado Canchas")}>
+                <TouchableOpacity style={s.containerBotonHome} onPress={() => navigation.navigate("Listado Canchas")}>
                     <View style={s.boton}>
                         <Text style={s.textoBoton}>Listado de canchas</Text>
                     </View>
-                </TouchableHighlight>
-                <TouchableHighlight style={s.containerBotonHome} onPress={() => navigation.navigate("Listado Reservas")}>
+                </TouchableOpacity>
+                <TouchableOpacity style={s.containerBotonHome} onPress={() => navigation.navigate("Listado Reservas")}>
                     <View style={s.boton}>
                         <Text style={s.textoBoton}>Listado de reservas</Text>
                     </View>
-                </TouchableHighlight>
+                </TouchableOpacity>
             </View>
         </ScrollView>
     );

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Picker, Text, View, TouchableHighlight, Image } from 'react-native';
+import { Picker, Text, View, TouchableOpacity, Image } from 'react-native';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import BotoneraSuperior from '../components/botoneraSuperior';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -37,7 +37,7 @@ export default function Home() {
             </View>
 
             <View style={s.botonera}>
-                <TouchableHighlight style={s.containerBotonHome} onPress={() => chequeoReserva()}>
+                <TouchableOpacity style={s.containerBotonHome} onPress={() => chequeoReserva()}>
                     <View style={s.boton}>
                     {context.objetoReserva === false ?
                     <Text style={s.textoBoton}>Reservar Cancha</Text>
@@ -46,7 +46,7 @@ export default function Home() {
                     }
                         
                     </View>
-                </TouchableHighlight>
+                </TouchableOpacity>
 
 
             </View>
