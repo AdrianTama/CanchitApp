@@ -98,6 +98,9 @@ export default function AgregarUsuario() {
             )
         }
     }
+    function imprimirMsj(campo){
+       return (`El campo ${campo} no puede quedar vacío`)
+    }
 
     function validar(dato, tipo) {
 
@@ -106,7 +109,7 @@ export default function AgregarUsuario() {
         switch (tipo) {
             case 'email':
                 if (dato == "") {
-                    setErrorEmail("El campo email no puede quedar vacío.");
+                    setErrorEmail(imprimirMsj('email'));
                     setEmail("");
                 } else if (regMail.test(dato)) {
                     setErrorEmail("")
@@ -118,7 +121,7 @@ export default function AgregarUsuario() {
                 break;
             case 'nombre':
                 if (dato == "") {
-                    setErrorNombre("El campo nombre no puede quedar vacío.");
+                    setErrorNombre(imprimirMsj('nombre'));
                     setNombre("");
                 } else if (regAlfabetico.test(dato)) {
                     setErrorNombre("")
@@ -130,10 +133,9 @@ export default function AgregarUsuario() {
                 break;
             case 'apellido':
                 if (dato == "") {
-                    setErrorApellido("El campo apellido nombre no puede quedar vacío.");
+                    setErrorApellido(imprimirMsj('apellido'));
                     setApellido("");
-                }
-                if (regAlfabetico.test(dato)) {
+                } else if (regAlfabetico.test(dato)) {
                     setErrorApellido("");
                     setApellido(dato);
                 } else {
@@ -143,7 +145,7 @@ export default function AgregarUsuario() {
                 break;
             case 'contraseña':
                 if (dato == "") {
-                    setErrorContraseña("El campo contraseña no puede quedar vacío.")
+                    setErrorContraseña(imprimirMsj('contraseña'))
                     setContraseña("");
                 } else if (dato.length < 4 || dato.length > 8) {
                     setErrorContraseña("La contraseña debe tener un mínimo de 4 carateres y un máximo de 8 caracteres.");
@@ -155,7 +157,7 @@ export default function AgregarUsuario() {
                 break;
             case 'confirmacion':
                 if (dato == "") {
-                    setErrorConfirmarContraseña("El campo de confirmación de contraseña no puede quedar vacío.")
+                    setErrorConfirmarContraseña(imprimirMsj('confirmación de contraseña'))
                     setConfirmarContraseña("");
                 } else if (dato !== contraseña) {
                     setErrorConfirmarContraseña("La contraseña no coincide con la ingresada en el campo anterior.")
@@ -167,7 +169,7 @@ export default function AgregarUsuario() {
                 break;
             case 'telefono':
                 if (dato == "") {
-                    setErrorTelefono("El campo teléfono no puede quedar vacío.")
+                    setErrorTelefono(imprimirMsj("teléfono"))
                     setTelefono("");
                 } else if (dato < 100000) {
                     setErrorTelefono("Debe ingresar un número de teléfono válido")
