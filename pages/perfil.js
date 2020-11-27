@@ -67,11 +67,12 @@ const Perfil = ({ guardarUsuario }) => {
                     console.log("Error: ", err)
                 })
             //Dependiendo el response, mostramos un msj    
-            if (response != 1) {
-                console.log("No se pudo modificar.")
-            } else {
+            if (response === true) {
                 Alert.alert("Sus datos se modificaron con éxito.")
                 navigation.navigate("Home")
+                
+            } else {
+                Alert.alert("No hubo modificación de datos.")
             }
 
         } else {
